@@ -23,3 +23,7 @@ Route::get('/user/createform','UserController@createForm');
 Route::post('/auth','LoginController@auth');
 Route::get('/login','LoginController@login');
 Route::get('/logout','LoginController@logout');
+Route::get('/customer/read','CustomerController@read');
+Route::get('/customer/edit/{id}','CustomerController@edit');
+Route::get('/customer/delete/{id}','CustomerController@delete');
+Route::post('/customer/update','CustomerController@update');

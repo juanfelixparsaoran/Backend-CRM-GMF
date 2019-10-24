@@ -15,6 +15,7 @@
         email <input type="text" name="email" required="required"> <br/>
         role <input type="text" name="role" required="required"> <br/>
         status <input type="text" name="status" required="required"> <br/>
+		status <input type="text" name="company_name" required="required"> <br/>
         
 		
 		<input type="submit" value="Simpan Data">
