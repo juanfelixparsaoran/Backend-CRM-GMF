@@ -27,3 +27,7 @@ Route::get('/customer/read','CustomerController@read');
 Route::get('/customer/edit/{id}','CustomerController@edit');
 Route::get('/customer/delete/{id}','CustomerController@delete');
 Route::post('/customer/update','CustomerController@update');
+Route::get('/ads/read','AdsController@read');
+Route::get('/ads/edit/{id}','AdsController@edit');
+Route::get('/ads/delete/{id}','AdsController@delete');
+Route::post('/ads/update','AdsController@update');
