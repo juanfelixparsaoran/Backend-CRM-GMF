@@ -15,7 +15,6 @@ class LoginController extends Controller
         }else{
             return 'Homepage';
         }
-            
     }
 
     public function logout(Request $request)
@@ -37,9 +36,9 @@ class LoginController extends Controller
             }
         }
         if ($login){
-            return 'Homepage';
+            return 'homepage';
         }else{
-            return 'Wrong Username or Parssword';
+            return 'Wrong Username or Password';
         }
     }
 }

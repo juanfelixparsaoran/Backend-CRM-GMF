@@ -27,9 +27,24 @@ class CompanyController extends Controller
             'destination' => $request->destination,
             'customer_since' => $request->customer_since,
         ]);
+        return 'company updated';
     }
     function delete($id){
         DB::table('company')->where('company_id',$id)->delete();
         return 'deleted';
+    }
+    function create(Request $request){
+        DB::table('company')->insert([
+            'name' => $request->name,
+            'est_date' => $request->est_date,
+            'type' => $request->type,
+            'shareholder' => $request->shareholder,
+            'alliance' => $request->alliance,
+            'MRO' => $request->MRO,
+            'fleet_size' => $request->fleet_size,
+            'destination' => $request->destination,
+            'customer_since' => $request->customer_since,
+        ]);
+        return 'company created';
     }
 }

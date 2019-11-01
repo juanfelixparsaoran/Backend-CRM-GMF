@@ -29,4 +29,13 @@ class AdsController extends Controller
         DB::table('ads')->where('ads_id',$id)->delete();
         return 'ads deleted';
     }
+
+    function create(Request $request){
+        DB::table('ads')->insert([
+            'subject' => $request->subject,
+            'image' => $request->image,
+            'permalink' => $request->permalink
+        ]);
+        return 'ads created';
+    }
 }
