@@ -20,7 +20,9 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget('username');
-        return 'Logout';
+        return response()->json([
+            'message' => 'Successfully Logout'
+        ]);
     }
 
     public function auth(Request $request)
@@ -36,9 +38,13 @@ class LoginController extends Controller
             }
         }
         if ($login){
-            return 'homepage';
+            return response()->json([
+                'message' => 'Successfully Login'
+            ]);
         }else{
-            return 'Wrong Username or Password';
+            return response()->json([
+                'message' => 'Failed to Login'
+            ]);
         }
     }
 }

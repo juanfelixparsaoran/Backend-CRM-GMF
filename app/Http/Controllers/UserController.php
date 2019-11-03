@@ -8,18 +8,18 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function read()
     {
         // mengambil data dari table pegawai
-        $pegawai = DB::table('user')->get();
-
-        return $pegawai;
+        $user = DB::table('user')->get();
+        return response()->json([
+            'data' => $user
+        ]);  
     }
 
     public function create(Request $request)
     {
         $company = DB::table('company')->where('name',$request->company_name)->get();
-        print_r($company);
         DB::table('customer')->insert([
             'name' => $request->name,
             'position' => $request->position,
@@ -38,7 +38,9 @@ class UserController extends Controller
             'customer_id' => $customer[count($customer)-1]->customer_id
         ]);
 
-        return 'user inserted';
+        return response()->json([
+            'message' => 'User Created'
+        ]);
     }
 
     public function createForm()
@@ -48,7 +50,16 @@ class UserController extends Controller
 
     function edit($id){
         $user = DB::table('user')->where('user_id',$id)->get();
-        return $user;
+        if (!$user->isEmpty()){
+            return response()->json([
+                'message' => 'User found',
+                'data' => $user
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'User not found'
+            ]);
+        }
     }
 
     public function update(Request $request){
@@ -57,7 +68,9 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return 'user updated';
+        return response()->json([
+            'message' => 'User Updated'
+        ]);
     }
 
 }
