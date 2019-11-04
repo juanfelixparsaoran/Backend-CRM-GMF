@@ -34,12 +34,14 @@ class LoginController extends Controller
             if ($user->username == $request->username && (Hash::check($request->password, $user->password)))
             {
                 $request->session()->put('username',$request->username);
+                $user_logged = $user;
                 $login = true;
             }
         }
         if ($login){
             return response()->json([
-                'message' => 'Successfully Login'
+                'message' => 'Successfully Login',
+                'data' => $user_logged
             ]);
         }else{
             return response()->json([

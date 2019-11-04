@@ -9,17 +9,34 @@ class CompanyController extends Controller
 {
     function read(){
         $company = DB::table('company')->get();
-        return $company;
+        return response()->json([
+            'data' => $company
+        ]);
     }
     function edit($id){
-        $company = DB::table('company')->where('company_id',$id);
-        return $company;
+        $company = DB::table('company')->where('company_id',$id)->get();
+        if (!$company->isEmpty()){
+            return response()->json([
+                'message' => 'Company found',
+                'data' => $company
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Company not found'
+            ]);
+        }
     }
     function update(Request $request){
         DB::table('company')->where('company_id',$request->id)->update([
             'name' => $request->name,
+            'region' => $request->region,
+            'country' => $request->country,
+            'role' => $request->role,
+            'business_model' => $request->business_model,
+            'status' => $request->status,
             'est_date' => $request->est_date,
             'type' => $request->type,
+            'customer_type' => $request->customer_type,
             'shareholder' => $request->shareholder,
             'alliance' => $request->alliance,
             'MRO' => $request->MRO,
@@ -27,17 +44,27 @@ class CompanyController extends Controller
             'destination' => $request->destination,
             'customer_since' => $request->customer_since,
         ]);
-        return 'company updated';
+        return response()->json([
+            'message' => 'Company Updated'
+        ]);
     }
     function delete($id){
         DB::table('company')->where('company_id',$id)->delete();
-        return 'deleted';
+        return response()->json([
+            'message' => 'Company Deleted'
+        ]);
     }
     function create(Request $request){
         DB::table('company')->insert([
             'name' => $request->name,
+            'region' => $request->region,
+            'country' => $request->country,
+            'role' => $request->role,
+            'business_model' => $request->business_model,
+            'status' => $request->status,
             'est_date' => $request->est_date,
             'type' => $request->type,
+            'customer_type' => $request->customer_type,
             'shareholder' => $request->shareholder,
             'alliance' => $request->alliance,
             'MRO' => $request->MRO,
@@ -45,6 +72,8 @@ class CompanyController extends Controller
             'destination' => $request->destination,
             'customer_since' => $request->customer_since,
         ]);
-        return 'company created';
+        return response()->json([
+            'message' => 'Company Created'
+        ]);
     }
 }

@@ -10,35 +10,68 @@ class ComplaintController extends Controller
     //
     function read(){
         $complaint = DB::table('complaint')->get();
-        return $complaint;
+        return response()->json([
+            'data' => $complaint
+        ]);
+    }
+    function readByCompany($id){
+        $complaint = DB::table('complaint')->where('company_id',$id)->get();
+        if (!$complaint->isEmpty()){
+            return response()->json([
+                'message' => 'Complaint found',
+                'data' => $complaint
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No Complaint in this company'
+            ]);
+        }
     }
     function edit($id){
-        $complaint = DB::table('complaint')->where('complaint_id',$id);
-        return $complaint;
+        $complaint = DB::table('complaint')->where('complaint_id',$id)->get();
+        if (!$complaint->isEmpty()){
+            return response()->json([
+                'message' => 'Complaint found',
+                'data' => $complaint
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Complaint not found'
+            ]);
+        }
     }
     function update(Request $request){
-        DB::table('complaint')->where('complaint_id',$request->id)->update([
+        DB::table('complaint')->where('complaint_id',$request->complaint_id)->update([
+            'date'=> $request->date,
             'service' => $request->service,
             'subject' => $request->subject,
             'complaint' => $request->complaint,
-            'status' => $request->status,
+            'status' => $request->status
         ]);
-        return 'complaint updated';
+        return response()->json([
+            'message' => 'Complaint Updated'
+        ]);
     }
     function delete($id){
         DB::table('complaint')->where('complaint_id',$id)->delete();
-        return 'deleted';
+        return response()->json([
+            'message' => 'Complaint Deleted'
+        ]);
     }
 
     function create(Request $request){
+        $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
         DB::table('complaint')->insert([
+            'date'=> $request->date,
             'service' => $request->service,
             'subject' => $request->subject,
             'complaint' => $request->complaint,
-            'status' => $request->status,
-            'company_id' => $request->company_id,
-            'customer_id' => $request->customer_id
+            'sender' => $customer[0]->name,
+            'company_id' => $customer[0]->company_id,
+            'user_customer_id' => $customer[0]->user_customer_id
         ]);
-        return 'complaint created';
+        return response()->json([
+            'message' => 'Complaint Created'
+        ]);
     }
 }

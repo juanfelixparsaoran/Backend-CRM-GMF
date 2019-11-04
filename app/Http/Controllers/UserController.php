@@ -18,25 +18,43 @@ class UserController extends Controller
     }
 
     public function create(Request $request)
-    {
-        $company = DB::table('company')->where('name',$request->company_name)->get();
-        DB::table('customer')->insert([
-            'name' => $request->name,
-            'position' => $request->position,
-            'religion' => $request->religion,
-            'birthday' => $request->birthday,
-            'email' => $request->email,
-            'role' => $request->role,
-            'status' => $request->status,
-            'company_id' => $company[0]->company_id
-        ]);
-        
-        $customer = DB::table('customer')->get();
+    {   
         DB::table('user')->insert([
             'username' => $request->username,
             'password' => bcrypt($request->password),
-            'customer_id' => $customer[count($customer)-1]->customer_id
+            'pass_raw' => $request->password,
+            'role' => $request->role,
+            'status' => $request->status
         ]);
+        $user = DB::table('user')->where('username',$request->username)->get();
+        print_r($user);
+        $company = DB::table('company')->where('name',$request->company_name)->get();
+        if ($request->role == 'Customer'){
+            DB::table('user_customer')->insert([
+                'name' => $request->name,
+                'position' => $request->position,
+                'religion' => $request->religion,
+                'birthday' => $request->birthday,
+                'email' => $request->email,
+                'role' => $request->customer_role,
+                'user_id' => $user[0]->user_id,
+                'company_id' => $company[0]->company_id
+            ]);  
+        }else if ($request->role == 'Admin'){
+            DB::table('user_admin')->insert([
+                'name' => $request->name,
+                'position' => $request->position,
+                'division' => $request->division,
+                'user_id' => $user[0]->user_id
+            ]);   
+        }else{
+            DB::table('user_guest')->insert([
+                'name' => $request->name,
+                'position' => $request->position,
+                'division' => $request->division,
+                'user_id' => $user[0]->user_id
+            ]);  
+        }
 
         return response()->json([
             'message' => 'User Created'
@@ -66,10 +84,28 @@ class UserController extends Controller
         $user = DB::table('user')->where('user_id',$request->id)->update([
             'username' => $request->username,
             'password' => bcrypt($request->password),
+            'pass_raw' => $request->password,
+            'role' => $request->role,
+            'status' => $request->status
         ]);
 
         return response()->json([
             'message' => 'User Updated'
+        ]);
+    }
+    function delete($id){
+        $user = DB::table('user')->where('user_id',$id)->get();
+        if ($user->role == 'admin'){
+            DB::table('user_admin')->where('user_id',$id)->delete();    
+        }else if ($user->role == 'customer'){
+            DB::table('user_customer')->where('user_id',$id)->delete();    
+        }else{
+            DB::table('user_guest')->where('user_id',$id)->delete(); 
+        }
+
+        DB::table('user')->where('user_id',$id)->delete();
+        return response()->json([
+            'message' => 'Successfully delete customer'
         ]);
     }
 

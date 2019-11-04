@@ -23,22 +23,17 @@ Route::get('/user/createform','UserController@createForm');
 Route::post('/user/update','UserController@update');
 Route::get('/user/edit/{id}','UserController@edit');
 Route::get('/user/read','UserController@read');
+Route::get('/user/delete','UserController@delete');
 
 
 Route::post('/auth','LoginController@auth');
 Route::get('/login','LoginController@login');
 Route::get('/logout','LoginController@logout');
 
-Route::get('/customer/read','CustomerController@read');
-Route::get('/customer/edit/{id}','CustomerController@edit');
-Route::get('/customer/delete/{id}','CustomerController@delete');
-Route::post('/customer/update','CustomerController@update');
-
-//customer route
-Route::get('/customer/read','CustomerController@read');
-Route::get('/customer/edit/{id}','CustomerController@edit');
-Route::get('/customer/delete/{id}','CustomerController@delete');
-Route::post('/customer/update','CustomerController@update');
+Route::get('/customer/read','UserCustomerController@read');
+Route::get('/customer/edit/{id}','UserCustomerController@edit');
+Route::get('/customer/delete/{id}','UserCustomerController@delete');
+Route::post('/customer/update','UserCustomerController@update');
 
 //ads route
 Route::get('/ads/read','AdsController@read');
@@ -57,12 +52,15 @@ Route::get('/company/read','CompanyController@read');
 Route::get('/company/edit/{id}','CompanyController@edit');
 Route::get('/company/delete/{id}','CompanyController@delete');
 Route::post('/company/update','CompanyController@update');
+Route::post('/company/create','CompanyController@create');
 
 //complaint route
 Route::get('/complaint/read','ComplaintController@read');
+Route::get('/complaint/read/{id}','ComplaintController@readByCompany');
 Route::get('/complaint/edit/{id}','ComplaintController@edit');
 Route::get('/complaint/delete/{id}','ComplaintController@delete');
 Route::post('/complaint/update','ComplaintController@update');
+Route::post('/complaint/create','ComplaintController@create');
 
 //cp route
 Route::get('/cp/read','CpController@read');
