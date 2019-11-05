@@ -14,7 +14,7 @@ class Cors
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        $allowedOrigins = ['http://myroute.xyz', 'http://clarkconcepts.net','http://localhost'];
+        $allowedOrigins = ['http://myroute.xyz', 'http://172.16.40.180','http://localhost'];
         $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
         if (in_array($origin, $allowedOrigins)) {
             return $next($request)
