@@ -3,39 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdsController extends Controller
 {
     function read(){
         $ads = DB::table('ads')->get();
-        return $ads;
+        return response()->json([
+            'data' => $ads
+        ]);
     }
 
     function edit($id){
         $ads = DB::table('ads')->where('ads_id',$id)->get();
-        return $ads;
+        if (!$ads->isEmpty()){
+            return response()->json([
+                'message' => 'ads found',
+                'data' => $ads
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'ads not found'
+            ]);
+        }
     }
     function update(Request $request){
-        DB::table('ads')->where('ads_id',$request->id)->update([
+        $path = Storage::putFile('ads', $request->image);
+        DB::table('ads')->where('ads_id',$request->ads_id)->update([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'image' => $path,
             'permalink' => $request->permalink
         ]);
-        return 'ads updated';
+        return response()->json([
+            'message' => 'Ads Updated'
+        ]);
     }
     function delete($id){
         DB::table('company_ads')->where('ads_id',$id)->delete();
         DB::table('ads')->where('ads_id',$id)->delete();
-        return 'ads deleted';
+        return response()->json([
+            'message' => 'Ads Deleted'
+        ]);
     }
 
     function create(Request $request){
+        $path = Storage::putFile('ads', $request->image);
         DB::table('ads')->insert([
             'subject' => $request->subject,
-            'image' => $request->image,
-            'permalink' => $request->permalink
+            'permalink' => $request->permalink,
+            'image' => $path
         ]);
-        return 'ads created';
+        return response()->json([
+            'message' => 'Ads Created'
+        ]);
     }
 }

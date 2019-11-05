@@ -40,6 +40,7 @@ Route::get('/ads/read','AdsController@read');
 Route::get('/ads/edit/{id}','AdsController@edit');
 Route::get('/ads/delete/{id}','AdsController@delete');
 Route::post('/ads/update','AdsController@update');
+Route::post('/ads/create','AdsController@create');
 
 //birthday card route
 Route::get('/birthday/read','BirthdayCardController@read');
@@ -85,3 +86,15 @@ Route::get('/service/read','ServiceController@read');
 Route::get('/service/edit/{id}','ServiceController@edit');
 Route::get('/service/delete/{id}','ServiceController@delete');
 Route::post('/service/update','ServiceController@update');
+
+//feedback project route
+Route::get('/feedbackproject/read','FeedbackProjectController@read');
+Route::get('/feedbackproject/read/{id}','FeedbackProjectController@readByCompany');
+Route::get('/feedbackproject/edit/{id}','FeedbackProjectController@edit');
+Route::post('/feedbackproject/update','FeedbackProjectController@update');
+Route::get('/feedbackproject/delete/{id}','FeedbackProjectController@delete');
+Route::post('/feedbackproject/create','FeedbackProjectController@create');
+
+//company ads route
+Route::get('/companyads/add/{ads_id}/{company_id}','CompanyAdsController@add');
+Route::get('/companyads/remove/{ads_id}/{company_id}','CompanyAdsController@remove');

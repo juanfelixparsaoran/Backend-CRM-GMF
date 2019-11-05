@@ -43,6 +43,7 @@ class ComplaintController extends Controller
     function update(Request $request){
         DB::table('complaint')->where('complaint_id',$request->complaint_id)->update([
             'date'=> $request->date,
+            'closed' => $request->closed,
             'service' => $request->service,
             'subject' => $request->subject,
             'complaint' => $request->complaint,
