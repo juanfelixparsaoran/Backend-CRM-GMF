@@ -14,7 +14,7 @@ class CompanyController extends Controller
         ]);
     }
     function readUserInCompany($id){
-        $user = DB::table('user_customer')->where('company_id',$id)->get();
+        $user = DB::table('user_customer')->join('user','user_customer.user_id', '=', 'user.user_id')->get();
         return response()->json([
             'data' => $user
         ]);
