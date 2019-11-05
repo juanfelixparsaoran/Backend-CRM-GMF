@@ -37,6 +37,7 @@ Route::post('/customer/update','UserCustomerController@update');
 //ads route
 Route::get('/ads/read','AdsController@read');
 Route::get('/ads/read/{id}','AdsController@getAdsInCompany');
+Route::get('/ads/readinactive/{id}','AdsController@getInactiveAdsInCompany');
 Route::get('/ads/edit/{id}','AdsController@edit');
 Route::get('/ads/delete/{id}','AdsController@delete');
 Route::post('/ads/update','AdsController@update');

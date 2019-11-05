@@ -11,21 +11,35 @@ class ReligionCardController extends Controller
     //
     function read(){
         $religion_card = DB::table('religion_card')->get();
-        return $religion_card;
+        return response()->json([
+            'data' => $religion_card
+        ]);
     }
     function edit($id){
-        $religion_card = DB::table('religion_card')->where('religion_card_id',$id);
-        return $religion_card;
+        $religion_card = DB::table('religion_card')->where('religion_card_id',$id)->get();
+        if (!$religion_card->isEmpty()){
+            return response()->json([
+                'message' => 'religion card found',
+                'data' => $religion_card
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'religion card not found'
+            ]);
+        }
     }
     function update(Request $request){
-        DB::table('religion_card')->where('religion_card_id',$request->id)->update([
+        $path = Storage::putFile('religion card', $request->image);
+        DB::table('religion_card')->where('religion_card_id',$request->religion_card_id)->update([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'image' => $path,
             'religion' => $request->religion,
             'date' => $request->date,
             'permalink' => $request->permalink,
         ]);
-        return 'religion card updated';
+        return response()->json([
+            'message' => 'Religion Card Updated'
+        ]);
     }
     function delete($id){
         DB::table('religion_card')->where('religion_card_id',$id)->delete();
