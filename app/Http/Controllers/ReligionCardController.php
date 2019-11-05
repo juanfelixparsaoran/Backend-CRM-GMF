@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ReligionCardController extends Controller
 {
@@ -30,10 +32,16 @@ class ReligionCardController extends Controller
         return 'deleted';
     }
     function create(Request $request){
+        $path = Storage::putFile('religion card', $request->image);
         DB::table('religion_card')->insert([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'image' => $path,
+            'date' => $request->date,
+            'religion' => $request->religion,
+            'permalink' => $request->permalink
         ]);
-        return 'religion card created';
+        return response()->json([
+            'message' => 'Religion Card Created'
+        ]);
     }
 }

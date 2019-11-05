@@ -14,8 +14,10 @@ class NewsletterController extends Controller
         return $newsletter;
     }
     function edit($id){
-        $newsletter = DB::table('newsletter')->where('newsletter_id',$id);
-        return $newsletter;
+        $newsletter = DB::table('newsletter')->where('newsletter_id',$id)->get();
+        return response()->json([
+            'data' => $newsletter
+        ]);
     }
     function update(Request $request){
         DB::table('newsletter')->where('newsletter_id',$request->id)->update([

@@ -83,6 +83,7 @@ Route::get('/religion/read','ReligionCardController@read');
 Route::get('/religion/edit/{id}','ReligionCardController@edit');
 Route::get('/religion/delete/{id}','ReligionCardController@delete');
 Route::post('/religion/update','ReligionCardController@update');
+Route::post('/religion/create','ReligionCardController@create');
 
 //service route
 Route::get('/service/read','ServiceController@read');

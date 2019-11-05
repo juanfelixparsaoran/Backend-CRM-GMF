@@ -16,7 +16,7 @@ class AdsController extends Controller
         ]);
     }
     function getAdsInCompany($id){
-        $ads = DB::table('ads')->join('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',$id)->get();
+        $ads = DB::table('ads')->join('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',$id)->get(['ads.ads_id','subject','image','permalink']);
         return response()->json([
             'data' => $ads
         ]);
