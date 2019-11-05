@@ -35,13 +35,17 @@ class LoginController extends Controller
             {
                 $request->session()->put('username',$request->username);
                 $user_logged = $user;
+                if ($user->role == "Customer"){
+                    $user_detail = DB::table('user_customer')->where('user_id',$user->user_id)->get();
+                }
                 $login = true;
             }
         }
         if ($login){
             return response()->json([
                 'message' => 'Successfully Login',
-                'data' => $user_logged
+                'data_user' => $user_logged,
+                'detail_user' => $user_detail[0],
             ]);
         }else{
             return response()->json([
