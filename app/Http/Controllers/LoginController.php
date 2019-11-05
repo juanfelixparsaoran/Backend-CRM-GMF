@@ -37,6 +37,10 @@ class LoginController extends Controller
                 $user_logged = $user;
                 if ($user->role == "Customer"){
                     $user_detail = DB::table('user_customer')->where('user_id',$user->user_id)->get();
+                }else if ($user->role == "Admin"){
+                    $user_detail = DB::table('user_admin')->where('user_id',$user->user_id)->get();
+                }else{
+                    $user_detail = DB::table('user_guest')->where('user_id',$user->user_id)->get();
                 }
                 $login = true;
             }

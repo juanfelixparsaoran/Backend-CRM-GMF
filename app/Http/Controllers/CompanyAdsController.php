@@ -19,7 +19,7 @@ class CompanyAdsController extends Controller
     }
 
     function remove($ads_id,$company_id){
-        $ads = DB::table('company_ads')->where(['ads_id',$ads_id],['company_id',$company_id])->delete();
+        $ads = DB::table('company_ads')->where('ads_id',$ads_id)->where('company_id',$company_id)->delete();
         return response()->json([
             'message' => 'Ads Removed'
         ]);
