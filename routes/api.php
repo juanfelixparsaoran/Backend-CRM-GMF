@@ -36,6 +36,7 @@ Route::post('/customer/update','UserCustomerController@update');
 
 //ads route
 Route::get('/ads/read','AdsController@read');
+Route::get('/ads/read/{id}','AdsController@getAdsInCompany');
 Route::get('/ads/edit/{id}','AdsController@edit');
 Route::get('/ads/delete/{id}','AdsController@delete');
 Route::post('/ads/update','AdsController@update');
@@ -75,6 +76,7 @@ Route::get('/newsletter/read','NewsletterController@read');
 Route::get('/newsletter/edit/{id}','NewsletterController@edit');
 Route::get('/newsletter/delete/{id}','NewsletterController@delete');
 Route::post('/newsletter/update','NewsletterController@update');
+Route::post('/newsletter/create','NewsletterController@create');
 
 //religion route
 Route::get('/religion/read','ReligionCardController@read');
@@ -99,6 +101,14 @@ Route::post('/feedbackproject/create','FeedbackProjectController@create');
 //company ads route
 Route::get('/companyads/add/{ads_id}/{company_id}','CompanyAdsController@add');
 Route::get('/companyads/remove/{ads_id}/{company_id}','CompanyAdsController@remove');
+
+//project route
+Route::get('/project/read','ProjectController@read');
+Route::get('/project/read/{id}','ProjectController@readByCompany');
+Route::get('/project/edit/{id}','ProjectController@edit');
+Route::post('/project/update','ProjectController@update');
+Route::get('/project/delete/{id}','ProjectController@delete');
+Route::post('/project/create','ProjectController@create');
 
 
 

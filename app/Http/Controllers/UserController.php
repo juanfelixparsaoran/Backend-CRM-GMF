@@ -36,7 +36,7 @@ class UserController extends Controller
                 'religion' => $request->religion,
                 'birthday' => $request->birthday,
                 'email' => $request->email,
-                'role' => $request->customer_role,
+                'customer_role' => $request->customer_role,
                 'user_id' => $user[0]->user_id,
                 'company_id' => $company[0]->company_id
             ]);  
@@ -85,7 +85,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'pass_raw' => $request->password,
-            'role' => $request->role,
+            'customer_role' => $request->customer_role,
             'status' => $request->status
         ]);
 

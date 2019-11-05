@@ -15,6 +15,12 @@ class AdsController extends Controller
             'data' => $ads
         ]);
     }
+    function getAdsInCompany($id){
+        $ads = DB::table('ads')->join('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',$id)->get();
+        return response()->json([
+            'data' => $ads
+        ]);
+    }
 
     function edit($id){
         $ads = DB::table('ads')->where('ads_id',$id)->get();

@@ -10,62 +10,56 @@ class ProjectController extends Controller
 {
     //
     function read(){
-        $company = DB::table('company')->get();
+        $project = DB::table('project')->get();
         return response()->json([
-            'data' => $company
+            'data' => $project
         ]);
     }
     function edit($id){
-        $company = DB::table('company')->where('company_id',$id)->get();
-        if (!$company->isEmpty()){
+        $project = DB::table('project')->where('project_id',$id)->get();
+        if (!$project->isEmpty()){
             return response()->json([
-                'message' => 'Company found',
-                'data' => $company
+                'message' => 'project found',
+                'data' => $project
             ]);
         }else{
             return response()->json([
-                'message' => 'Company not found'
+                'message' => 'project not found'
             ]);
         }
     }
     function update(Request $request){
-        DB::table('company')->where('company_id',$request->id)->update([
-            'name' => $request->name,
-            'region' => $request->region,
-            'country' => $request->country,
-            'role' => $request->role,
-            'business_model' => $request->business_model,
-            'status' => $request->status,
-            'est_date' => $request->est_date,
-            'type' => $request->type,
-            'customer_type' => $request->customer_type,
-            'shareholder' => $request->shareholder,
-            'alliance' => $request->alliance,
-            'MRO' => $request->MRO,
-            'fleet_size' => $request->fleet_size,
-            'destination' => $request->destination,
-            'customer_since' => $request->customer_since,
-        ]);
-        return response()->json([
-            'message' => 'Company Updated'
-        ]);
-    }
-    function delete($id){
-        DB::table('company')->where('company_id',$id)->delete();
-        return response()->json([
-            'message' => 'Company Deleted'
-        ]);
-    }
-    function create(Request $request){
-        DB::table('company')->insert([
+        DB::table('project')->where('project_id',$request->project_id)->update([
             'name' => $request->name,
             'start' => $request->start,
             'finish' => $request->finish,
             'project_type' => $request->project_type,
             'quantity' => $request->quantity,
+            'rating' => $request->rating,
+            'status' => $request->status
         ]);
         return response()->json([
-            'message' => 'Company Created'
+            'message' => 'Project Updated'
+        ]);
+    }
+    function delete($id){
+        DB::table('project')->where('project_id',$id)->delete();
+        return response()->json([
+            'message' => 'Project Deleted'
+        ]);
+    }
+    function create(Request $request){
+        $company = DB::table('company')->where('name',$request->company_name)->get();
+        DB::table('project')->insert([
+            'name' => $request->name,
+            'start' => $request->start,
+            'finish' => $request->finish,
+            'project_type' => $request->project_type,
+            'quantity' => $request->quantity,
+            'company_id' => $company[0]->company_id
+        ]);
+        return response()->json([
+            'message' => 'Project Created'
         ]);
     }
 }

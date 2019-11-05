@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class NewsletterController extends Controller
 {
@@ -18,19 +20,26 @@ class NewsletterController extends Controller
     function update(Request $request){
         DB::table('newsletter')->where('newsletter_id',$request->id)->update([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'image' => $path,
+            'permalink' => $request->permalink
         ]);
-        return 'newsletter updated';
+        return response()->json([
+            'message' => 'Newsletter Updated'
+        ]);
     }
     function delete($id){
         DB::table('newsletter')->where('newsletter_id',$id)->delete();
         return 'deleted';
     }
     function create(Request $request){
+        $path = Storage::putFile('newsletter', $request->image);
         DB::table('newsletter')->insert([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'image' => $path,
+            'permalink' => $request->permalink
         ]);
-        return 'newsletter created';
+        return response()->json([
+            'message' => 'Newsletter Created'
+        ]);
     }
 }
