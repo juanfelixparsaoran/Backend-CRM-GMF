@@ -20,6 +20,7 @@ class NewsletterController extends Controller
         ]);
     }
     function update(Request $request){
+        $path = Storage::putFile('newsletter', $request->image);
         DB::table('newsletter')->where('newsletter_id',$request->id)->update([
             'subject' => $request->subject,
             'image' => $path,

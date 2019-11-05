@@ -28,7 +28,8 @@ class CompanyController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'Company not found'
+                'message' => 'Company not found',
+                'data' => []
             ]);
         }
     }

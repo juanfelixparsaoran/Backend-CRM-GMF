@@ -24,7 +24,8 @@ class ProjectController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'project not found'
+                'message' => 'project not found',
+                'data' => []
             ]);
         }
     }

@@ -24,7 +24,8 @@ class ReligionCardController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'religion card not found'
+                'message' => 'religion card not found',
+                'data' => []
             ]);
         }
     }

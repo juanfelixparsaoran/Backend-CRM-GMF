@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2019 at 02:42 PM
+-- Generation Time: Nov 05, 2019 at 05:22 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -69,7 +69,7 @@ CREATE TABLE `company` (
   `name` varchar(50) NOT NULL,
   `region` varchar(100) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
-  `role` varchar(100) DEFAULT NULL,
+  `company_role` varchar(100) DEFAULT NULL,
   `business_model` varchar(100) DEFAULT NULL,
   `status` varchar(100) NOT NULL,
   `est_date` int(11) DEFAULT NULL,
@@ -88,10 +88,11 @@ CREATE TABLE `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`name`, `region`, `country`, `role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`) VALUES
+INSERT INTO `company` (`name`, `region`, `country`, `company_role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`) VALUES
 ('Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1),
 ('Korean Airli', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 5),
-('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6);
+('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6),
+('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7);
 
 -- --------------------------------------------------------
 
@@ -258,6 +259,15 @@ CREATE TABLE `religion_card` (
   `permalink` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `religion_card`
+--
+
+INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`) VALUES
+(1, 'Christmas', 'religion card/D466WWlZUJHLh3NPIigFbvlIDWojw1BvL5VuY8Ck.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
+(2, 'Eid Mubarak', 'religion card/F4DYJYvo40Mn5l4UJXudgp2zP8DCLoT7hwPM47pZ.jpeg', 'Kristen', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
+(3, 'Nyepi', 'religion card/RQBubO3NHGhDV8m7YJBk9vghUbOObLfeZquANCH1.jpeg', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
+
 -- --------------------------------------------------------
 
 --
@@ -292,7 +302,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `pass_raw`, `role`, `status`) VALUES
 (10, 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '1234', 'Customer', 'Active'),
-(13, 'felix', '$2y$10$l01rJ/Ndy218JZpsXp.m9uENa.vwQheDJO4Ma9stsBu4V8uJT7GGC', '12121', 'Customer', 'Inactive'),
+(13, 'felix', '$2y$10$6RTVQrY4O9eht8DOS1yoJuhIGlqyaczDnHoCCCPTF6KCnM5H3IU7K', '12121', 'Customer', 'Inactive'),
 (14, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
 (15, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
 (19, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active');
@@ -342,7 +352,7 @@ CREATE TABLE `user_customer` (
 
 INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `company_id`, `user_id`) VALUES
 (13, 'manasye', 'GM', 'Islam', '1998-12-12', 'mans@gmail.com', 'Key Person', 1, 10),
-(14, 'Juan', 'GM', 'Kristen', '1998-12-12', 'juan@gmail.com', 'Key Person', 1, 13),
+(14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 13),
 (15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 15);
 
 -- --------------------------------------------------------
@@ -496,7 +506,7 @@ ALTER TABLE `birthday_card`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
@@ -544,7 +554,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `religion_card`
 --
 ALTER TABLE `religion_card`
-  MODIFY `religion_card_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `religion_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `service`

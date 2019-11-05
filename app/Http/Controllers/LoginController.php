@@ -37,6 +37,8 @@ class LoginController extends Controller
                 $user_logged = $user;
                 if ($user->role == "Customer"){
                     $user_detail = DB::table('user_customer')->where('user_id',$user->user_id)->get();
+                    $company = DB::table('company')->where('company_id',$user_detail[0]->company_id)->get();
+                    $user_detail[0]->company_name = $company[0]->name;
                 }else if ($user->role == "Admin"){
                     $user_detail = DB::table('user_admin')->where('user_id',$user->user_id)->get();
                 }else{
@@ -53,7 +55,10 @@ class LoginController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'Failed to Login'
+                'message' => 'Failed to Login',
+                'data_user' => [],
+                'detail_user' => [],
+
             ]);
         }
     }

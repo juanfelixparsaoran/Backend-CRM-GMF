@@ -36,7 +36,8 @@ class ComplaintController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'Complaint not found'
+                'message' => 'Complaint not found',
+                'data' => []
             ]);
         }
     }

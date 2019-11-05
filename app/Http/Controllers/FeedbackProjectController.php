@@ -23,7 +23,8 @@ class FeedbackProjectController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'No feedback_project in this company'
+                'message' => 'No feedback_project in this company',
+                'data' => []
             ]);
         }
     }

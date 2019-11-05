@@ -75,24 +75,34 @@ class UserController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'User not found'
+                'message' => 'User not found',
+                'data' => []
             ]);
         }
     }
 
     public function update(Request $request){
-        $user = DB::table('user')->where('user_id',$request->id)->update([
+        DB::table('user')->where('user_id',$request->id)->update([
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'pass_raw' => $request->password,
-            'customer_role' => $request->customer_role,
-            'status' => $request->status
+        ]);
+
+        $user = DB::table('user')->join('user_customer','user.user_id','=','user_customer.user_id')->where('user.user_id',$request->id)->get();
+        DB::table('user_customer')->where('user_id',$user[0]->user_id)->update([
+            'name' => $request->name,
+            'position' => $request->position,
+            'religion' => $request->religion,
+            'birthday' => $request->birthday,
+            'email' => $request->email,
+            'position' => $user[0]->position,
         ]);
 
         return response()->json([
             'message' => 'User Updated'
         ]);
     }
+
     function delete($id){
         $user = DB::table('user')->where('user_id',$id)->get();
         if ($user->role == 'admin'){

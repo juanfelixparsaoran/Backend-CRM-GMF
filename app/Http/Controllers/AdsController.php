@@ -24,7 +24,6 @@ class AdsController extends Controller
 
     function getInactiveAdsInCompany($id){
         $ads = DB::table('ads')->leftJoin('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',NULL)->orWhere('company_ads.company_id','!=',$id)->get(['ads.ads_id','subject','image','permalink']);
-        print_r($ads);
         return response()->json([
             'data' => $ads
         ]);
@@ -39,7 +38,8 @@ class AdsController extends Controller
             ]);
         }else{
             return response()->json([
-                'message' => 'ads not found'
+                'message' => 'ads not found',
+                'data' => []
             ]);
         }
     }
