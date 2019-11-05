@@ -13,11 +13,16 @@ class Cors
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-        return $next($request)
-            ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Origin', 'GET,POST,PUT,DELETE,OPTIONS')
-            ->header('Access-Control-Allow-Origin', 'X-Requested-With,Content-Type, X-Token-Auth, Authorization');
+    public function handle($request, Closure $next) {
+        $allowedOrigins = ['http://myroute.xyz', 'http://clarkconcepts.net','http://localhost'];
+        $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+        if (in_array($origin, $allowedOrigins)) {
+            return $next($request)
+                ->header('Access-Control-Allow-Origin', $origin)
+                ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+                ->header('Access-Control-Allow-Headers',' Origin, Content-Type, Accept, Authorization, X-Request-With, cache-control,postman-token, token')
+                ->header('Access-Control-Allow-Credentials',' true');
+        }
+        return $next($request);
     }
 }
