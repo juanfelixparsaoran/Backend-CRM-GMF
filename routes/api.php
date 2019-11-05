@@ -49,10 +49,12 @@ Route::post('/birthday/update','BirthdayCardController@update');
 
 //company route
 Route::get('/company/read','CompanyController@read');
+Route::get('/company/read/{id}','CompanyController@readUserInCompany');
 Route::get('/company/edit/{id}','CompanyController@edit');
 Route::get('/company/delete/{id}','CompanyController@delete');
 Route::post('/company/update','CompanyController@update');
 Route::post('/company/create','CompanyController@create');
+
 
 //complaint route
 Route::get('/complaint/read','ComplaintController@read');
