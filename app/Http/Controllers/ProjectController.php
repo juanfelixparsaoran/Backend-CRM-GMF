@@ -37,7 +37,10 @@ class ProjectController extends Controller
             'project_type' => $request->project_type,
             'quantity' => $request->quantity,
             'rating' => $request->rating,
-            'status' => $request->status
+            'status' => $request->status,
+            'location' => $request->location,
+            'A/C_Reg' => $request->ac_reg,
+            'type' => $request->type
         ]);
         return response()->json([
             'message' => 'Project Updated'
@@ -57,7 +60,10 @@ class ProjectController extends Controller
             'finish' => $request->finish,
             'project_type' => $request->project_type,
             'quantity' => $request->quantity,
-            'company_id' => $company[0]->company_id
+            'company_id' => $company[0]->company_id,
+            'location' => $request->location,
+            'A/C_Reg' => $request->ac_reg,
+            'type' => $request->type
         ]);
         return response()->json([
             'message' => 'Project Created'
