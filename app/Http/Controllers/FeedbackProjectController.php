@@ -73,7 +73,8 @@ class FeedbackProjectController extends Controller
             'aspect_to_improve' => $request->aspect_to_improve,
             'remark' => $request->remark,
             'company_id' => $customer[0]->company_id,
-            'user_customer_id' => $customer[0]->user_customer_id
+            'user_customer_id' => $customer[0]->user_customer_id,
+            'project_id' => $request->project_id
         ]);
         return response()->json([
             'message' => 'feedback_project Created'
