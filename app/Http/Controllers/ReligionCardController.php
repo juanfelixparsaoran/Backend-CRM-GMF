@@ -30,13 +30,14 @@ class ReligionCardController extends Controller
         }
     }
     function update(Request $request){
-        $path = Storage::putFile('religion card', $request->image);
+        $religion_card = DB::table('religion_card')->where('religion_card_id',$request->religion_card_id)->get();
+        $path = $request->image != NULL ? Storage::putFile('religion card', $request->image) : $religion_card[0]->image;
         DB::table('religion_card')->where('religion_card_id',$request->religion_card_id)->update([
-            'subject' => $request->subject,
+            'subject' => $request->subject != NULL ? $request->subject : $religion_card[0]->subject,
             'image' => $path,
-            'religion' => $request->religion,
-            'date' => $request->date,
-            'permalink' => $request->permalink,
+            'religion' => $request->religion != NULL ? $request->religion : $religion_card[0]->religion,
+            'date' => $request->date != NULL ? $request->date : $religion_card[0]->date,
+            'permalink' => $request->permalink != NULL ? $request->permalink : $religion_card[0]->permalink,
         ]);
         return response()->json([
             'message' => 'Religion Card Updated'

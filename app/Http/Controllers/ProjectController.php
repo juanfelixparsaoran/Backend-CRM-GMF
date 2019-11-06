@@ -36,17 +36,18 @@ class ProjectController extends Controller
         }
     }
     function update(Request $request){
+        $project = DB::table('project')->where('project_id',$request->project_id)->get();
         DB::table('project')->where('project_id',$request->project_id)->update([
-            'name' => $request->name,
-            'start' => $request->start,
-            'finish' => $request->finish,
-            'project_type' => $request->project_type,
-            'quantity' => $request->quantity,
-            'rating' => $request->rating,
-            'status' => $request->status,
-            'location' => $request->location,
-            'A/C_Reg' => $request->ac_reg,
-            'type' => $request->type
+            'name' => $request->name != NULL ? $request->name : $project[0]->name,
+            'start' => $request->start != NULL ? $request->start : $project[0]->start,
+            'finish' => $request->finish != NULL ? $request->finish : $project[0]->finish,
+            'project_type' => $request->project_type != NULL ? $request->project_type : $project[0]->project_type,
+            'quantity' => $request->$request->quantity != NULL ? $request->quantity : $project[0]->quantity,
+            'rating' => $request->$request->rating != NULL ? $request->rating : $project[0]->rating,
+            'status' => $request->$request->status != NULL ? $request->status : $project[0]->status,
+            'location' => $request->$request->location != NULL ? $request->location : $project[0]->location,
+            'A/C_Reg' => $request->$request->ac_reg != NULL ? $request->ac_reg : $project[0]->ac_reg,
+            'type' => $request->$request->type != NULL ? $request->type : $project[0]->type,
         ]);
         return response()->json([
             'message' => 'Project Updated'

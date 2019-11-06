@@ -42,14 +42,14 @@ class FeedbackProjectController extends Controller
         }
     }
     function update(Request $request){
-
+        $feedback_project = DB::table('feedback_project')->where('feedback_project_id',$request->feedback_project_id)->get();
         DB::table('feedback_project')->where('feedback_project_id',$request->feedback_project_id)->update([
-            'date'=> $request->date,
-            'project_type' => $request->project_type,
-            'location' => $request->location,
-            'rating' => $request->rating,
-            'aspect_to_improve' => $request->aspect_to_improve,
-            'remark' => $request->remark,
+            'date'=> $request->date != NULL ? $request->date : $feedback_project[0]->date,
+            'project_type' => $request->project_type != NULL ? $request->project_type : $feedback_project[0]->project_type,
+            'location' => $request->location != NULL ? $request->location : $feedback_project[0]->location,
+            'rating' => $request->rating != NULL ? $request->rating : $feedback_project[0]->rating,
+            'aspect_to_improve' => $request->aspect_to_improve != NULL ? $request->aspect_to_improve : $feedback_project[0]->aspect_to_improve,
+            'remark' => $request->remark != NULL ? $request->remark : $feedback_project[0]->remark,
         ]);
         return response()->json([
             'message' => 'feedback_project Updated'

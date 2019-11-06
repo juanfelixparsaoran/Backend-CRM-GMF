@@ -44,11 +44,12 @@ class AdsController extends Controller
         }
     }
     function update(Request $request){
-        $path = Storage::putFile('ads', $request->image);
+        $ads = DB::table('ads')->where('ads_id',$request->ads_is)->get();
+        $path = $request->image != NULL ? Storage::putFile('ads', $request->image) : $ads[0]->image;
         DB::table('ads')->where('ads_id',$request->ads_id)->update([
-            'subject' => $request->subject,
+            'subject' => $request->subject != NULL ? $request->subject : $ads[0]->subject,
             'image' => $path,
-            'permalink' => $request->permalink
+            'permalink' => $request->permalink != NULL ? $request->permalink : $ads[0]->permalink,
         ]);
         return response()->json([
             'message' => 'Ads Updated'

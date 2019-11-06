@@ -81,19 +81,20 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
+        $user = DB::table('user')->where('user_id',$request->id)->get();
         DB::table('user')->where('user_id',$request->id)->update([
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'pass_raw' => $request->password,
+            'username' => $request->username != NULL ? $request->username : $user[0]->username,
+            'password' => $request->password != NULL ? bcrypt($request->password) : $user[0]->password,
+            'pass_raw' => $request->password != NULL ? $request->password : $user[0]->password,
         ]);
 
         $user = DB::table('user')->join('user_customer','user.user_id','=','user_customer.user_id')->where('user.user_id',$request->id)->get();
         DB::table('user_customer')->where('user_id',$user[0]->user_id)->update([
-            'name' => $request->name,
-            'position' => $request->position,
-            'religion' => $request->religion,
-            'birthday' => $request->birthday,
-            'email' => $request->email,
+            'name' => $request->name != NULL ? $request->name : $user[0]->name,
+            'position' => $request->position != NULL ? $request->position : $user[0]->position,
+            'religion' => $request->religion != NULL ? $request->religion : $user[0]->religion,
+            'birthday' => $request->birthday != NULL ? $request->birthday : $user[0]->birthday,
+            'email' => $request->email != NULL ? $request->email : $user[0]->email,
             'position' => $user[0]->position,
         ]);
 
