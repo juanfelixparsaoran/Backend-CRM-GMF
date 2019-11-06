@@ -19,6 +19,13 @@ class CompanyController extends Controller
             'data' => $user
         ]);
     }
+
+    function readCpInCompany($id){
+        $user = DB::table('gmf_cp')->where()->get();
+        return response()->json([
+            'data' => $user
+        ]);
+    }
     function edit($id){
         $company = DB::table('company')->where('company_id',$id)->get();
         if (!$company->isEmpty()){

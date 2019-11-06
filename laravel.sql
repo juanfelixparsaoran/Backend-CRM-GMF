@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2019 at 05:22 PM
+-- Generation Time: Nov 06, 2019 at 09:46 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -54,10 +54,19 @@ INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`) VALUES
 --
 
 CREATE TABLE `birthday_card` (
-  `birthday_card_id` int(11) NOT NULL,
-  `subject` int(11) NOT NULL,
-  `image` int(11) NOT NULL
+  `birthday_card_id` int(100) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `permalink` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `birthday_card`
+--
+
+INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`) VALUES
+(1, 'Birthday in Desember', 'birthday card/nfXBrv5NjbFn2rd8r8vrAKogj8lelcZDYXPdixx8.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember'),
+(2, 'Birthday in November', 'birthday card/7NvZDjSL57jbbKloChomjzTDwQWdpawXj941y1OP.jpeg', 'http://gmf-aeroasia.co.id/birthday/november');
 
 -- --------------------------------------------------------
 
@@ -92,7 +101,8 @@ INSERT INTO `company` (`name`, `region`, `country`, `company_role`, `business_mo
 ('Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1),
 ('Korean Airli', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 5),
 ('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6),
-('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7);
+('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7),
+('Garuda', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8);
 
 -- --------------------------------------------------------
 
@@ -124,7 +134,7 @@ INSERT INTO `company_ads` (`company_ads_id`, `company_id`, `ads_id`) VALUES
 CREATE TABLE `complaint` (
   `complaint_id` int(100) NOT NULL,
   `date` date NOT NULL,
-  `closed` date NOT NULL,
+  `closed` date DEFAULT NULL,
   `sender` varchar(100) NOT NULL,
   `service` varchar(100) NOT NULL,
   `subject` varchar(100) NOT NULL,
@@ -140,7 +150,31 @@ CREATE TABLE `complaint` (
 --
 
 INSERT INTO `complaint` (`complaint_id`, `date`, `closed`, `sender`, `service`, `subject`, `complaint`, `file`, `status`, `user_customer_id`, `company_id`) VALUES
-(7, '2019-12-12', '2019-12-22', 'Juan', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'None', 'Receive', 14, 1);
+(7, '2019-12-12', '2019-12-22', 'Juan', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'None', 'Receive', 14, 1),
+(8, '2019-11-11', NULL, 'Felix', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', NULL, 'Open', 18, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cp_company`
+--
+
+CREATE TABLE `cp_company` (
+  `cp_company_id` int(100) NOT NULL,
+  `gmf_cp_id` int(100) NOT NULL,
+  `company_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cp_company`
+--
+
+INSERT INTO `cp_company` (`cp_company_id`, `gmf_cp_id`, `company_id`) VALUES
+(1, 6, 8),
+(2, 7, 8),
+(3, 8, 1),
+(4, 9, 1),
+(5, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -189,13 +223,22 @@ INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `locati
 --
 
 CREATE TABLE `gmf_cp` (
-  `cp_id` int(100) NOT NULL,
+  `gmf_cp_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `position` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `company_id` int(100) NOT NULL
+  `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gmf_cp`
+--
+
+INSERT INTO `gmf_cp` (`gmf_cp_id`, `name`, `position`, `phone`, `email`) VALUES
+(7, 'Deni', 'Staff Marketing', '081273829182', 'deni@gmail.com'),
+(8, 'Dewi', 'Staff Marketing', '081273829182', 'deni@gmail.com'),
+(9, 'Pol', 'Staff Marketing', '081273829182', 'pol@gmail.com'),
+(10, 'Pola', 'Staff Marketing', '081273829182', 'pola@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -232,6 +275,9 @@ CREATE TABLE `project` (
   `quantity` int(50) NOT NULL,
   `project_type` varchar(100) NOT NULL,
   `rating` varchar(50) NOT NULL DEFAULT 'Not Rated',
+  `A/C_Reg` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `type` varchar(100) NOT NULL,
   `company_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -239,10 +285,11 @@ CREATE TABLE `project` (
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `company_id`) VALUES
-(2, 'KA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 5),
-(3, 'KA Project 2', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 5),
-(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 1);
+INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `A/C_Reg`, `location`, `type`, `company_id`) VALUES
+(2, 'KA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 1', 'GAH3', '6', 5),
+(3, 'KA Project 2', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 2', 'GAH3', '5', 5),
+(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '3', 1),
+(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1);
 
 -- --------------------------------------------------------
 
@@ -278,8 +325,18 @@ CREATE TABLE `service` (
   `service_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `detail` varchar(2000) NOT NULL,
-  `image` varchar(200) NOT NULL
+  `large_image` varchar(1000) NOT NULL,
+  `small_image1` varchar(1000) NOT NULL,
+  `small_image2` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_image1`, `small_image2`) VALUES
+(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/7FK0FTMQNQgzUdte8kIo798C9m2LIjctLK72pXXI.jpeg', 'service image/11pjXkhqsv9JaAjlfbt5aUOrZEra0sHqGpx6gdIZ.jpeg', 'service image/6VZ2Fg7SP9UjFEL3YDQntithR9SEURiE0ynVgwaD.jpeg'),
+(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/AAPofHUnZIMSDkp4zv2kVN9OQZNe6mSbQrjfbRRv.jpeg', 'service image/CkaqCsqDBUQ1LJWMA8Tlay9ZSMIYLqT3fV0LOzRH.jpeg', 'service image/HiYHUXChyDWCsUFGbmaBKPvVQsIPJ6v5o0qxdIe1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -305,7 +362,10 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `pass_raw`, `role`, `stat
 (13, 'felix', '$2y$10$6RTVQrY4O9eht8DOS1yoJuhIGlqyaczDnHoCCCPTF6KCnM5H3IU7K', '12121', 'Customer', 'Inactive'),
 (14, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
 (15, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
-(19, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active');
+(19, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active'),
+(20, 'juanf', '$2y$10$5PyJ7ZBfqTD31gQpv.KFJOJe3GT5iODiWi6hfkhXxirm6h.I3k7B.', '1212', 'Customer', 'Active'),
+(21, 'jfptrg', '$2y$10$OmPFN9yQP5ziKZcEKqJNP.IcrCFzYJs3tLGTkHZFVkTSrMWThM.VC', '1212', 'Customer', 'Active'),
+(22, 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active');
 
 -- --------------------------------------------------------
 
@@ -353,7 +413,9 @@ CREATE TABLE `user_customer` (
 INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `company_id`, `user_id`) VALUES
 (13, 'manasye', 'GM', 'Islam', '1998-12-12', 'mans@gmail.com', 'Key Person', 1, 10),
 (14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 13),
-(15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 15);
+(15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 15),
+(17, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 8, 21),
+(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 8, 22);
 
 -- --------------------------------------------------------
 
@@ -415,6 +477,12 @@ ALTER TABLE `complaint`
   ADD KEY `customer_ibfk_1` (`user_customer_id`);
 
 --
+-- Indexes for table `cp_company`
+--
+ALTER TABLE `cp_company`
+  ADD PRIMARY KEY (`cp_company_id`);
+
+--
 -- Indexes for table `feedback_nonproject`
 --
 ALTER TABLE `feedback_nonproject`
@@ -432,7 +500,7 @@ ALTER TABLE `feedback_project`
 -- Indexes for table `gmf_cp`
 --
 ALTER TABLE `gmf_cp`
-  ADD PRIMARY KEY (`cp_id`);
+  ADD PRIMARY KEY (`gmf_cp_id`);
 
 --
 -- Indexes for table `newsletter`
@@ -500,13 +568,13 @@ ALTER TABLE `ads`
 -- AUTO_INCREMENT for table `birthday_card`
 --
 ALTER TABLE `birthday_card`
-  MODIFY `birthday_card_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `birthday_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
@@ -518,7 +586,13 @@ ALTER TABLE `company_ads`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `cp_company`
+--
+ALTER TABLE `cp_company`
+  MODIFY `cp_company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `feedback_nonproject`
@@ -536,7 +610,7 @@ ALTER TABLE `feedback_project`
 -- AUTO_INCREMENT for table `gmf_cp`
 --
 ALTER TABLE `gmf_cp`
-  MODIFY `cp_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `newsletter`
@@ -548,7 +622,7 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `religion_card`
@@ -560,13 +634,13 @@ ALTER TABLE `religion_card`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `service_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `service_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_admin`
@@ -578,7 +652,7 @@ ALTER TABLE `user_admin`
 -- AUTO_INCREMENT for table `user_customer`
 --
 ALTER TABLE `user_customer`
-  MODIFY `user_customer_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_customer_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `user_guest`

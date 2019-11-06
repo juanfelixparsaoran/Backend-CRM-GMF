@@ -10,6 +10,10 @@ class ComplaintController extends Controller
     //
     function read(){
         $complaint = DB::table('complaint')->get();
+        foreach ($complaint as $comp){
+            $company = DB::table('company')->where('company_id',$comp->company_id)->get();
+            $comp->company_name = $company[0]->name;
+        }
         return response()->json([
             'data' => $complaint
         ]);
@@ -29,6 +33,8 @@ class ComplaintController extends Controller
     }
     function edit($id){
         $complaint = DB::table('complaint')->where('complaint_id',$id)->get();
+        $company = DB::table('company')->where('company_id',$complaint[0]->company_id)->get();
+        $complaint[0]->company_name = $company[0]->name;
         if (!$complaint->isEmpty()){
             return response()->json([
                 'message' => 'Complaint found',

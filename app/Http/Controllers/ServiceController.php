@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
@@ -10,19 +11,40 @@ class ServiceController extends Controller
     //
     function read(){
         $service = DB::table('service')->get();
-        return $service;
+        return response()->json([
+            'data' => $service
+        ]);
     }
     function edit($id){
-        $service = DB::table('service')->where('service_id',$id);
-        return $service;
+        $service = DB::table('service')->where('service_id',$id)->get();
+        if (!$service->isEmpty()){
+            return response()->json([
+                'message' => 'Service found',
+                'data' => $service
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Service not found',
+                'data' => []
+            ]);
+        }
     }
     function update(Request $request){
+        $service = DB::table('service')->where('service_id',$request->id)->get();
+        $path_large = $request->large_image ? Storage::putFile('service image', $request->large_image) : $service[0]->large_image;
+        $path_small1 = $request->small_image1 ? Storage::putFile('service image', $request->small_image1) : $service[0]->small_image1;
+        $path_small2 = $request->small_image2 ? Storage::putFile('service image', $request->small_image2) : $service[0]->small_image2;
         DB::table('service')->where('service_id',$request->id)->update([
-            'name' => $request->name,
-            'detail' => $request->detail,
-            'image' => $request->image,
+            'name' => ($request->name != NULL ? $request->name : $service[0]->name),
+            'detail' => ($request->detail != NULL ? $request->detail : $service[0]->detail),
+            'large_image' => $path_large,
+            'small_image1' => $path_small1,
+            'small_image2' => $path_small2
         ]);
-        return 'service updated';
+    
+        return response()->json([
+            'message' => 'Service Updated'
+        ]);
     }
     function delete($id){
         DB::table('service')->where('service_id',$id)->delete();
@@ -30,11 +52,19 @@ class ServiceController extends Controller
     }
 
     function create(Request $request){
+        $path_large = Storage::putFile('service image', $request->large_image);
+        $path_small1 = Storage::putFile('service image', $request->small_image1);
+        $path_small2 = Storage::putFile('service image', $request->small_image2);
         DB::table('service')->insert([
             'name' => $request->name,
             'detail' => $request->detail,
-            'image' => $request->image,
+            'large_image' => $path_large,
+            'small_image1' => $path_small1,
+            'small_image2' => $path_small2
         ]);
-        return 'service created';
+    
+        return response()->json([
+            'message' => 'Service Created'
+        ]);
     }
 }

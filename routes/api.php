@@ -48,6 +48,7 @@ Route::get('/birthday/read','BirthdayCardController@read');
 Route::get('/birthday/edit/{id}','BirthdayCardController@edit');
 Route::get('/birthday/delete/{id}','BirthdayCardController@delete');
 Route::post('/birthday/update','BirthdayCardController@update');
+Route::post('/birthday/create','BirthdayCardController@create');
 
 //company route
 Route::get('/company/read','CompanyController@read');
@@ -68,9 +69,11 @@ Route::post('/complaint/create','ComplaintController@create');
 
 //cp route
 Route::get('/cp/read','CpController@read');
+Route::get('/cp/read/{id}','CpController@readCpInCompany');
 Route::get('/cp/edit/{id}','CpController@edit');
 Route::get('/cp/delete/{id}','CpController@delete');
 Route::post('/cp/update','CpController@update');
+Route::post('/cp/create','CpController@create');
 
 //newsletter route
 Route::get('/newsletter/read','NewsletterController@read');
@@ -91,6 +94,7 @@ Route::get('/service/read','ServiceController@read');
 Route::get('/service/edit/{id}','ServiceController@edit');
 Route::get('/service/delete/{id}','ServiceController@delete');
 Route::post('/service/update','ServiceController@update');
+Route::post('/service/create','ServiceController@create');
 
 //feedback project route
 Route::get('/feedbackproject/read','FeedbackProjectController@read');

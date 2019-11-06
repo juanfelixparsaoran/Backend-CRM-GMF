@@ -3,34 +3,58 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class BirthdayCardController extends Controller
 {
     //
     function read(){
         $birthday_card = DB::table('birthday_card')->get();
-        return $birthday_card;
+        return response()->json([
+            'data' => $birthday_card
+        ]);
     }
     function edit($id){
-        $birthday_card = DB::table('birthday_card')->where('birthday_card_id',$id);
-        return $birthday_card;
+        $birthday_card = DB::table('birthday_card')->where('birthday_card_id',$id)->get();
+        if (!$birthday_card->isEmpty()){
+            return response()->json([
+                'message' => 'Birthday Card found',
+                'data' => $birthday_card
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Birthday Card not found',
+                'data' => []
+            ]);
+        }
     }
     function update(Request $request){
+        $path = Storage::putFile('birthday card', $request->image);
         DB::table('birthday_card')->where('birthday_card_id',$request->id)->update([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'permalink' => $request->permalink,
+            'image' => $path
         ]);
-        return 'birthday card updated';
+        return response()->json([
+            'message' => 'Birthday Card Updated'
+        ]);
     }
     function delete($id){
         DB::table('birthday_card')->where('birthday_card_id',$id)->delete();
-        return 'deleted';
+        return response()->json([
+            'message' => 'Birthday Card Deleted'
+        ]);
     }
     function create(Request $request){
+        $path = Storage::putFile('birthday card', $request->image);
         DB::table('birthday_card')->insert([
             'subject' => $request->subject,
-            'image' => $request->image,
+            'permalink' => $request->permalink,
+            'image' => $path
         ]);
-        return 'birthday card created';
+        return response()->json([
+            'message' => 'Birthday Card Created'
+        ]);
     }
 }

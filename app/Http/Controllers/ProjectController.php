@@ -11,12 +11,18 @@ class ProjectController extends Controller
     //
     function read(){
         $project = DB::table('project')->get();
+        foreach ($project as $pro){
+            $company = DB::table('company')->where('company_id',$pro->company_id)->get();
+            $pro->company_name = $company[0]->name;
+        }
         return response()->json([
             'data' => $project
         ]);
     }
     function edit($id){
         $project = DB::table('project')->where('project_id',$id)->get();
+        $company = DB::table('company')->where('company_id',$project[0]->company_id)->get();
+        $project[0]->company_name = $company[0]->name;
         if (!$project->isEmpty()){
             return response()->json([
                 'message' => 'project found',

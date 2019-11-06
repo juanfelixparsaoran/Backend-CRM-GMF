@@ -27,7 +27,6 @@ class UserController extends Controller
             'status' => $request->status
         ]);
         $user = DB::table('user')->where('username',$request->username)->get();
-        print_r($user);
         $company = DB::table('company')->where('name',$request->company_name)->get();
         if ($request->role == 'Customer'){
             DB::table('user_customer')->insert([
