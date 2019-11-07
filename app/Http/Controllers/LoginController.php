@@ -10,10 +10,16 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        if (!$request->session()->has('username')){
-            return view('login');
+        if ($request->session()->has('username')){
+            return response()->json([
+                'message' => 'Authenticated',
+                'auth' => true
+            ]);
         }else{
-            return 'Homepage';
+            return response()->json([
+                'message' => 'Not Authenticated',
+                'auth' => false
+            ]);
         }
     }
 
