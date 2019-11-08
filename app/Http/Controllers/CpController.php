@@ -57,7 +57,7 @@ class CpController extends Controller
     }
 
     function create(Request $request){
-        $company = DB::table('company')->where('name',$request->company_name)->get();
+        $company = DB::table('company')->where('company_id',$request->company_id)->get();
         DB::table('gmf_cp')->insert([
             'name' => $request->name,
             'position' => $request->position,
@@ -66,7 +66,7 @@ class CpController extends Controller
         ]);
         $gmf_cp = DB::table('gmf_cp')->get();
         DB::table('cp_company')->insert([
-            'company_id' => $company[0]->company_id,
+            'company_id' => $request->company_id,
             'gmf_cp_id' =>  $gmf_cp[sizeof($gmf_cp)-1]->gmf_cp_id
         ]);
         return response()->json([

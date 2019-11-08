@@ -19,6 +19,13 @@ class ProjectController extends Controller
             'data' => $project
         ]);
     }
+
+    function readProjectInCompany($id){
+        $project = DB::table('project')->join('company','project.company_id','=','company.company_id')->where('project.company_id',$id)->get();
+        return response()->json([
+            'data' => $project
+        ]);
+    }
     function edit($id){
         $project = DB::table('project')->where('project_id',$id)->get();
         $company = DB::table('company')->where('company_id',$project[0]->company_id)->get();

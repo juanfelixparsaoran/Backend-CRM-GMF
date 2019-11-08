@@ -110,7 +110,7 @@ Route::get('/companyads/remove/{ads_id}/{company_id}','CompanyAdsController@remo
 
 //project route
 Route::get('/project/read','ProjectController@read');
-Route::get('/project/read/{id}','ProjectController@readByCompany');
+Route::get('/project/read/{id}','ProjectController@readProjectInCompany');
 Route::get('/project/edit/{id}','ProjectController@edit');
 Route::post('/project/update','ProjectController@update');
 Route::get('/project/delete/{id}','ProjectController@delete');

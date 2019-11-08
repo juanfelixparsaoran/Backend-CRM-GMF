@@ -14,12 +14,12 @@ class LoginController extends Controller
             return response()->json([
                 'message' => 'Authenticated',
                 'auth' => true
-            ]);
+            ],200);
         }else{
             return response()->json([
                 'message' => 'Not Authenticated',
                 'auth' => false
-            ]);
+            ],400);
         }
     }
 
@@ -65,7 +65,7 @@ class LoginController extends Controller
                 'data_user' => [],
                 'detail_user' => [],
 
-            ]);
+            ],400);
         }
     }
 }

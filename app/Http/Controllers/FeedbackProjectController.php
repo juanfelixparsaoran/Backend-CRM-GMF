@@ -10,6 +10,10 @@ class FeedbackProjectController extends Controller
     //
     function read(){
         $feedback_project = DB::table('feedback_project')->get();
+        foreach ($feedback_project as $pro){
+            $company = DB::table('company')->where('company_id',$pro->company_id)->get();
+            $pro->company_name = $company[0]->name;
+        }
         return response()->json([
             'data' => $feedback_project
         ]);
