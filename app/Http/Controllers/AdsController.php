@@ -31,17 +31,21 @@ class AdsController extends Controller
 
     function edit($id){
         $ads = DB::table('ads')->where('ads_id',$id)->get();
-        if (!$ads->isEmpty()){
-            return response()->json([
-                'message' => 'ads found',
-                'data' => $ads
-            ]);
-        }else{
-            return response()->json([
-                'message' => 'ads not found',
-                'data' => []
-            ]);
-        }
+        echo $ads[0]->image;
+        
+        echo asset('storage/app/'.$ads[0]->image);
+        // if (!$ads->isEmpty()){
+        //     return response()->json([
+        //         'message' => 'ads found',
+        //         'data' => $ads,
+        //         'image'=> $img
+        //     ]);
+        // }else{
+        //     return response()->json([
+        //         'message' => 'ads not found',
+        //         'data' => []
+        //     ]);
+        // }
     }
     function update(Request $request){
         $ads = DB::table('ads')->where('ads_id',$request->ads_is)->get();
