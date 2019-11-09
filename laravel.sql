@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2019 at 10:43 AM
+-- Generation Time: Nov 09, 2019 at 08:01 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -40,12 +40,9 @@ CREATE TABLE `ads` (
 --
 
 INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`) VALUES
-(4, 'Marketing Ads', 'ads/7HNP8kF6OQVYRnSb7hCgno9KS8rbFSUJixPzCBzj.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(5, 'Marketing Ads', 'ads/sOAE9CFZoRMUX2KLflvqbdFu2iNrULZZY9g9ddxi.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(6, 'Marketing Ads', 'ads/UlEba4cHSBF1srGYJw7uilE7didewui2vA83zcVb.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(7, 'Marketing Ads', 'ads/rlyhb0I3vtAbj5K4LTF7MYDCzfHIUADEJff2RGBD.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(8, 'Marketing Ads', 'ads/GwhPVhcNrSpW4VeSPw1LseFM3GZtDVnyFmFV94l3.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(9, 'Marketing Ads', 'ads/b3XPU0reEzi9zAeycxnRYFzYjotFp13vt58UmUib.jpeg', 'http://www.gmf-aeroasia.co.id/services/');
+(4, 'Marketing Ads', 'ads/AS5YtrHmTgd0QURgALkMaocbb3wXTe9FkbRPw15O.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
+(5, 'Marketing Ads', 'ads/jI5nqHmUBYuXr3yODh0XdJ5u4KANvUEw30XYumhj.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
+(6, 'Marketing Ads', 'ads/Bsqm6cOtGNOAcmANcPbes7bX0838byNkFvlCM0OD.jpeg', 'http://www.gmf-aeroasia.co.id/services/');
 
 -- --------------------------------------------------------
 
@@ -65,8 +62,8 @@ CREATE TABLE `birthday_card` (
 --
 
 INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`) VALUES
-(1, 'Birthday in Desember', 'birthday card/nfXBrv5NjbFn2rd8r8vrAKogj8lelcZDYXPdixx8.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember'),
-(2, 'Birthday in November', 'birthday card/7NvZDjSL57jbbKloChomjzTDwQWdpawXj941y1OP.jpeg', 'http://gmf-aeroasia.co.id/birthday/november');
+(1, 'Birthday in Desember', 'birthday card/HbsMwC6kNNE0rtyMHuKPwSSqJyTmie0njhNhDR6r.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember'),
+(2, 'Birthday in November', 'birthday card/GbRQXV5gTCb3womhENY17lQYM2cMlcCgizT3wXpI.jpeg', 'http://gmf-aeroasia.co.id/birthday/november');
 
 -- --------------------------------------------------------
 
@@ -75,6 +72,7 @@ INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`
 --
 
 CREATE TABLE `company` (
+  `image` varchar(1000) NOT NULL,
   `name` varchar(50) NOT NULL,
   `region` varchar(100) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
@@ -97,12 +95,12 @@ CREATE TABLE `company` (
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`name`, `region`, `country`, `company_role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`) VALUES
-('Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1),
-('Arab Airlines', 'Domestic', 'Arab', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2019, 5),
-('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6),
-('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7),
-('Garuda', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8);
+INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`) VALUES
+('company/o8D6GM15uzUY1gVUhlu3GM0RSnXgerAIrQMXWzwh.jpeg', 'Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1),
+('company/UnbmR7wJ3CZnn49afsM38UffHfM009ivp8tB5mcN.png', 'Citilink', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 5),
+('company/oaEbOTlb6XesD5Qddyu2WuBhMcrybTuNTJJOik1i.png', 'Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6),
+('company/E9tM6l49EYO3vww9lEvTzHwIqOjRFXiP5uj14tCo.jpeg', 'Nam Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7),
+('company/achqeSXWqGav4dHZmvFvdE6pZmsNybkApldhMmeQ.png', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8);
 
 -- --------------------------------------------------------
 
@@ -122,8 +120,7 @@ CREATE TABLE `company_ads` (
 
 INSERT INTO `company_ads` (`company_ads_id`, `company_id`, `ads_id`) VALUES
 (4, 5, 4),
-(6, 5, 5),
-(8, 5, 9);
+(6, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -273,7 +270,8 @@ CREATE TABLE `newsletter` (
 --
 
 INSERT INTO `newsletter` (`newsletter_id`, `subject`, `image`, `permalink`) VALUES
-(1, 'Newsletter Marketing', 'newsletter/KItUMoSnwLcWbScxU3gdOYfh7l9wlU8CkIVRpHUg.jpeg', 'http://www.gmf-aeroasia.co.id');
+(1, 'Newsletter Marketing', 'newsletter/vyeF4DY6IJ3VlFOvCwl5TtIzjLUlEq7T5WhK370H.jpeg', 'http://www.gmf-aeroasia.co.id'),
+(2, 'Newsletter Marketing', 'newsletter/M1ImtRw5S7hrXo1Z0irrdLkKPJSrF2sLFJznCErW.jpeg', 'http://www.gmf-aeroasia.co.id');
 
 -- --------------------------------------------------------
 
@@ -304,7 +302,8 @@ INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quant
 (2, 'KA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 1', 'GAH3', '6', 5),
 (3, 'KA Project 2', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 2', 'GAH3', '5', 5),
 (4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '3', 1),
-(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1);
+(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1),
+(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1);
 
 -- --------------------------------------------------------
 
@@ -339,9 +338,9 @@ CREATE TABLE `religion_card` (
 --
 
 INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`) VALUES
-(1, 'Christmas', 'religion card/D466WWlZUJHLh3NPIigFbvlIDWojw1BvL5VuY8Ck.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
-(2, 'Eid Mubarak', 'religion card/F4DYJYvo40Mn5l4UJXudgp2zP8DCLoT7hwPM47pZ.jpeg', 'Kristen', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
-(3, 'Nyepi', 'religion card/2lWH7WeZJ5lifPKvhctpT3hd7NJBOJrKYGhtaINz.jpeg', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
+(1, 'Christmas', 'religion card/xgQceZe4nlnre72y2o0wSRATks7mDCHe9rt6kx88.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
+(2, 'Eid Mubarak', 'religion card/1jL45pbjznafkQNrhx2dW2T4SkkPhmzlOiUxEfdq.jpeg', 'Islam', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/eid'),
+(3, 'Nyepi', 'religion card/Jd89RtvxPyFKCCC6eAO5xKaowILwRMTxitI1B1L8.webp', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
 
 -- --------------------------------------------------------
 
@@ -363,8 +362,8 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_image1`, `small_image2`) VALUES
-(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/7FK0FTMQNQgzUdte8kIo798C9m2LIjctLK72pXXI.jpeg', 'service image/11pjXkhqsv9JaAjlfbt5aUOrZEra0sHqGpx6gdIZ.jpeg', 'service image/6VZ2Fg7SP9UjFEL3YDQntithR9SEURiE0ynVgwaD.jpeg'),
-(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/AAPofHUnZIMSDkp4zv2kVN9OQZNe6mSbQrjfbRRv.jpeg', 'service image/CkaqCsqDBUQ1LJWMA8Tlay9ZSMIYLqT3fV0LOzRH.jpeg', 'service image/HiYHUXChyDWCsUFGbmaBKPvVQsIPJ6v5o0qxdIe1.jpeg');
+(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/VR3xSUx80R95obah0NQlcMvwmqIClpZKcOXsRVQJ.jpeg', 'service image/YM6pakogcIRwb9xXL467Q6Ufhi8HacJCTCbFiikt.jpeg', 'service image/mczcOP7KzpH2Rfgicxh8NWZJ3HvOzDpyxpHumP4b.jpeg'),
+(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/jAubfWXM1x2vnYhgkCHBgffoOCKLOG21JTYL8WBn.jpeg', 'service image/NASjch3wCi1F5b9wEsqSkJhk3fpoOu90xAXrEzU0.jpeg', 'service image/VVnlO1qYC6A8ey9r7SoBynsaogu2e8tGJbnYtKMc.jpeg');
 
 -- --------------------------------------------------------
 
@@ -606,7 +605,7 @@ ALTER TABLE `user_guest`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `birthday_card`
@@ -618,7 +617,7 @@ ALTER TABLE `birthday_card`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
@@ -660,13 +659,13 @@ ALTER TABLE `gmf_cp`
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `project_service`
@@ -678,7 +677,7 @@ ALTER TABLE `project_service`
 -- AUTO_INCREMENT for table `religion_card`
 --
 ALTER TABLE `religion_card`
-  MODIFY `religion_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `religion_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `service`

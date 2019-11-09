@@ -32,6 +32,10 @@ class ReligionCardController extends Controller
     function update(Request $request){
         $religion_card = DB::table('religion_card')->where('religion_card_id',$request->religion_card_id)->get();
         $path = $request->image != NULL ? Storage::putFile('religion card', $request->image) : $religion_card[0]->image;
+        if ($request->image != NULL){
+            Storage::delete($religion_card[0]->image);
+        }
+
         DB::table('religion_card')->where('religion_card_id',$request->religion_card_id)->update([
             'subject' => $request->subject != NULL ? $request->subject : $religion_card[0]->subject,
             'image' => $path,

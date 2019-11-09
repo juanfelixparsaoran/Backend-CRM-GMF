@@ -22,6 +22,9 @@ class NewsletterController extends Controller
     function update(Request $request){
         $newsletter = DB::table('newsletter')->where('newsletter_id',$request->id)->get();
         $path = $request->image != NULL ? Storage::putFile('newsletter', $request->image) : $newsletter[0]->image;
+        if ($request->image != NULL){
+            Storage::delete($newsletter[0]->image);
+        }
         DB::table('newsletter')->where('newsletter_id',$request->id)->update([
             'subject' => $request->subject != NULL ? $request->subject : $newsletter[0]->subject,
             'image' => $path,

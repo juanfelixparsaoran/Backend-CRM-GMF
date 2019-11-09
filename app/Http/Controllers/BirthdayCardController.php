@@ -32,6 +32,9 @@ class BirthdayCardController extends Controller
     function update(Request $request){
         $birthday_card = DB::table('birthday_card')->where('birthday_card_id',$request->id)->get();
         $path = $request->image != NULL ? Storage::putFile('birthday card', $request->image) : $birthday_card[0]->image;
+        if ($request->image != NULL){
+            Storage::delete($birthday_card[0]->image);
+        }
         DB::table('birthday_card')->where('birthday_card_id',$request->id)->update([
             'subject' => $request->subject != NULL ? $request->subject : $birthday_card[0]->subject,
             'permalink' => $request->permalink != NULL ? $request->permalink : $birthday_card[0]->permalink,

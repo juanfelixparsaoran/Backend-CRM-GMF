@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class CompanyController extends Controller
 {
@@ -42,7 +44,12 @@ class CompanyController extends Controller
     }
     function update(Request $request){
         $company = DB::table('company')->where('company_id',$request->id)->get(); 
+        $path = $request->image != NULL ? Storage::putFile('company', $request->image) : $company[0]->image;
+        if ($request->image != NULL){
+            Storage::delete($company[0]->image);
+        }
         DB::table('company')->where('company_id',$request->id)->update([
+            'image' => $path,
             'name' => $request->name != NULL ? $request->name : $company[0]->name,
             'region' => $request->region != NULL ? $request->region : $company[0]->region,
             'country' => $request->country != NULL ? $request->country : $company[0]->country,
@@ -70,7 +77,9 @@ class CompanyController extends Controller
         ]);
     }
     function create(Request $request){
+        $path = Storage::putFile('company', $request->image);
         DB::table('company')->insert([
+            'image' => $path,
             'name' => $request->name,
             'region' => $request->region,
             'country' => $request->country,

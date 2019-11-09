@@ -34,6 +34,15 @@ class ServiceController extends Controller
         $path_large = $request->large_image ? Storage::putFile('service image', $request->large_image) : $service[0]->large_image;
         $path_small1 = $request->small_image1 ? Storage::putFile('service image', $request->small_image1) : $service[0]->small_image1;
         $path_small2 = $request->small_image2 ? Storage::putFile('service image', $request->small_image2) : $service[0]->small_image2;
+        if ($request->large_image != NULL){
+            Storage::delete($service[0]->large_image);
+        }
+        if ($request->small_image1 != NULL){
+            Storage::delete($service[0]->small_image1);
+        }
+        if ($request->small_image2 != NULL){
+            Storage::delete($service[0]->small_image2);
+        }
         DB::table('service')->where('service_id',$request->id)->update([
             'name' => ($request->name != NULL ? $request->name : $service[0]->name),
             'detail' => ($request->detail != NULL ? $request->detail : $service[0]->detail),
