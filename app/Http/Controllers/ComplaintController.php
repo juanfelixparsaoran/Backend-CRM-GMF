@@ -49,14 +49,22 @@ class ComplaintController extends Controller
     }
     function update(Request $request){
         $complaint = DB::table('complaint')->where('complaint_id',$request->complaint_id)->get();
-        DB::table('complaint')->where('complaint_id',$request->complaint_id)->update([
-            'date'=> $request->date != NULL ? $request->date : $complaint[0]->date,
-            'closed' => $request->closed != NULL ? $request->closed : $complaint[0]->closed,
-            'service' => $request->service != NULL ? $request->service : $complaint[0]->service,
-            'subject' => $request->subject != NULL ? $request->subject : $complaint[0]->subject,
-            'complaint' => $request->complaint != NULL ? $request->complaint : $complaint[0]->complaint,
-            'status' => $request->status != NULL ? $request->status : $complaint[0]->status,
-        ]);
+        if ($request->status != 'Closed'){
+            DB::table('complaint')->where('complaint_id',$request->complaint_id)->update([
+                'service' => $request->service != NULL ? $request->service : $complaint[0]->service,
+                'subject' => $request->subject != NULL ? $request->subject : $complaint[0]->subject,
+                'complaint' => $request->complaint != NULL ? $request->complaint : $complaint[0]->complaint,
+                'status' => $request->status != NULL ? $request->status : $complaint[0]->status,
+            ]);
+        }else{
+            DB::table('complaint')->where('complaint_id',$request->complaint_id)->update([
+                'closed' => now()->getDateTime(),
+                'service' => $request->service != NULL ? $request->service : $complaint[0]->service,
+                'subject' => $request->subject != NULL ? $request->subject : $complaint[0]->subject,
+                'complaint' => $request->complaint != NULL ? $request->complaint : $complaint[0]->complaint,
+                'status' => $request->status != NULL ? $request->status : $complaint[0]->status,
+            ]);
+        }
         return response()->json([
             'message' => 'Complaint Updated'
         ]);
@@ -71,7 +79,7 @@ class ComplaintController extends Controller
     function create(Request $request){
         $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
         DB::table('complaint')->insert([
-            'date'=> $request->date,
+            'date'=> now()->toDateString(),
             'service' => $request->service,
             'subject' => $request->subject,
             'complaint' => $request->complaint,

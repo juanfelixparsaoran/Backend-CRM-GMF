@@ -29,20 +29,23 @@ class FeedbackProjectController extends Controller
             return response()->json([
                 'message' => 'No feedback_project in this company',
                 'data' => []
-            ]);
+            ],404);
         }
     }
     function edit($id){
         $feedback_project = DB::table('feedback_project')->where('feedback_project_id',$id)->get();
         if (!$feedback_project->isEmpty()){
+            $company = DB::table('company')->where('company_id',$feedback_project[0]->company_id)->get();
+            $feedback_project[0]->company_name = $company[0]->name;
             return response()->json([
                 'message' => 'feedback_project found',
                 'data' => $feedback_project
             ]);
         }else{
             return response()->json([
-                'message' => 'feedback_project not found'
-            ]);
+                'message' => 'feedback_project not found',
+                'data' => []
+            ],404);
         }
     }
     function update(Request $request){
@@ -67,19 +70,22 @@ class FeedbackProjectController extends Controller
     }
 
     function create(Request $request){
+        // print_r($request->service[0]["service"]);
         $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
-        DB::table('feedback_project')->insert([
-            'date'=> $request->date,
-            'project_type' => $request->project_type,
-            'location' => $request->location,
-            'rating' => $request->rating,
-            'sender' => $customer[0]->name,
-            'aspect_to_improve' => $request->aspect_to_improve,
-            'remark' => $request->remark,
-            'company_id' => $customer[0]->company_id,
-            'user_customer_id' => $customer[0]->user_customer_id,
-            'project_id' => $request->project_id
-        ]);
+        foreach ($request->service as $service){
+            $service1 = DB::table('service')->where('name',$service['service'])->get();
+            DB::table('feedback_project')->insert([
+                'date'=> now()->toDateString(),
+                'rating' => $service['rating'],
+                'sender' => $customer[0]->name,
+                'aspect_to_improve' => $service['aspect_to_improve'],
+                'remark' => $service['remark'],
+                'company_id' => $customer[0]->company_id,
+                'user_customer_id' => $customer[0]->user_customer_id,
+                'project_id' => $request->project_id,
+                'service_id' => $service1[0]->service_id
+            ]);
+        }
         return response()->json([
             'message' => 'feedback_project Created'
         ]);

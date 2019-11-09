@@ -104,6 +104,13 @@ Route::post('/feedbackproject/update','FeedbackProjectController@update');
 Route::get('/feedbackproject/delete/{id}','FeedbackProjectController@delete');
 Route::post('/feedbackproject/create','FeedbackProjectController@create');
 
+Route::get('/feedbacknonproject/read','FeedbackNonProjectController@read');
+Route::get('/feedbacknonproject/read/{id}','FeedbackNonProjectController@readByCompany');
+Route::get('/feedbacknonproject/edit/{id}','FeedbackNonProjectController@edit');
+Route::post('/feedbacknonproject/update','FeedbackNonProjectController@update');
+Route::get('/feedbacknonproject/delete/{id}','FeedbackNonProjectController@delete');
+Route::post('/feedbacknonproject/create','FeedbackNonProjectController@create');
+
 //company ads route
 Route::get('/companyads/add/{ads_id}/{company_id}','CompanyAdsController@add');
 Route::get('/companyads/remove/{ads_id}/{company_id}','CompanyAdsController@remove');

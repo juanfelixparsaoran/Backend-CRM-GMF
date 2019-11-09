@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2019 at 09:46 AM
+-- Generation Time: Nov 09, 2019 at 10:43 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -99,7 +99,7 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`name`, `region`, `country`, `company_role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`) VALUES
 ('Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1),
-('Korean Airli', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 5),
+('Arab Airlines', 'Domestic', 'Arab', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2019, 5),
 ('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6),
 ('Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7),
 ('Garuda', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8);
@@ -174,7 +174,8 @@ INSERT INTO `cp_company` (`cp_company_id`, `gmf_cp_id`, `company_id`) VALUES
 (2, 7, 8),
 (3, 8, 1),
 (4, 9, 1),
-(5, 10, 1);
+(5, 10, 1),
+(6, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -186,8 +187,21 @@ CREATE TABLE `feedback_nonproject` (
   `feedback_nonproject_id` int(100) NOT NULL,
   `date` date NOT NULL,
   `rating` varchar(100) NOT NULL,
-  `subject` varchar(5000) NOT NULL
+  `subject` varchar(5000) NOT NULL,
+  `description` varchar(5000) NOT NULL,
+  `sender` varchar(1000) NOT NULL,
+  `user_customer_id` int(100) NOT NULL,
+  `company_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback_nonproject`
+--
+
+INSERT INTO `feedback_nonproject` (`feedback_nonproject_id`, `date`, `rating`, `subject`, `description`, `sender`, `user_customer_id`, `company_id`) VALUES
+(5, '2019-11-09', '5', 'Feedback Nonproject 1', 'Feedback Nonproject 1 description', 'manasye', 13, 1),
+(6, '2019-11-09', '4', 'Feedback Nonproject 2', 'Feedback Nonproject 2 description', 'Juan Felix', 14, 1),
+(7, '2019-11-09', '3', 'Feedback Nonproject 3', 'Feedback Nonproject 3 description', 'Juan', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -199,22 +213,22 @@ CREATE TABLE `feedback_project` (
   `feedback_project_id` int(100) NOT NULL,
   `date` date NOT NULL,
   `sender` varchar(1000) NOT NULL,
-  `location` varchar(100) NOT NULL,
-  `project_type` varchar(100) NOT NULL,
   `rating` int(10) NOT NULL,
   `aspect_to_improve` varchar(1000) NOT NULL,
   `remark` varchar(1000) NOT NULL,
   `user_customer_id` int(100) NOT NULL,
   `company_id` int(100) NOT NULL,
-  `project_id` int(11) NOT NULL
+  `project_id` int(11) NOT NULL,
+  `service_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feedback_project`
 --
 
-INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `location`, `project_type`, `rating`, `aspect_to_improve`, `remark`, `user_customer_id`, `company_id`, `project_id`) VALUES
-(1, '2019-11-11', 'Juan', 'GAH3', 'Base Maintenance', 4, 'Communication', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.', 14, 1, 0);
+INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating`, `aspect_to_improve`, `remark`, `user_customer_id`, `company_id`, `project_id`, `service_id`) VALUES
+(7, '2019-11-09', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
+(8, '2019-11-09', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -235,10 +249,11 @@ CREATE TABLE `gmf_cp` (
 --
 
 INSERT INTO `gmf_cp` (`gmf_cp_id`, `name`, `position`, `phone`, `email`) VALUES
-(7, 'Deni', 'Staff Marketing', '081273829182', 'deni@gmail.com'),
+(7, 'Dseni', 'Staff Engineering', '08127382919', 'ysf@gmail.com'),
 (8, 'Dewi', 'Staff Marketing', '081273829182', 'deni@gmail.com'),
 (9, 'Pol', 'Staff Marketing', '081273829182', 'pol@gmail.com'),
-(10, 'Pola', 'Staff Marketing', '081273829182', 'pola@gmail.com');
+(10, 'Pola', 'Staff Marketing', '081273829182', 'pola@gmail.com'),
+(12, 'Adit', 'Staff Marketing', '081273829182', 'adit@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -294,6 +309,19 @@ INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quant
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `project_service`
+--
+
+CREATE TABLE `project_service` (
+  `project_service_id` int(100) NOT NULL,
+  `project_id` int(100) NOT NULL,
+  `service_id` int(100) NOT NULL,
+  `rating` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `religion_card`
 --
 
@@ -313,7 +341,7 @@ CREATE TABLE `religion_card` (
 INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`) VALUES
 (1, 'Christmas', 'religion card/D466WWlZUJHLh3NPIigFbvlIDWojw1BvL5VuY8Ck.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
 (2, 'Eid Mubarak', 'religion card/F4DYJYvo40Mn5l4UJXudgp2zP8DCLoT7hwPM47pZ.jpeg', 'Kristen', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
-(3, 'Nyepi', 'religion card/RQBubO3NHGhDV8m7YJBk9vghUbOObLfeZquANCH1.jpeg', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
+(3, 'Nyepi', 'religion card/2lWH7WeZJ5lifPKvhctpT3hd7NJBOJrKYGhtaINz.jpeg', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
 
 -- --------------------------------------------------------
 
@@ -359,13 +387,19 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `pass_raw`, `role`, `status`) VALUES
 (10, 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '1234', 'Customer', 'Active'),
-(13, 'felix', '$2y$10$6RTVQrY4O9eht8DOS1yoJuhIGlqyaczDnHoCCCPTF6KCnM5H3IU7K', '12121', 'Customer', 'Inactive'),
+(13, 'felix', '$2y$10$KumYeGrMQkZed9R1tF/5COLK7wVZGWKrLdDsezFqreGs6jDqXWiGW', '12121', 'Customer', 'Inactive'),
 (14, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
 (15, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
 (19, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active'),
 (20, 'juanf', '$2y$10$5PyJ7ZBfqTD31gQpv.KFJOJe3GT5iODiWi6hfkhXxirm6h.I3k7B.', '1212', 'Customer', 'Active'),
 (21, 'jfptrg', '$2y$10$OmPFN9yQP5ziKZcEKqJNP.IcrCFzYJs3tLGTkHZFVkTSrMWThM.VC', '1212', 'Customer', 'Active'),
-(22, 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active');
+(22, 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active'),
+(23, 'ferry', '$2y$10$RJ36Ug.C.F6lGezgkHD6fu3UGPstdyjwas7xv0etxg58qF6cUvMSO', '1212', 'Customer', 'Active'),
+(24, 'ferry', '$2y$10$f8mx0KGN8TOi3Auas4biT.bN7CAVaT21kVYlZqkTBPEJGgzfllAXa', '1212', 'Customer', 'Active'),
+(25, 'ferry', '$2y$10$n.7RmSHb5XWif.h0JB/mYeHfCyHIuovnkA6XCcvbYIimcM0sgqB2O', '1212', 'Customer', 'Active'),
+(26, 'ferry', '$2y$10$IMsm/EMKCrqe9P/POy6hS.E3Cl/49PxwdhO5qTSokJFpr1RUGiQce', '1212', 'Customer', 'Active'),
+(27, 'ferry', '$2y$10$VkKbqYzkNNPkJYYWbqGlE.px/FfPsToFO14X.puCpXY.yrnQ35MvG', '1212', 'Customer', 'Active'),
+(28, 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active');
 
 -- --------------------------------------------------------
 
@@ -395,7 +429,7 @@ INSERT INTO `user_admin` (`user_admin_id`, `name`, `position`, `division`, `user
 --
 
 CREATE TABLE `user_customer` (
-  `user_customer_id` int(20) NOT NULL,
+  `user_customer_id` int(100) NOT NULL,
   `name` varchar(50) NOT NULL,
   `position` varchar(20) NOT NULL,
   `religion` varchar(20) NOT NULL,
@@ -415,7 +449,9 @@ INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`,
 (14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 13),
 (15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 15),
 (17, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 8, 21),
-(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 8, 22);
+(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 8, 22),
+(19, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 23),
+(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 28);
 
 -- --------------------------------------------------------
 
@@ -486,7 +522,8 @@ ALTER TABLE `cp_company`
 -- Indexes for table `feedback_nonproject`
 --
 ALTER TABLE `feedback_nonproject`
-  ADD PRIMARY KEY (`feedback_nonproject_id`);
+  ADD PRIMARY KEY (`feedback_nonproject_id`),
+  ADD KEY `user_id` (`user_customer_id`);
 
 --
 -- Indexes for table `feedback_project`
@@ -494,7 +531,8 @@ ALTER TABLE `feedback_nonproject`
 ALTER TABLE `feedback_project`
   ADD PRIMARY KEY (`feedback_project_id`),
   ADD KEY `idx_user` (`user_customer_id`),
-  ADD KEY `idx_company` (`company_id`);
+  ADD KEY `idx_company` (`company_id`),
+  ADD KEY `idx_service` (`service_id`);
 
 --
 -- Indexes for table `gmf_cp`
@@ -513,6 +551,12 @@ ALTER TABLE `newsletter`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`project_id`);
+
+--
+-- Indexes for table `project_service`
+--
+ALTER TABLE `project_service`
+  ADD PRIMARY KEY (`project_service_id`);
 
 --
 -- Indexes for table `religion_card`
@@ -592,25 +636,25 @@ ALTER TABLE `complaint`
 -- AUTO_INCREMENT for table `cp_company`
 --
 ALTER TABLE `cp_company`
-  MODIFY `cp_company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cp_company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `feedback_nonproject`
 --
 ALTER TABLE `feedback_nonproject`
-  MODIFY `feedback_nonproject_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `feedback_nonproject_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `gmf_cp`
 --
 ALTER TABLE `gmf_cp`
-  MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `newsletter`
@@ -623,6 +667,12 @@ ALTER TABLE `newsletter`
 --
 ALTER TABLE `project`
   MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `project_service`
+--
+ALTER TABLE `project_service`
+  MODIFY `project_service_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `religion_card`
@@ -640,7 +690,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `user_admin`
@@ -652,7 +702,7 @@ ALTER TABLE `user_admin`
 -- AUTO_INCREMENT for table `user_customer`
 --
 ALTER TABLE `user_customer`
-  MODIFY `user_customer_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_guest`
@@ -679,10 +729,17 @@ ALTER TABLE `complaint`
   ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`user_customer_id`) REFERENCES `user_customer` (`user_customer_id`);
 
 --
+-- Constraints for table `feedback_nonproject`
+--
+ALTER TABLE `feedback_nonproject`
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_customer_id`) REFERENCES `user_customer` (`user_customer_id`);
+
+--
 -- Constraints for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
   ADD CONSTRAINT `idx_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`),
+  ADD CONSTRAINT `idx_service` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`),
   ADD CONSTRAINT `idx_user` FOREIGN KEY (`user_customer_id`) REFERENCES `user_customer` (`user_customer_id`);
 
 --

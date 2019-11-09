@@ -119,4 +119,19 @@ class UserController extends Controller
         ]);
     }
 
+    function checkUsername($username){
+        $user = DB::table('user')->where('username',$username)->get();
+        if (!$user->isEmpty()){
+            return response()->json([
+                'message' => 'User found',
+                'data' => $user
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'User not found',
+                'data' => []
+            ]);
+        }
+    }
+
 }
