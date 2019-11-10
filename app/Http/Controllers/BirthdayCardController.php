@@ -31,7 +31,7 @@ class BirthdayCardController extends Controller
     }
     function update(Request $request){
         $birthday_card = DB::table('birthday_card')->where('birthday_card_id',$request->id)->get();
-        $path = $request->image != NULL ? Storage::putFile('birthday card', $request->image) : $birthday_card[0]->image;
+        $path = $request->image != NULL ? Storage::putFile('birthdaycard', $request->image) : $birthday_card[0]->image;
         if ($request->image != NULL){
             Storage::delete($birthday_card[0]->image);
         }
@@ -51,7 +51,7 @@ class BirthdayCardController extends Controller
         ]);
     }
     function create(Request $request){
-        $path = Storage::putFile('birthday card', $request->image);
+        $path = Storage::putFile('birthdaycard', $request->image);
         DB::table('birthday_card')->insert([
             'subject' => $request->subject,
             'permalink' => $request->permalink,

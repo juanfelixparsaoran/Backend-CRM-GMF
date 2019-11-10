@@ -31,7 +31,7 @@ class ReligionCardController extends Controller
     }
     function update(Request $request){
         $religion_card = DB::table('religion_card')->where('religion_card_id',$request->religion_card_id)->get();
-        $path = $request->image != NULL ? Storage::putFile('religion card', $request->image) : $religion_card[0]->image;
+        $path = $request->image != NULL ? Storage::putFile('religioncard', $request->image) : $religion_card[0]->image;
         if ($request->image != NULL){
             Storage::delete($religion_card[0]->image);
         }
@@ -52,7 +52,7 @@ class ReligionCardController extends Controller
         return 'deleted';
     }
     function create(Request $request){
-        $path = Storage::putFile('religion card', $request->image);
+        $path = Storage::putFile('religioncard', $request->image);
         DB::table('religion_card')->insert([
             'subject' => $request->subject,
             'image' => $path,

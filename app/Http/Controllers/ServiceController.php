@@ -31,9 +31,9 @@ class ServiceController extends Controller
     }
     function update(Request $request){
         $service = DB::table('service')->where('service_id',$request->id)->get();
-        $path_large = $request->large_image ? Storage::putFile('service image', $request->large_image) : $service[0]->large_image;
-        $path_small1 = $request->small_image1 ? Storage::putFile('service image', $request->small_image1) : $service[0]->small_image1;
-        $path_small2 = $request->small_image2 ? Storage::putFile('service image', $request->small_image2) : $service[0]->small_image2;
+        $path_large = $request->large_image ? Storage::putFile('serviceimage', $request->large_image) : $service[0]->large_image;
+        $path_small1 = $request->small_image1 ? Storage::putFile('serviceimage', $request->small_image1) : $service[0]->small_image1;
+        $path_small2 = $request->small_image2 ? Storage::putFile('serviceimage', $request->small_image2) : $service[0]->small_image2;
         if ($request->large_image != NULL){
             Storage::delete($service[0]->large_image);
         }
@@ -61,9 +61,9 @@ class ServiceController extends Controller
     }
 
     function create(Request $request){
-        $path_large = Storage::putFile('service image', $request->large_image);
-        $path_small1 = Storage::putFile('service image', $request->small_image1);
-        $path_small2 = Storage::putFile('service image', $request->small_image2);
+        $path_large = Storage::putFile('serviceimage', $request->large_image);
+        $path_small1 = Storage::putFile('serviceimage', $request->small_image1);
+        $path_small2 = Storage::putFile('serviceimage', $request->small_image2);
         DB::table('service')->insert([
             'name' => $request->name,
             'detail' => $request->detail,

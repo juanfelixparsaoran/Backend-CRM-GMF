@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2019 at 08:01 PM
+-- Generation Time: Nov 10, 2019 at 02:59 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -62,8 +62,8 @@ CREATE TABLE `birthday_card` (
 --
 
 INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`) VALUES
-(1, 'Birthday in Desember', 'birthday card/HbsMwC6kNNE0rtyMHuKPwSSqJyTmie0njhNhDR6r.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember'),
-(2, 'Birthday in November', 'birthday card/GbRQXV5gTCb3womhENY17lQYM2cMlcCgizT3wXpI.jpeg', 'http://gmf-aeroasia.co.id/birthday/november');
+(1, 'Birthday in Desember', 'birthdaycard/HbsMwC6kNNE0rtyMHuKPwSSqJyTmie0njhNhDR6r.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember'),
+(2, 'Birthday in November', 'birthdaycard/GbRQXV5gTCb3womhENY17lQYM2cMlcCgizT3wXpI.jpeg', 'http://gmf-aeroasia.co.id/birthday/november');
 
 -- --------------------------------------------------------
 
@@ -338,9 +338,9 @@ CREATE TABLE `religion_card` (
 --
 
 INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`) VALUES
-(1, 'Christmas', 'religion card/xgQceZe4nlnre72y2o0wSRATks7mDCHe9rt6kx88.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
-(2, 'Eid Mubarak', 'religion card/1jL45pbjznafkQNrhx2dW2T4SkkPhmzlOiUxEfdq.jpeg', 'Islam', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/eid'),
-(3, 'Nyepi', 'religion card/Jd89RtvxPyFKCCC6eAO5xKaowILwRMTxitI1B1L8.webp', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
+(1, 'Christmas', 'religioncard/xgQceZe4nlnre72y2o0wSRATks7mDCHe9rt6kx88.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
+(2, 'Eid Mubarak', 'religioncard/1jL45pbjznafkQNrhx2dW2T4SkkPhmzlOiUxEfdq.jpeg', 'Islam', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/eid'),
+(3, 'Nyepi', 'religioncard/Jd89RtvxPyFKCCC6eAO5xKaowILwRMTxitI1B1L8.webp', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
 
 -- --------------------------------------------------------
 
@@ -362,8 +362,8 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_image1`, `small_image2`) VALUES
-(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/VR3xSUx80R95obah0NQlcMvwmqIClpZKcOXsRVQJ.jpeg', 'service image/YM6pakogcIRwb9xXL467Q6Ufhi8HacJCTCbFiikt.jpeg', 'service image/mczcOP7KzpH2Rfgicxh8NWZJ3HvOzDpyxpHumP4b.jpeg'),
-(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'service image/jAubfWXM1x2vnYhgkCHBgffoOCKLOG21JTYL8WBn.jpeg', 'service image/NASjch3wCi1F5b9wEsqSkJhk3fpoOu90xAXrEzU0.jpeg', 'service image/VVnlO1qYC6A8ey9r7SoBynsaogu2e8tGJbnYtKMc.jpeg');
+(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'serviceimage/VR3xSUx80R95obah0NQlcMvwmqIClpZKcOXsRVQJ.jpeg', 'service image/YM6pakogcIRwb9xXL467Q6Ufhi8HacJCTCbFiikt.jpeg', 'service image/mczcOP7KzpH2Rfgicxh8NWZJ3HvOzDpyxpHumP4b.jpeg'),
+(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'serviceimage/jAubfWXM1x2vnYhgkCHBgffoOCKLOG21JTYL8WBn.jpeg', 'service image/NASjch3wCi1F5b9wEsqSkJhk3fpoOu90xAXrEzU0.jpeg', 'service image/VVnlO1qYC6A8ey9r7SoBynsaogu2e8tGJbnYtKMc.jpeg');
 
 -- --------------------------------------------------------
 
