@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 02:42 PM
+-- Generation Time: Nov 13, 2019 at 03:52 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -360,9 +360,18 @@ INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`,
 CREATE TABLE `reply_complaint` (
   `reply_complaint_id` int(100) NOT NULL,
   `description` varchar(5000) NOT NULL,
+  `sender_role` enum('Customer','Admin','','') NOT NULL,
   `user_id` int(100) NOT NULL,
   `complaint_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reply_complaint`
+--
+
+INSERT INTO `reply_complaint` (`reply_complaint_id`, `description`, `sender_role`, `user_id`, `complaint_id`) VALUES
+(3, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium', 'Customer', 13, 10),
+(4, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium', 'Admin', 14, 10);
 
 -- --------------------------------------------------------
 
@@ -715,7 +724,7 @@ ALTER TABLE `religion_card`
 -- AUTO_INCREMENT for table `reply_complaint`
 --
 ALTER TABLE `reply_complaint`
-  MODIFY `reply_complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `reply_complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `service`
