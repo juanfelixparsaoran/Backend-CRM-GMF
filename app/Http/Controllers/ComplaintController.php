@@ -108,9 +108,9 @@ class ComplaintController extends Controller
     }
 
     function readReply($id){
-        $reply = DB::table('reply_complaint')->where('complaint_id',$id)->orderBy('created_at','DESC')->get();
+        $reply = DB::table('reply_complaint')->where('complaint_id',$id)->orderBy('created_at','DESC')->get(['description','sender_role','user_id']);
         foreach ($reply as $re){
-            if ($re->role == 'Customer'){
+            if ($re->sender_role == 'Customer'){
                 $customer = DB::table('user_customer')->where('user_id',$re->user_id)->get();
                 $re->sender = $customer[0]->name;
             }else{
