@@ -11,6 +11,7 @@ class CalendarController extends Controller
     //
     function getHighlightedDays($month,$year){
         $response = array();
+        $highlightedDays = array();
         $highlighted = DB::table('user_customer')->whereMonth('birthday',$month)->get();
         foreach ($highlighted as $highlight){
             $date = new DateTime($highlight->birthday);
@@ -18,8 +19,27 @@ class CalendarController extends Controller
                 "event" => $highlight->name." Birthday",
                 "day" => $date->format('d')
             ];
+            if (!in_array($date->format('d'),$highlightedDays)){
+                array_push($highlightedDays,$date->format('d'));
+            }
             array_push($response,$data);
         }
-        return $response;
+        $highlightedReligion = DB::table('religion_card')->whereMonth('date',$month)->whereYear('date',$year)->get();
+        foreach ($highlightedReligion as $highlight){
+            $date = new DateTime($highlight->date);
+            $data = (object) [
+                "event" => $highlight->subject. ' '.$year,
+                "day" => $date->format('d')
+            ];
+            if (!in_array($date->format('d'),$highlightedDays)){
+                array_push($highlightedDays,$date->format('d'));
+            }
+            array_push($response,$data);
+        }
+        return response()->json([
+            'detail' => $response,
+            'highlightedDays' => $highlightedDays,
+        ]);
+        
     }
 }
