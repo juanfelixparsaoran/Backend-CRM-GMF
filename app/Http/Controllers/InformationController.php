@@ -17,21 +17,25 @@ class InformationController extends Controller
         $data = array();
         $ads = DB::table('ads')->get(['subject','updated_at','image']);
         foreach ($ads as $ad){
+            $ad->category = 'GMF Product';
             $data[] = $ad;
         }
 
         $birthday_card = DB::table('birthday_card')->get(['subject','updated_at','image']);
         foreach ($birthday_card as $bc){
+            $bc->category = 'Birthday Card';
             $data[] = $bc;
         }
 
         $religion_card = DB::table('religion_card')->get(['subject','updated_at','image']);
         foreach ($religion_card as $rc){
+            $rc->category = 'Holiday Card';
             $data[] = $rc;
         }
 
         $newsletter = DB::table('newsletter')->get(['subject','updated_at','image']);
         foreach ($newsletter as $nw){
+            $nw->category = 'Newsletter';
             $data[] = $nw;
         }
         usort($data,function($first,$second){
