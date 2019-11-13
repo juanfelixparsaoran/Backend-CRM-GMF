@@ -48,7 +48,8 @@ class ServiceController extends Controller
             'detail' => ($request->detail != NULL ? $request->detail : $service[0]->detail),
             'large_image' => $path_large,
             'small_image1' => $path_small1,
-            'small_image2' => $path_small2
+            'small_image2' => $path_small2,
+            'updated_at' => now(),
         ]);
     
         return response()->json([
@@ -69,7 +70,9 @@ class ServiceController extends Controller
             'detail' => $request->detail,
             'large_image' => $path_large,
             'small_image1' => $path_small1,
-            'small_image2' => $path_small2
+            'small_image2' => $path_small2,
+            'updated_at' => now(),
+            'created_at' => now(),
         ]);
     
         return response()->json([

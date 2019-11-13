@@ -65,7 +65,7 @@ class LoginController extends Controller
                 'data_user' => [],
                 'detail_user' => [],
 
-            ],400);
+            ]);
         }
     }
 }

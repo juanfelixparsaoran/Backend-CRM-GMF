@@ -10,7 +10,7 @@ class BirthdayCardController extends Controller
 {
     //
     function read(){
-        $birthday_card = DB::table('birthday_card')->get();
+        $birthday_card = DB::table('birthday_card')->orderBy('created_at','DESC')->get();
         return response()->json([
             'data' => $birthday_card
         ]);
@@ -38,7 +38,8 @@ class BirthdayCardController extends Controller
         DB::table('birthday_card')->where('birthday_card_id',$request->id)->update([
             'subject' => $request->subject != NULL ? $request->subject : $birthday_card[0]->subject,
             'permalink' => $request->permalink != NULL ? $request->permalink : $birthday_card[0]->permalink,
-            'image' => $path
+            'image' => $path,
+            'updated_at' => now()
         ]);
         return response()->json([
             'message' => 'Birthday Card Updated'
@@ -55,7 +56,9 @@ class BirthdayCardController extends Controller
         DB::table('birthday_card')->insert([
             'subject' => $request->subject,
             'permalink' => $request->permalink,
-            'image' => $path
+            'image' => $path,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         return response()->json([
             'message' => 'Birthday Card Created'

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2019 at 03:12 AM
+-- Generation Time: Nov 13, 2019 at 02:42 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -32,17 +32,18 @@ CREATE TABLE `ads` (
   `ads_id` int(50) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `permalink` varchar(100) NOT NULL
+  `permalink` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`) VALUES
-(4, 'Marketing Ads', 'ads/AS5YtrHmTgd0QURgALkMaocbb3wXTe9FkbRPw15O.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(5, 'Marketing Ads', 'ads/jI5nqHmUBYuXr3yODh0XdJ5u4KANvUEw30XYumhj.jpeg', 'http://www.gmf-aeroasia.co.id/services/'),
-(6, 'Marketing Ads', 'ads/Bsqm6cOtGNOAcmANcPbes7bX0838byNkFvlCM0OD.jpeg', 'http://www.gmf-aeroasia.co.id/services/');
+INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
+(16, 'Marketing Ads', 'ads/Xo8xgcyizKzv3RHx4W94FyqXxQfliaxZDvI8iAFc.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:13', '2019-11-13 04:11:13'),
+(17, 'Engineer Ads', 'ads/YSnSlaJHZaHPDvCYdyyu5AtJXTiZ82FBGorLzOox.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:32', '2019-11-13 04:11:32');
 
 -- --------------------------------------------------------
 
@@ -54,16 +55,18 @@ CREATE TABLE `birthday_card` (
   `birthday_card_id` int(100) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `permalink` varchar(1000) NOT NULL
+  `permalink` varchar(1000) NOT NULL,
+  `created_at` timestamp(6) NULL DEFAULT NULL,
+  `updated_at` timestamp(6) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `birthday_card`
 --
 
-INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`) VALUES
-(1, 'Birthday in Desember', 'birthdaycard/HbsMwC6kNNE0rtyMHuKPwSSqJyTmie0njhNhDR6r.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember'),
-(2, 'Birthday in November', 'birthdaycard/GbRQXV5gTCb3womhENY17lQYM2cMlcCgizT3wXpI.jpeg', 'http://gmf-aeroasia.co.id/birthday/november');
+INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
+(4, 'Birthday in November', 'birthdaycard/N2Nj2PFJLiXVNI6Jm9WHLvuUAuMZNGihbXroJUAD.jpeg', 'http://gmf-aeroasia.co.id/birthday/november', '2019-11-13 04:12:12.000000', '2019-11-13 04:12:12.000000'),
+(5, 'Birthday in Desember', 'birthdaycard/LlK7MK2i8UO2nvHUZ4I5NHD3PlUKtN1FELHeJtfh.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember', '2019-11-13 04:12:36.000000', '2019-11-13 04:12:36.000000');
 
 -- --------------------------------------------------------
 
@@ -88,19 +91,21 @@ CREATE TABLE `company` (
   `fleet_size` int(50) DEFAULT NULL,
   `destination` int(50) DEFAULT NULL,
   `customer_since` int(50) DEFAULT NULL,
-  `company_id` int(11) NOT NULL
+  `company_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`) VALUES
-('company/o8D6GM15uzUY1gVUhlu3GM0RSnXgerAIrQMXWzwh.jpeg', 'Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1),
-('company/UnbmR7wJ3CZnn49afsM38UffHfM009ivp8tB5mcN.png', 'Citilink', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 5),
-('company/oaEbOTlb6XesD5Qddyu2WuBhMcrybTuNTJJOik1i.png', 'Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6),
-('company/E9tM6l49EYO3vww9lEvTzHwIqOjRFXiP5uj14tCo.jpeg', 'Nam Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7),
-('company/achqeSXWqGav4dHZmvFvdE6pZmsNybkApldhMmeQ.png', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8);
+INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `business_model`, `status`, `est_date`, `type`, `customer_type`, `shareholder`, `alliance`, `MRO`, `fleet_size`, `destination`, `customer_since`, `company_id`, `created_at`, `updated_at`) VALUES
+('company/o8D6GM15uzUY1gVUhlu3GM0RSnXgerAIrQMXWzwh.jpeg', 'Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1, NULL, NULL),
+('company/UnbmR7wJ3CZnn49afsM38UffHfM009ivp8tB5mcN.png', 'Citilink', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 5, NULL, NULL),
+('company/oaEbOTlb6XesD5Qddyu2WuBhMcrybTuNTJJOik1i.png', 'Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6, NULL, NULL),
+('company/E9tM6l49EYO3vww9lEvTzHwIqOjRFXiP5uj14tCo.jpeg', 'Nam Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7, NULL, NULL),
+('company/hgV0hrPti2S1kjhyweXlNFzmrbBk7um1P5eZk5eb.jpeg', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,14 +118,6 @@ CREATE TABLE `company_ads` (
   `company_id` int(11) NOT NULL,
   `ads_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `company_ads`
---
-
-INSERT INTO `company_ads` (`company_ads_id`, `company_id`, `ads_id`) VALUES
-(4, 5, 4),
-(6, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -147,8 +144,8 @@ CREATE TABLE `complaint` (
 --
 
 INSERT INTO `complaint` (`complaint_id`, `date`, `closed`, `sender`, `service`, `subject`, `complaint`, `file`, `status`, `user_customer_id`, `company_id`) VALUES
-(7, '2019-12-12', '2019-12-22', 'Juan', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'None', 'Receive', 14, 1),
-(8, '2019-11-11', NULL, 'Felix', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', NULL, 'Open', 18, 8);
+(10, '2019-11-13', NULL, 'Felix', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/cDrziHgordoBHahU4yVrXglzB0C7YrosG0XBrwbn.pdf', 'Open', 18, 8),
+(11, '2019-11-13', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/uMWCUYEOkWn89DHG9zFvwiwZeiL95s4KmGdltDU8.pdf', 'Open', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +207,7 @@ CREATE TABLE `feedback_project` (
   `feedback_project_id` int(100) NOT NULL,
   `date` date NOT NULL,
   `sender` varchar(1000) NOT NULL,
-  `rating` int(10) NOT NULL,
+  `rating` float NOT NULL,
   `aspect_to_improve` varchar(1000) NOT NULL,
   `remark` varchar(1000) NOT NULL,
   `user_customer_id` int(100) NOT NULL,
@@ -225,7 +222,15 @@ CREATE TABLE `feedback_project` (
 
 INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating`, `aspect_to_improve`, `remark`, `user_customer_id`, `company_id`, `project_id`, `service_id`) VALUES
 (7, '2019-11-09', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
-(8, '2019-11-09', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6);
+(8, '2019-11-09', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6),
+(9, '2019-11-13', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
+(10, '2019-11-13', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6),
+(11, '2019-11-13', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
+(12, '2019-11-13', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6),
+(13, '2019-11-13', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
+(14, '2019-11-13', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6),
+(15, '2019-11-13', 'manasye', 4.5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
+(16, '2019-11-13', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -262,16 +267,18 @@ CREATE TABLE `newsletter` (
   `newsletter_id` int(100) NOT NULL,
   `subject` varchar(1000) NOT NULL,
   `image` varchar(1000) NOT NULL,
-  `permalink` varchar(1000) NOT NULL
+  `permalink` varchar(1000) NOT NULL,
+  `created_at` timestamp(6) NULL DEFAULT NULL,
+  `updated_at` timestamp(6) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `newsletter`
 --
 
-INSERT INTO `newsletter` (`newsletter_id`, `subject`, `image`, `permalink`) VALUES
-(1, 'Newsletter Marketing', 'newsletter/vyeF4DY6IJ3VlFOvCwl5TtIzjLUlEq7T5WhK370H.jpeg', 'http://www.gmf-aeroasia.co.id'),
-(2, 'Newsletter Marketing', 'newsletter/M1ImtRw5S7hrXo1Z0irrdLkKPJSrF2sLFJznCErW.jpeg', 'http://www.gmf-aeroasia.co.id');
+INSERT INTO `newsletter` (`newsletter_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
+(5, 'Newsletter Marketing', 'newsletter/CaqymiV66ncxkntXbgPsKgEOEArAx9WOYR1RK2yW.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-13 05:42:50.000000', '2019-11-13 05:42:50.000000'),
+(6, 'Newsletter Marketing', 'newsletter/2aGHOpfLU9ccs8QtZHfzhxyDPIYf5Ok3lgqB3Cix.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-13 05:43:00.000000', '2019-11-13 05:43:00.000000');
 
 -- --------------------------------------------------------
 
@@ -330,17 +337,32 @@ CREATE TABLE `religion_card` (
   `image` varchar(1000) NOT NULL,
   `religion` varchar(100) NOT NULL,
   `date` date NOT NULL,
-  `permalink` varchar(1000) NOT NULL
+  `permalink` varchar(1000) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `religion_card`
 --
 
-INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`) VALUES
-(1, 'Christmas', 'religioncard/xgQceZe4nlnre72y2o0wSRATks7mDCHe9rt6kx88.jpeg', 'Kristen', '2019-12-25', 'www.gmf-aeroasia.co.id/religioncard/christmas'),
-(2, 'Eid Mubarak', 'religioncard/1jL45pbjznafkQNrhx2dW2T4SkkPhmzlOiUxEfdq.jpeg', 'Islam', '2020-05-23', 'www.gmf-aeroasia.co.id/religioncard/eid'),
-(3, 'Nyepi', 'religioncard/Jd89RtvxPyFKCCC6eAO5xKaowILwRMTxitI1B1L8.webp', 'Hindu', '2020-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi');
+INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`, `created_at`, `updated_at`) VALUES
+(5, 'Christmas', 'religioncard/4e40DGMrAcCHptg7DCvHHEeSHSJaMsNlUX3Sz2Tw.jpeg', 'Kristen', '2019-12-12', 'www.gmf-aeroasia.co.id/religioncard/christmas', '2019-11-13 06:32:37', '2019-11-13 06:35:36'),
+(6, 'Nyepi', 'religioncard/rRD1e1y8S3Pdhh2AHOdKutXgjQoXahGmGwaCLH96.webp', 'Hindu', '2019-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi', '2019-11-13 06:33:44', '2019-11-13 06:35:40'),
+(7, 'Islam', 'religioncard/19OrE946ST73UqcKodV2LZaZpw0XbBalvHVyeVzN.jpeg', 'Islam', '2019-05-23', 'www.gmf-aeroasia.co.id/religioncard/eid', '2019-11-13 06:34:19', '2019-11-13 06:35:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reply_complaint`
+--
+
+CREATE TABLE `reply_complaint` (
+  `reply_complaint_id` int(100) NOT NULL,
+  `description` varchar(5000) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `complaint_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -354,16 +376,18 @@ CREATE TABLE `service` (
   `detail` varchar(2000) NOT NULL,
   `large_image` varchar(1000) NOT NULL,
   `small_image1` varchar(1000) NOT NULL,
-  `small_image2` varchar(1000) NOT NULL
+  `small_image2` varchar(1000) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_image1`, `small_image2`) VALUES
-(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'serviceimage/VR3xSUx80R95obah0NQlcMvwmqIClpZKcOXsRVQJ.jpeg', 'serviceimage/YM6pakogcIRwb9xXL467Q6Ufhi8HacJCTCbFiikt.jpeg', 'serviceimage/mczcOP7KzpH2Rfgicxh8NWZJ3HvOzDpyxpHumP4b.jpeg'),
-(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'serviceimage/jAubfWXM1x2vnYhgkCHBgffoOCKLOG21JTYL8WBn.jpeg', 'serviceimage/NASjch3wCi1F5b9wEsqSkJhk3fpoOu90xAXrEzU0.jpeg', 'serviceimage/VVnlO1qYC6A8ey9r7SoBynsaogu2e8tGJbnYtKMc.jpeg');
+INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_image1`, `small_image2`, `created_at`, `updated_at`) VALUES
+(5, 'Engineering Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'serviceimage/cC7ljgbFGrZfZYzZK2YWzMgWMikmBM697UrJ7WKA.jpeg', 'serviceimage/s38uRN76MnAg41m8hgi1IwlvEpXmPBJq0NMam3TP.jpeg', 'serviceimage/sNiSwphCMdXWElBatoB5oCHSd7HdyhvZgBQkG5yn.jpeg', '2019-11-11 20:09:10', '2019-11-13 06:41:25'),
+(6, 'Material & Logistic Service', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursusl nunc', 'serviceimage/P4c2C13x11kBrgw2pa7DKroWkVjfgFlLlTs1xlqB.jpeg', 'serviceimage/tEeR9FhqMcMgDfIcIC46eO5X2VNUlXOGvPk9wYnO.jpeg', 'serviceimage/SSosTKahCkdoKRAoEAZuPstUZ6udaNBYWVhZyCvJ.jpeg', '2019-11-12 20:09:10', '2019-11-12 20:09:10');
 
 -- --------------------------------------------------------
 
@@ -564,6 +588,14 @@ ALTER TABLE `religion_card`
   ADD PRIMARY KEY (`religion_card_id`);
 
 --
+-- Indexes for table `reply_complaint`
+--
+ALTER TABLE `reply_complaint`
+  ADD PRIMARY KEY (`reply_complaint_id`),
+  ADD KEY `sender_id_idx` (`user_id`),
+  ADD KEY `complaint_id_idx` (`complaint_id`);
+
+--
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
@@ -605,13 +637,13 @@ ALTER TABLE `user_guest`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `birthday_card`
 --
 ALTER TABLE `birthday_card`
-  MODIFY `birthday_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `birthday_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -629,7 +661,7 @@ ALTER TABLE `company_ads`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `cp_company`
@@ -647,7 +679,7 @@ ALTER TABLE `feedback_nonproject`
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `gmf_cp`
@@ -659,7 +691,7 @@ ALTER TABLE `gmf_cp`
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -677,7 +709,13 @@ ALTER TABLE `project_service`
 -- AUTO_INCREMENT for table `religion_card`
 --
 ALTER TABLE `religion_card`
-  MODIFY `religion_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `religion_card_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `reply_complaint`
+--
+ALTER TABLE `reply_complaint`
+  MODIFY `reply_complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `service`
@@ -740,6 +778,13 @@ ALTER TABLE `feedback_project`
   ADD CONSTRAINT `idx_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`),
   ADD CONSTRAINT `idx_service` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`),
   ADD CONSTRAINT `idx_user` FOREIGN KEY (`user_customer_id`) REFERENCES `user_customer` (`user_customer_id`);
+
+--
+-- Constraints for table `reply_complaint`
+--
+ALTER TABLE `reply_complaint`
+  ADD CONSTRAINT `complaint_id_idx` FOREIGN KEY (`complaint_id`) REFERENCES `complaint` (`complaint_id`),
+  ADD CONSTRAINT `sender_id_idx` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `user_admin`

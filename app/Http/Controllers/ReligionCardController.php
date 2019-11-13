@@ -10,7 +10,7 @@ class ReligionCardController extends Controller
 {
     //
     function read(){
-        $religion_card = DB::table('religion_card')->get();
+        $religion_card = DB::table('religion_card')->orderBy('created_at','DESC')->get();
         return response()->json([
             'data' => $religion_card
         ]);
@@ -42,6 +42,7 @@ class ReligionCardController extends Controller
             'religion' => $request->religion != NULL ? $request->religion : $religion_card[0]->religion,
             'date' => $request->date != NULL ? $request->date : $religion_card[0]->date,
             'permalink' => $request->permalink != NULL ? $request->permalink : $religion_card[0]->permalink,
+            'updated_at' => now()
         ]);
         return response()->json([
             'message' => 'Religion Card Updated'
@@ -58,7 +59,9 @@ class ReligionCardController extends Controller
             'image' => $path,
             'date' => $request->date,
             'religion' => $request->religion,
-            'permalink' => $request->permalink
+            'permalink' => $request->permalink,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         return response()->json([
             'message' => 'Religion Card Created'

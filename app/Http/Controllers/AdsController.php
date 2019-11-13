@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class AdsController extends Controller
 {
     function read(){
-        $ads = DB::table('ads')->get();
+        $ads = DB::table('ads')->orderBy('created_at','DESC')->get();
         return response()->json([
             'data' => $ads
         ]);
@@ -53,6 +53,7 @@ class AdsController extends Controller
             'subject' => $request->subject != NULL ? $request->subject : $ads[0]->subject,
             'image' => $path,
             'permalink' => $request->permalink != NULL ? $request->permalink : $ads[0]->permalink,
+            'updated_at' => now(),
         ]);
         return response()->json([
             'message' => 'Ads Updated'
@@ -71,7 +72,9 @@ class AdsController extends Controller
         DB::table('ads')->insert([
             'subject' => $request->subject,
             'permalink' => $request->permalink,
-            'image' => $path
+            'image' => $path,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         return response()->json([
             'message' => 'Ads Created'

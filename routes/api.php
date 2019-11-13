@@ -66,6 +66,8 @@ Route::get('/complaint/edit/{id}','ComplaintController@edit');
 Route::get('/complaint/delete/{id}','ComplaintController@delete');
 Route::post('/complaint/update','ComplaintController@update');
 Route::post('/complaint/create','ComplaintController@create');
+Route::post('/complaint/reply','ComplaintController@reply');
+Route::get('/complaint/readreply/{id}','ComplaintController@readReply');
 
 //cp route
 Route::get('/cp/read','CpController@read');
@@ -125,6 +127,8 @@ Route::post('/project/create','ProjectController@create');
 
 Route::get('/calendar/{month}/{year}','CalendarController@getHighlightedDays');
 Route::get('/calendar/{day}/{month}/{year}','CalendarController@getCalendarDetail');
+
+Route::get('/information/read','InformationController@read');
 
 
 

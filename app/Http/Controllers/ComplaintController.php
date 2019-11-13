@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ComplaintController extends Controller
 {
@@ -78,6 +79,7 @@ class ComplaintController extends Controller
 
     function create(Request $request){
         $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
+        $path = Storage::putFile('complaint', $request->file);
         DB::table('complaint')->insert([
             'date'=> now()->toDateString(),
             'service' => $request->service,
@@ -85,10 +87,33 @@ class ComplaintController extends Controller
             'complaint' => $request->complaint,
             'sender' => $customer[0]->name,
             'company_id' => $customer[0]->company_id,
-            'user_customer_id' => $customer[0]->user_customer_id
+            'user_customer_id' => $customer[0]->user_customer_id,
+            'file' => $path
         ]);
         return response()->json([
             'message' => 'Complaint Created'
+        ]);
+    }
+
+    function reply(Request $request){
+        DB::table('reply_complaint')->insert([
+            'description' => $request->description,
+            'complaint_id' => $request->complaint_id,
+            'user_id' => $request->user_id
+        ]);
+        return response()->json([
+            'message' => 'Replied Created'
+        ]);
+    }
+
+    function readReply($id){
+        $reply = DB::table('reply_complaint')->where('complaint_id',$id)->get();
+        foreach ($reply as $re){
+            $customer = DB::table('user_customer')->where('user_id',$re->user_id)->get();
+            $re->sender = $customer[0]->name;
+        }
+        return response()->json([
+            'data' => $reply
         ]);
     }
 }

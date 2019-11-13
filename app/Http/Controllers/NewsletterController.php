@@ -10,7 +10,7 @@ class NewsletterController extends Controller
 {
     //
     function read(){
-        $newsletter = DB::table('newsletter')->get();
+        $newsletter = DB::table('newsletter')->orderBy('created_at','DESC')->get();
         return $newsletter;
     }
     function edit($id){
@@ -29,6 +29,7 @@ class NewsletterController extends Controller
             'subject' => $request->subject != NULL ? $request->subject : $newsletter[0]->subject,
             'image' => $path,
             'permalink' => $request->permalink != NULL ? $request->permalink : $newsletter[0]->permalink,
+            'updated_at' => now()
         ]);
         return response()->json([
             'message' => 'Newsletter Updated'
@@ -43,7 +44,9 @@ class NewsletterController extends Controller
         DB::table('newsletter')->insert([
             'subject' => $request->subject,
             'image' => $path,
-            'permalink' => $request->permalink
+            'permalink' => $request->permalink,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         return response()->json([
             'message' => 'Newsletter Created'
