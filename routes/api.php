@@ -124,6 +124,7 @@ Route::get('/project/delete/{id}','ProjectController@delete');
 Route::post('/project/create','ProjectController@create');
 
 Route::get('/calendar/{month}/{year}','CalendarController@getHighlightedDays');
+Route::get('/calendar/{day}/{month}/{year}','CalendarController@getCalendarDetail');
 
 
 
