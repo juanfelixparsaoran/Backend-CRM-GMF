@@ -64,8 +64,7 @@ class LoginController extends Controller
                 'message' => 'Failed to Login',
                 'data_user' => [],
                 'detail_user' => [],
-
-            ]);
+            ],400);
         }
     }
 }
