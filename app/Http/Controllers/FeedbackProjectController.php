@@ -24,6 +24,13 @@ class FeedbackProjectController extends Controller
     function readByCompany($id){
         $feedback_project = DB::table('feedback_project')->where('company_id',$id)->get();
         if (!$feedback_project->isEmpty()){
+            foreach ($feedback_project as $pro){
+                $company = DB::table('company')->where('company_id',$pro->company_id)->get();
+                $pro->company_name = $company[0]->name;
+                $project = DB::table('project')->where('project_id',$pro->project_id)->get();
+                $pro->location = $project[0]->location;
+                $pro->project_type = $project[0]->project_type;
+            }
             return response()->json([
                 'message' => 'feedback_project found',
                 'data' => $feedback_project

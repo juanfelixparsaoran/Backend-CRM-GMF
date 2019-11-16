@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
+use Mail;
 class NewsletterController extends Controller
 {
     //
@@ -40,6 +41,8 @@ class NewsletterController extends Controller
         return 'deleted';
     }
     function create(Request $request){
+        $from = \config('mail.from.address');
+        $url = \config('filesystems.disks.local.root');
         $path = Storage::putFile('newsletter', $request->image);
         DB::table('newsletter')->insert([
             'subject' => $request->subject,
@@ -48,8 +51,32 @@ class NewsletterController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        $customer = DB::table('user_customer')->get();
+        foreach($customer as $cust){
+            $data = array('subject' => $request->subject, 'name'=>"Juan", 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email);
+            Mail::send('mail', $data, function($message) use ($data) {
+                $message->to($data['to'], "Customer")->subject
+                ($data['subject']);
+                $message->attach($data['attachment']);
+                $message->from($data['from'],"Juan");
+            });
+        }
+           
+        
         return response()->json([
-            'message' => 'Newsletter Created'
+            'message' => 'Successfully send an email'
+        ]);
+    }
+    public function send(Request $request) {
+        $data = array('subject' => $request->subject, 'name'=>"Juan", 'attachment'=>'');
+        $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
+        Mail::send('mail', $data, function($message) use ($data) {
+            $message->to("juanfelixparsaoran@gmail.com", "Customer")->subject
+            ($data['subject']);
+            $message->from("juanfelixparsaoran@gmail.com","Juan");
+        });
+        return response()->json([
+            'message' => 'Successfully send an email'
         ]);
     }
 }

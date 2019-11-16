@@ -49,7 +49,7 @@ class ProjectController extends Controller
             'start' => $request->start != NULL ? $request->start : $project[0]->start,
             'finish' => $request->finish != NULL ? $request->finish : $project[0]->finish,
             'project_type' => $request->project_type != NULL ? $request->project_type : $project[0]->project_type,
-            'quantity' => $request->$request->quantity != NULL ? $request->quantity : $project[0]->quantity,
+            'quantity' => $request->quantity != NULL ? $request->quantity : $project[0]->quantity,
             'rating' => $request->$request->rating != NULL ? $request->rating : $project[0]->rating,
             'status' => $request->$request->status != NULL ? $request->status : $project[0]->status,
             'location' => $request->$request->location != NULL ? $request->location : $project[0]->location,

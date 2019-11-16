@@ -132,6 +132,8 @@ Route::get('/calendar/{day}/{month}/{year}','CalendarController@getCalendarDetai
 
 Route::get('/information/read','InformationController@read');
 
+Route::post('/newsletter/send','NewsletterController@send');
+
 
 
 
