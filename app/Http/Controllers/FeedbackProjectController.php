@@ -13,6 +13,9 @@ class FeedbackProjectController extends Controller
         foreach ($feedback_project as $pro){
             $company = DB::table('company')->where('company_id',$pro->company_id)->get();
             $pro->company_name = $company[0]->name;
+            $project = DB::table('project')->where('project_id',$pro->project_id)->get();
+            $pro->location = $project[0]->location;
+            $pro->project_type = $project[0]->project_type;
         }
         return response()->json([
             'data' => $feedback_project
