@@ -32,7 +32,7 @@ class FeedbackProjectController extends Controller
             return response()->json([
                 'message' => 'No feedback_project in this company',
                 'data' => []
-            ],404);
+            ]);
         }
     }
     function edit($id){
@@ -48,7 +48,7 @@ class FeedbackProjectController extends Controller
             return response()->json([
                 'message' => 'feedback_project not found',
                 'data' => []
-            ],404);
+            ]);
         }
     }
     function update(Request $request){

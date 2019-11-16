@@ -39,7 +39,7 @@ class FeedbackNonProjectController extends Controller
             return response()->json([
                 'message' => 'feedback_nonproject not found',
                 'data' => []
-            ],404);
+            ]);
         }
     }
     function update(Request $request){

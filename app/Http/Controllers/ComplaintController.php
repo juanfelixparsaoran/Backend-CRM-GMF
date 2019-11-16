@@ -157,7 +157,7 @@ class ComplaintController extends Controller
         $complaint = $complaint->get();
         $result = array();
         foreach($complaint as $comp){
-            $result[] = date("m",strtotime($comp->date));
+            $result[] = date("M",strtotime($comp->date));
         }
         $counts = array_count_values($result);
         
