@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -19,12 +20,14 @@ class UserController extends Controller
 
     public function create(Request $request)
     {   
+        $path = Storage::putFile('user', $request->image);
         DB::table('user')->insert([
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'pass_raw' => $request->password,
             'role' => $request->role,
-            'status' => $request->status
+            'status' => $request->status,
+            'image' => $path
         ]);
         $user = DB::table('user')->where('username',$request->username)->get();
         $company = DB::table('company')->where('company_id',$request->company_id)->get();
@@ -82,21 +85,42 @@ class UserController extends Controller
 
     public function update(Request $request){
         $user = DB::table('user')->where('user_id',$request->id)->get();
+        $path = $request->image != NULL ? Storage::putFile('user', $request->image) : $user[0]->image;
+        if ($request->image != NULL){
+            Storage::delete($user[0]->image);
+        }
         DB::table('user')->where('user_id',$request->id)->update([
             'username' => $request->username != NULL ? $request->username : $user[0]->username,
             'password' => $request->password != NULL ? bcrypt($request->password) : $user[0]->password,
             'pass_raw' => $request->password != NULL ? $request->password : $user[0]->password,
+            'image' => $path
         ]);
-
-        $user = DB::table('user')->join('user_customer','user.user_id','=','user_customer.user_id')->where('user.user_id',$request->id)->get();
-        DB::table('user_customer')->where('user_id',$user[0]->user_id)->update([
-            'name' => $request->name != NULL ? $request->name : $user[0]->name,
-            'position' => $request->position != NULL ? $request->position : $user[0]->position,
-            'religion' => $request->religion != NULL ? $request->religion : $user[0]->religion,
-            'birthday' => $request->birthday != NULL ? $request->birthday : $user[0]->birthday,
-            'email' => $request->email != NULL ? $request->email : $user[0]->email,
-            'position' => $user[0]->position,
-        ]);
+        
+        if($user[0]->role == 'Customer'){
+            $user = DB::table('user')->join('user_customer','user.user_id','=','user_customer.user_id')->where('user.user_id',$request->id)->get();
+            DB::table('user_customer')->where('user_id',$user[0]->user_id)->update([
+                'name' => $request->name != NULL ? $request->name : $user[0]->name,
+                'position' => $request->position != NULL ? $request->position : $user[0]->position,
+                'religion' => $request->religion != NULL ? $request->religion : $user[0]->religion,
+                'birthday' => $request->birthday != NULL ? $request->birthday : $user[0]->birthday,
+                'email' => $request->email != NULL ? $request->email : $user[0]->email,
+                'position' => $user[0]->position,
+            ]);
+        }else if($user[0]->role == 'Admin'){
+            $user = DB::table('user')->join('user_admin','user.user_id','=','user_admin.user_id')->where('user.user_id',$request->id)->get();
+            DB::table('user_admin')->where('user_id',$user[0]->user_id)->update([
+                'name' => $request->name != NULL ? $request->name : $user[0]->name,
+                'position' => $request->position != NULL ? $request->position : $user[0]->position,
+                'division' => $request->division != NULL ? $request->division : $user[0]->division,
+            ]);
+        }else{
+            $user = DB::table('user')->join('user_guest','user.user_id','=','user_guest.user_id')->where('user.user_id',$request->id)->get();
+            DB::table('user_guest')->where('user_id',$user[0]->user_id)->update([
+                'name' => $request->name != NULL ? $request->name : $user[0]->name,
+                'position' => $request->position != NULL ? $request->position : $user[0]->position,
+                'division' => $request->division != NULL ? $request->division : $user[0]->division,
+            ]);
+        }
 
         return response()->json([
             'message' => 'User Updated'

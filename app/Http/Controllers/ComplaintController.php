@@ -81,7 +81,7 @@ class ComplaintController extends Controller
         $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
         $path = Storage::putFile('complaint', $request->file);
         DB::table('complaint')->insert([
-            'date'=> now()->toDateString(),
+            'date'=> "2019-05-11",
             'service' => $request->service,
             'subject' => $request->subject,
             'complaint' => $request->complaint,
@@ -120,6 +120,84 @@ class ComplaintController extends Controller
         }
         return response()->json([
             'data' => $reply
+        ]);
+    }
+
+    function filter(Request $request){
+        $complaint = DB::table('complaint');
+        if ($request->company_name != NULL){
+            $company = DB::table('company')->where('name',$request->company_name)->get();
+            $complaint = $complaint->where('company_id',$company[0]->company_id);
+        }
+        if ($request->status != NULL){
+            $complaint = $complaint->where('status',$request->status);
+        }
+        if ($request->service != NULL){
+            $complaint = $complaint->where('service',$request->service);
+        }
+        if ($request->year != NULL){
+            $complaint = $complaint->whereYear('date',$request->year);
+        }
+        if ($request->month != NULL){
+            $complaint = $complaint->whereMonth('date',$request->month);
+        }
+        if ($request->range != NULL){
+            $times = now()->toDateString();
+            $time = strtotime(now()->toDateString());
+            if (!($request->range == 1 || $request->range == 12 )){
+                $final = date("Y-m-d", strtotime("-".$request->range." month", $time));
+                $complaint = $complaint->whereBetween('date',[$final,$times]);
+            }else if($request->range == 1){
+                $complaint = $complaint->whereMonth('date',date("m",strtotime($times)));
+            }else{
+                $complaint = $complaint->whereYear('date',date("Y",strtotime($times)));
+            }
+        }
+
+        $complaint = $complaint->get();
+        $result = array();
+        foreach($complaint as $comp){
+            $result[] = date("m",strtotime($comp->date));
+        }
+        $counts = array_count_values($result);
+        
+        return $counts;
+    }
+
+    function filterOption(){
+        $complaint = DB::table('complaint')->get();
+        $name = array();
+        $status = array();
+        $years = array();
+        $months = array();
+        $service = array();
+        foreach($complaint as $comp){
+            $company_name = DB::table('company')->where('company_id',$comp->company_id)->get();
+            if (!in_array($company_name[0]->name,$name)){
+                $name[] = $company_name[0]->name;
+            }
+            if (!in_array($comp->status,$status)){
+                $status[] = $comp->status;
+            }
+            if (!in_array($comp->service,$service)){
+                $service[] = $comp->service;
+            }
+            $year = date('Y', strtotime($comp->date));
+            if (!in_array($year,$years)){
+                $years[] = $year;
+            }
+            $month = date('m', strtotime($comp->date));
+            if (!in_array($month,$months)){
+                $months[] = $month;
+            }
+        }
+        return response()->json([
+            'company_name' => $name,
+            'status' => $status,
+            'service' => $service,
+            'year' => $years,
+            'month' => $months,
+            'range' => [1,3,6,12]
         ]);
     }
 }

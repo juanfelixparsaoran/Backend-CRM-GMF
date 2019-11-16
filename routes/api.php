@@ -68,6 +68,8 @@ Route::post('/complaint/update','ComplaintController@update');
 Route::post('/complaint/create','ComplaintController@create');
 Route::post('/complaint/reply','ComplaintController@reply');
 Route::get('/complaint/readreply/{id}','ComplaintController@readReply');
+Route::post('/complaint/filter','ComplaintController@filter');
+Route::get('/complaint/filteroption','ComplaintController@filterOption');
 
 //cp route
 Route::get('/cp/read','CpController@read');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 04:00 PM
+-- Generation Time: Nov 16, 2019 at 10:46 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -145,7 +145,8 @@ CREATE TABLE `complaint` (
 
 INSERT INTO `complaint` (`complaint_id`, `date`, `closed`, `sender`, `service`, `subject`, `complaint`, `file`, `status`, `user_customer_id`, `company_id`) VALUES
 (10, '2019-11-13', NULL, 'Felix', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/cDrziHgordoBHahU4yVrXglzB0C7YrosG0XBrwbn.pdf', 'Open', 18, 8),
-(11, '2019-11-13', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/uMWCUYEOkWn89DHG9zFvwiwZeiL95s4KmGdltDU8.pdf', 'Open', 13, 1);
+(11, '2019-11-13', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/uMWCUYEOkWn89DHG9zFvwiwZeiL95s4KmGdltDU8.pdf', 'Open', 13, 1),
+(12, '2019-11-16', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/yBHSiTVLtxsAYydhjAoGMWqZY3eSYdCHp8Dzlyt8.pdf', 'Open', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -408,6 +409,7 @@ INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_ima
 
 CREATE TABLE `user` (
   `user_id` int(20) NOT NULL,
+  `image` varchar(1000) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
   `password` text NOT NULL,
   `pass_raw` varchar(100) NOT NULL,
@@ -419,21 +421,22 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `pass_raw`, `role`, `status`) VALUES
-(10, 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '1234', 'Customer', 'Active'),
-(13, 'felix', '$2y$10$KumYeGrMQkZed9R1tF/5COLK7wVZGWKrLdDsezFqreGs6jDqXWiGW', '12121', 'Customer', 'Inactive'),
-(14, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
-(15, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
-(19, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active'),
-(20, 'juanf', '$2y$10$5PyJ7ZBfqTD31gQpv.KFJOJe3GT5iODiWi6hfkhXxirm6h.I3k7B.', '1212', 'Customer', 'Active'),
-(21, 'jfptrg', '$2y$10$OmPFN9yQP5ziKZcEKqJNP.IcrCFzYJs3tLGTkHZFVkTSrMWThM.VC', '1212', 'Customer', 'Active'),
-(22, 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active'),
-(23, 'ferry', '$2y$10$RJ36Ug.C.F6lGezgkHD6fu3UGPstdyjwas7xv0etxg58qF6cUvMSO', '1212', 'Customer', 'Active'),
-(24, 'ferry', '$2y$10$f8mx0KGN8TOi3Auas4biT.bN7CAVaT21kVYlZqkTBPEJGgzfllAXa', '1212', 'Customer', 'Active'),
-(25, 'ferry', '$2y$10$n.7RmSHb5XWif.h0JB/mYeHfCyHIuovnkA6XCcvbYIimcM0sgqB2O', '1212', 'Customer', 'Active'),
-(26, 'ferry', '$2y$10$IMsm/EMKCrqe9P/POy6hS.E3Cl/49PxwdhO5qTSokJFpr1RUGiQce', '1212', 'Customer', 'Active'),
-(27, 'ferry', '$2y$10$VkKbqYzkNNPkJYYWbqGlE.px/FfPsToFO14X.puCpXY.yrnQ35MvG', '1212', 'Customer', 'Active'),
-(28, 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active');
+INSERT INTO `user` (`user_id`, `image`, `username`, `password`, `pass_raw`, `role`, `status`) VALUES
+(10, NULL, 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '1234', 'Customer', 'Active'),
+(13, NULL, 'felix', '$2y$10$VG18oVVKuE5wv9zGHU.uGeZ5KUyRalce4rivYQlg18OtoYsYLB6a2', '12121', 'Customer', 'Inactive'),
+(14, NULL, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
+(15, NULL, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
+(19, NULL, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active'),
+(20, NULL, 'juanf', '$2y$10$5PyJ7ZBfqTD31gQpv.KFJOJe3GT5iODiWi6hfkhXxirm6h.I3k7B.', '1212', 'Customer', 'Active'),
+(21, NULL, 'jfptrg', '$2y$10$OmPFN9yQP5ziKZcEKqJNP.IcrCFzYJs3tLGTkHZFVkTSrMWThM.VC', '1212', 'Customer', 'Active'),
+(22, NULL, 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active'),
+(23, NULL, 'ferry', '$2y$10$RJ36Ug.C.F6lGezgkHD6fu3UGPstdyjwas7xv0etxg58qF6cUvMSO', '1212', 'Customer', 'Active'),
+(24, NULL, 'ferry', '$2y$10$f8mx0KGN8TOi3Auas4biT.bN7CAVaT21kVYlZqkTBPEJGgzfllAXa', '1212', 'Customer', 'Active'),
+(25, NULL, 'ferry', '$2y$10$n.7RmSHb5XWif.h0JB/mYeHfCyHIuovnkA6XCcvbYIimcM0sgqB2O', '1212', 'Customer', 'Active'),
+(26, NULL, 'ferry', '$2y$10$IMsm/EMKCrqe9P/POy6hS.E3Cl/49PxwdhO5qTSokJFpr1RUGiQce', '1212', 'Customer', 'Active'),
+(27, NULL, 'ferry', '$2y$10$VkKbqYzkNNPkJYYWbqGlE.px/FfPsToFO14X.puCpXY.yrnQ35MvG', '1212', 'Customer', 'Active'),
+(28, NULL, 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active'),
+(29, NULL, 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active');
 
 -- --------------------------------------------------------
 
@@ -485,7 +488,8 @@ INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`,
 (17, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 8, 21),
 (18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 8, 22),
 (19, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 23),
-(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 28);
+(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 28),
+(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 8, 29);
 
 -- --------------------------------------------------------
 
@@ -672,7 +676,7 @@ ALTER TABLE `company_ads`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cp_company`
@@ -738,7 +742,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `user_admin`
@@ -750,7 +754,7 @@ ALTER TABLE `user_admin`
 -- AUTO_INCREMENT for table `user_customer`
 --
 ALTER TABLE `user_customer`
-  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_guest`
