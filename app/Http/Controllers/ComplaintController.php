@@ -160,9 +160,16 @@ class ComplaintController extends Controller
             $result[] = date("M",strtotime($comp->date));
         }
         $counts = array_count_values($result);
+        $final = array();
+        foreach ($counts as $key => $value) {
+            $final[] = (object)[
+                $key => $value
+            ];
+        }
+
         
         return response()->json([
-            'trend' => $counts,
+            'trend' => $final,
         ]);
     }
 
