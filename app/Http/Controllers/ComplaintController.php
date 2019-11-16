@@ -161,7 +161,9 @@ class ComplaintController extends Controller
         }
         $counts = array_count_values($result);
         
-        return $counts;
+        return response()->json([
+            'trend' => $counts,
+        ]);
     }
 
     function filterOption(){
