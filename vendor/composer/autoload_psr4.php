@@ -11,6 +11,7 @@ return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'TijsVerkoyen\\CssToInlineStyles\\' => array($vendorDir . '/tijsverkoyen/css-to-inline-styles/src'),
+    'Tightenco\\Collect\\' => array($vendorDir . '/tightenco/collect/src/Collect'),
     'Tests\\' => array($baseDir . '/tests'),
     'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
     'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
@@ -44,6 +45,7 @@ return array(
     'NunoMaduro\\Collision\\' => array($vendorDir . '/nunomaduro/collision/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'Laravel\\Ui\\' => array($vendorDir . '/laravel/ui/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
     'JakubOnderka\\PhpConsoleHighlighter\\' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor\\' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
@@ -64,4 +66,6 @@ return array(
     'Barryvdh\\Cors\\' => array($vendorDir . '/barryvdh/laravel-cors/src'),
     'Asm89\\Stack\\' => array($vendorDir . '/asm89/stack-cors/src/Asm89/Stack'),
     'App\\' => array($baseDir . '/app'),
+    'Adldap\\Laravel\\' => array($vendorDir . '/adldap2/adldap2-laravel/src'),
+    'Adldap\\' => array($vendorDir . '/adldap2/adldap2/src'),
 );

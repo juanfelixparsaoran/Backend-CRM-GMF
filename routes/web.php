@@ -18,4 +18,3 @@ Route::get('/', function () {
 //user route
 
 //login route
-

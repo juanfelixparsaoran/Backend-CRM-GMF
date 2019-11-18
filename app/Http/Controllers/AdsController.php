@@ -68,7 +68,7 @@ class AdsController extends Controller
     }
 
     function create(Request $request){
-        $path = Storage::putFile('ads', $request->image);
+        $path = $request->image != NULL ? Storage::putFile('ads', $request->image) : "";
         DB::table('ads')->insert([
             'subject' => $request->subject,
             'permalink' => $request->permalink,

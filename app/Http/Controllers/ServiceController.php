@@ -62,9 +62,9 @@ class ServiceController extends Controller
     }
 
     function create(Request $request){
-        $path_large = Storage::putFile('serviceimage', $request->large_image);
-        $path_small1 = Storage::putFile('serviceimage', $request->small_image1);
-        $path_small2 = Storage::putFile('serviceimage', $request->small_image2);
+        $path_large = $request->large_image ? Storage::putFile('serviceimage', $request->large_image) : "";
+        $path_small1 = $request->small_image1 ? Storage::putFile('serviceimage', $request->small_image1) : "";
+        $path_small2 = $request->small_image2 ? Storage::putFile('serviceimage', $request->small_image2) : "";
         DB::table('service')->insert([
             'name' => $request->name,
             'detail' => $request->detail,

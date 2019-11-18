@@ -52,7 +52,7 @@ class BirthdayCardController extends Controller
         ]);
     }
     function create(Request $request){
-        $path = Storage::putFile('birthdaycard', $request->image);
+        $path = $request->image != NULL ? Storage::putFile('birthdaycard', $request->image) : "";
         DB::table('birthday_card')->insert([
             'subject' => $request->subject,
             'permalink' => $request->permalink,

@@ -53,7 +53,7 @@ class ReligionCardController extends Controller
         return 'deleted';
     }
     function create(Request $request){
-        $path = Storage::putFile('religioncard', $request->image);
+        $path = $request->image != NULL ? Storage::putFile('religioncard', $request->image) : "";
         DB::table('religion_card')->insert([
             'subject' => $request->subject,
             'image' => $path,

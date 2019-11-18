@@ -79,7 +79,7 @@ class ComplaintController extends Controller
 
     function create(Request $request){
         $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
-        $path = Storage::putFile('complaint', $request->file);
+        $path = $request->file != NULL ? Storage::putFile('complaint', $request->file) : "";
         DB::table('complaint')->insert([
             'date'=> "2019-05-11",
             'service' => $request->service,

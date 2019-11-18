@@ -77,7 +77,7 @@ class CompanyController extends Controller
         ]);
     }
     function create(Request $request){
-        $path = Storage::putFile('company', $request->image);
+        $path = $request->image != NULL ? Storage::putFile('company', $request->image) : "";
         DB::table('company')->insert([
             'image' => $path,
             'name' => $request->name,

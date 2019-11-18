@@ -43,7 +43,8 @@ class NewsletterController extends Controller
     function create(Request $request){
         $from = \config('mail.from.address');
         $url = \config('filesystems.disks.local.root');
-        $path = Storage::putFile('newsletter', $request->image);
+        $name = \config('mail.from.name');
+        $path = $request->image != NULL ? Storage::putFile('newsletter', $request->image) : "";
         DB::table('newsletter')->insert([
             'subject' => $request->subject,
             'image' => $path,
@@ -53,28 +54,16 @@ class NewsletterController extends Controller
         ]);
         $customer = DB::table('user_customer')->get();
         foreach($customer as $cust){
-            $data = array('subject' => $request->subject, 'name'=>"Juan", 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email);
+            $data = array('subject' => $request->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email);
             Mail::send('mail', $data, function($message) use ($data) {
                 $message->to($data['to'], "Customer")->subject
                 ($data['subject']);
-                $message->attach($data['attachment']);
+                if ($data['path'] != ""){
+                    $message->attach($data['attachment']);
+                }
                 $message->from($data['from'],"Juan");
             });
         }
-           
-        
-        return response()->json([
-            'message' => 'Successfully send an email'
-        ]);
-    }
-    public function send(Request $request) {
-        $data = array('subject' => $request->subject, 'name'=>"Juan", 'attachment'=>'');
-        $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
-        Mail::send('mail', $data, function($message) use ($data) {
-            $message->to("juanfelixparsaoran@gmail.com", "Customer")->subject
-            ($data['subject']);
-            $message->from("juanfelixparsaoran@gmail.com","Juan");
-        });
         return response()->json([
             'message' => 'Successfully send an email'
         ]);
