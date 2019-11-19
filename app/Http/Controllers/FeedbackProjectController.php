@@ -100,4 +100,104 @@ class FeedbackProjectController extends Controller
             'message' => 'feedback_project Created'
         ]);
     }
+
+    function filterOption(){
+        $feedback_project = DB::table('feedback_project')->get();
+        $name = array();
+        $project_type = array();
+        $years = array();
+        $months = array();
+        $aspect_to_improve = array();
+        foreach($feedback_project as $comp){
+            $company_name = DB::table('company')->where('company_id',$comp->company_id)->get();
+            $project = DB::table('project')->where('project_id',$comp->project_id)->get();
+            if (!in_array($company_name[0]->name,$name)){
+                $name[] = $company_name[0]->name;
+            }
+            if (!in_array($project[0]->project_type,$project_type)){
+                $project_type[] = $project[0]->project_type;
+            }
+            $temp = explode(',', $comp->aspect_to_improve);
+            foreach ($temp as $ati){
+                if (!in_array($ati,$aspect_to_improve)){
+                    $aspect_to_improve[] = $ati;
+                }
+            }
+            $year = date('Y', strtotime($comp->date));
+            if (!in_array($year,$years)){
+                $years[] = $year;
+            }
+            $month = date('m', strtotime($comp->date));
+            if (!in_array($month,$months)){
+                $months[] = $month;
+            }
+        }
+        return response()->json([
+            'company_name' => $name,
+            'project_type' => $project_type,
+            'feedback_component' => $aspect_to_improve,
+            'year' => $years,
+            'month' => $months,
+            'range' => [1,3,6,12]
+        ]);
+    }
+
+    function filter(Request $request){
+        $feedback_project = DB::table('feedback_project');
+        if ($request->company_name != NULL){
+            $company = DB::table('company')->where('name',$request->company_name)->get();
+            foreach($company as $c){
+                $feedback_project = $feedback_project->where('company_id',$c->company_id);
+            }
+        }
+        if ($request->project_type != NULL){
+            $project = DB::table('project')->where('project_type',$request->project_type)->get();
+            foreach ($project as $pro){
+                $feedback_project = $feedback_project->where('project_id',$pro->project_id);
+            }
+        }
+        if ($request->aspect_to_improve != NULL){
+            $feedback_project = $feedback_project->where('aspect_to_improve','like','%'.$request->aspect_to_improve.'%');
+        }
+        if ($request->year != NULL){
+            $feedback_project = $feedback_project->whereYear('date',$request->year);
+        }
+        if ($request->month != NULL){
+            $feedback_project = $feedback_project->whereMonth('date',$request->month);
+        }
+        if ($request->rating != NULL){
+            $feedback_project = $feedback_project->where('rating',$request->rating);
+        }
+
+        if ($request->range != NULL){
+            $times = now()->toDateString();
+            $time = strtotime(now()->toDateString());
+            if (!($request->range == 1 || $request->range == 12 )){
+                $final = date("Y-m-d", strtotime("-".$request->range." month", $time));
+                $feedback_project = $feedback_project->whereBetween('date',[$final,$times]);
+            }else if($request->range == 1){
+                $feedback_project = $feedback_project->whereMonth('date',date("m",strtotime($times)));
+            }else{
+                $feedback_project = $feedback_project->whereYear('date',date("Y",strtotime($times)));
+            }
+        }
+
+        $feedback_project = $feedback_project->get();
+        $result = array();
+        foreach($feedback_project as $comp){
+            $result[] = date("M",strtotime($comp->date));
+        }
+        $counts = array_count_values($result);
+        $final = array();
+        foreach ($counts as $key => $value) {
+            $final[] = (object)[
+                $key => $value
+            ];
+        }
+
+        
+        return response()->json([
+            'trend' => $final,
+        ]);
+    }
 }

@@ -108,6 +108,8 @@ Route::get('/feedbackproject/edit/{id}','FeedbackProjectController@edit');
 Route::post('/feedbackproject/update','FeedbackProjectController@update');
 Route::get('/feedbackproject/delete/{id}','FeedbackProjectController@delete');
 Route::post('/feedbackproject/create','FeedbackProjectController@create');
+Route::get('/feedbackproject/filteroption','FeedbackProjectController@filterOption');
+Route::post('/feedbackproject/filter','FeedbackProjectController@filter');
 
 Route::get('/feedbacknonproject/read','FeedbackNonProjectController@read');
 Route::get('/feedbacknonproject/read/{id}','FeedbackNonProjectController@readByCompany');
