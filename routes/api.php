@@ -25,7 +25,7 @@ Route::get('/user/read','UserController@read');
 Route::get('/user/delete','UserController@delete');
 
 
-Route::post('/loginldap', 'Auth\LoginController@login');
+Route::get('/loginldap', 'Auth\LoginController@login');
 Route::post('/auth','LoginController@auth');
 Route::get('/login','LoginController@login');
 Route::get('/logout','LoginController@logout');

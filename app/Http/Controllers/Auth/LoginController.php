@@ -54,17 +54,17 @@ class LoginController extends Controller
     }
     protected function login(Request $request)
     {
-        $credentials = $request->only($this->username(), 'password');
-        $username = $credentials[$this->username()];
-        $password = $credentials['password'];
+        // $credentials = $request->only($this->username(), 'password');
+        // $username = $credentials[$this->username()];
+        // $password = $credentials['password'];
         $user = Adldap::search()->get();
-        $user_format = config('ldap.user_format');
-        $userdn = sprintf($user_format, $username);
+        // $user_format = config('ldap.user_format');
+        // $userdn = sprintf($user_format, $username);
         // you might need this, as reported in
         // [#14](https://github.com/jotaelesalinas/laravel-simple-ldap-auth/issues/14):
-        if(Adldap::auth()->attempt($userdn, $password, $bindAsUser = true)) {
+        // if(Adldap::auth()->attempt($userdn, $password, $bindAsUser = true)) {
             // the user exists in the LDAP server, with the provided password
-            $user = Adldap::search()->where('cn', '=', 'Bernhard Riemann')->get();
+            // $user = Adldap::search()->where('cn', '=', 'Bernhard Riemann')->get();
             // $user = \App\User::where($this->username(), $username)->first();
             // if (!$user) {
             //     // the user doesn't exist in the local database, so we have to create one
@@ -86,8 +86,8 @@ class LoginController extends Controller
             // // pass false as second parameter if you want to force the session to expire when the user closes the browser.
             // // have a look at the section 'session lifetime' in `config/session.php` for more options.
             // $this->guard()->login($user, true);
-            return "adsa";
-        }
+            // return "adsa";
+        // }
 
         // the user doesn't exist in the LDAP server or the password is wrong
         // log error
