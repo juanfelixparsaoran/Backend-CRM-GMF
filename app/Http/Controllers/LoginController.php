@@ -13,7 +13,8 @@ class LoginController extends Controller
         if ($request->session()->has('username')){
             return response()->json([
                 'message' => 'Authenticated',
-                'auth' => true
+                'auth' => true,
+                'id' => $request->session()->get('id'),
             ],200);
         }else{
             return response()->json([
@@ -40,6 +41,7 @@ class LoginController extends Controller
             if ($user->username == $request->username && (Hash::check($request->password, $user->password)))
             {
                 $request->session()->put('username',$request->username);
+                $request->session()->put('id',$user->user_id);
                 $user_logged = $user;
                 if ($user->role == "Customer"){
                     $user_detail = DB::table('user_customer')->where('user_id',$user->user_id)->get();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2019 at 10:46 AM
+-- Generation Time: Nov 27, 2019 at 04:44 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -43,7 +43,11 @@ CREATE TABLE `ads` (
 
 INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
 (16, 'Marketing Ads', 'ads/Xo8xgcyizKzv3RHx4W94FyqXxQfliaxZDvI8iAFc.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:13', '2019-11-13 04:11:13'),
-(17, 'Engineer Ads', 'ads/YSnSlaJHZaHPDvCYdyyu5AtJXTiZ82FBGorLzOox.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:32', '2019-11-13 04:11:32');
+(17, 'Engineer Ads', 'ads/YSnSlaJHZaHPDvCYdyyu5AtJXTiZ82FBGorLzOox.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:32', '2019-11-13 04:11:32'),
+(18, 'Engineer Ads', 'ads/KElK0OpSUGq1hyNuKZa1hVmPZQ3Ey0tlAYQrvYcl.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-16 05:12:16', '2019-11-16 05:12:16'),
+(19, 'Engineer Ads', 'ads/0zXPIlvMXFf9jLjXp8Tf9birQ7cbcLKc0Jn9wBQ3.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-16 05:12:46', '2019-11-16 05:12:46'),
+(20, 'Engineer Ads', 'ads/7kHDrAedatmqRECYp3xBFEdnqtjYARnWYVT8W6GL.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-16 05:13:00', '2019-11-16 05:13:00'),
+(21, 'Marketing Ads', 'ads/hdob44CESZW1SGSPfiL8hbNho6C1KvFdS84V0Lvr.rtf', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-17 23:21:30', '2019-11-17 23:33:33');
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,7 @@ CREATE TABLE `complaint` (
   `date` date NOT NULL,
   `closed` date DEFAULT NULL,
   `sender` varchar(100) NOT NULL,
-  `service` varchar(100) NOT NULL,
+  `service` varchar(1000) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `complaint` varchar(2000) NOT NULL,
   `file` varchar(1000) DEFAULT NULL,
@@ -146,7 +150,8 @@ CREATE TABLE `complaint` (
 INSERT INTO `complaint` (`complaint_id`, `date`, `closed`, `sender`, `service`, `subject`, `complaint`, `file`, `status`, `user_customer_id`, `company_id`) VALUES
 (10, '2019-11-13', NULL, 'Felix', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/cDrziHgordoBHahU4yVrXglzB0C7YrosG0XBrwbn.pdf', 'Open', 18, 8),
 (11, '2019-11-13', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/uMWCUYEOkWn89DHG9zFvwiwZeiL95s4KmGdltDU8.pdf', 'Open', 13, 1),
-(12, '2019-11-16', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/yBHSiTVLtxsAYydhjAoGMWqZY3eSYdCHp8Dzlyt8.pdf', 'Open', 13, 1);
+(12, '2019-11-16', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/yBHSiTVLtxsAYydhjAoGMWqZY3eSYdCHp8Dzlyt8.pdf', 'Open', 13, 1),
+(13, '2019-05-11', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/Pq7DGTMv22DfqF6WCtdaDUGCJffljscmOpzJmtKU.pdf', 'Open', 13, 1);
 
 -- --------------------------------------------------------
 
@@ -222,8 +227,8 @@ CREATE TABLE `feedback_project` (
 --
 
 INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating`, `aspect_to_improve`, `remark`, `user_customer_id`, `company_id`, `project_id`, `service_id`) VALUES
-(7, '2019-11-09', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
-(8, '2019-11-09', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6),
+(7, '2019-11-09', 'manasye', 5, 'Smile,Comunication', 'blablabla', 13, 1, 4, 5),
+(8, '2019-11-09', 'manasye', 3, 'Smile,Comunication', 'blablabla', 13, 1, 4, 6),
 (9, '2019-11-13', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
 (10, '2019-11-13', 'manasye', 3, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 6),
 (11, '2019-11-13', 'manasye', 5, 'Cooperative,Comunication', 'blablabla', 13, 1, 4, 5),
@@ -261,6 +266,53 @@ INSERT INTO `gmf_cp` (`gmf_cp_id`, `name`, `position`, `phone`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `message_id` int(255) NOT NULL,
+  `message` mediumtext DEFAULT NULL,
+  `sender` varchar(1000) DEFAULT NULL,
+  `user_id` int(255) NOT NULL,
+  `receiver` varchar(1000) DEFAULT NULL,
+  `rcv_user_id` int(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`message_id`, `message`, `sender`, `user_id`, `receiver`, `rcv_user_id`, `created_at`, `updated_at`) VALUES
+(1, 'asdasdasdada', 'admin', 14, 'manasye', 10, '2019-11-21 17:00:00', NULL),
+(2, 'asas', 'manasye', 10, 'admin', NULL, '2019-11-20 17:00:00', NULL),
+(3, 'asas', 'manasye', 10, 'admin', NULL, '2019-11-22 17:00:00', NULL),
+(4, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'manasye', 10, 'admin', NULL, '2019-11-26 04:08:53', NULL),
+(5, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'admin', 14, 'manasye', 10, '2019-11-26 04:11:22', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `newsletter`
 --
 
@@ -279,7 +331,28 @@ CREATE TABLE `newsletter` (
 
 INSERT INTO `newsletter` (`newsletter_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
 (5, 'Newsletter Marketing', 'newsletter/CaqymiV66ncxkntXbgPsKgEOEArAx9WOYR1RK2yW.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-13 05:42:50.000000', '2019-11-13 05:42:50.000000'),
-(6, 'Newsletter Marketing', 'newsletter/2aGHOpfLU9ccs8QtZHfzhxyDPIYf5Ok3lgqB3Cix.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-13 05:43:00.000000', '2019-11-13 05:43:00.000000');
+(6, 'Newsletter Marketing', 'newsletter/2aGHOpfLU9ccs8QtZHfzhxyDPIYf5Ok3lgqB3Cix.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-13 05:43:00.000000', '2019-11-13 05:43:00.000000'),
+(7, 'Newsletter Marketing', 'newsletter/OwBt9IjLXY7gIoQgVxslGMwDhXt5rG4B1RLOOrdT.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:23:44.000000', '2019-11-16 05:23:44.000000'),
+(8, 'Newsletter Marketing', 'newsletter/kYLhDgapxYxO3UfQm2OSJ4ORt2PHtdSuCJPWpz85.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:24:22.000000', '2019-11-16 05:24:22.000000'),
+(9, 'Newsletter Marketing', 'newsletter/zxCCCISTGtqcWM18nnNZ1bOftswKgAuk1ft2qEcD.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:24:47.000000', '2019-11-16 05:24:47.000000'),
+(10, 'Newsletter Marketing', 'newsletter/C2kSlU9YaWIHE9swJc3theN5j8GDLsYJBRDUd5Et.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:28:26.000000', '2019-11-16 05:28:26.000000'),
+(11, 'Newsletter Marketing', 'newsletter/C9oAFF5M0GRmeizNrCikG9fcOGFhoZRDqyp6JNHP.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:31:29.000000', '2019-11-16 05:31:29.000000'),
+(12, 'Newsletter Marketing', 'newsletter/KXPyhl6tYk1HcyhWT5yGD3B6C1CM41pfC3bCZdhC.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:33:36.000000', '2019-11-16 05:33:36.000000'),
+(13, 'Newsletter Marketing', 'newsletter/tNtKyPiH7YSTvMCDkraKMP4KNTkrLfLsC42TAzAQ.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:35:43.000000', '2019-11-16 05:35:43.000000'),
+(14, 'Newsletter Marketing', 'newsletter/CXMwbw7Q1l7l0x0A7g1xP2kJIAsSycGlcQ0KjhGq.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:35:43.000000', '2019-11-16 05:35:43.000000'),
+(15, 'Newsletter Marketing', 'newsletter/UbJ0Cvd8lZTQ2EZ8NqWyl3PoUCD0AZjzq61Zi6A3.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:35:43.000000', '2019-11-16 05:35:43.000000'),
+(16, 'Newsletter Marketing', 'newsletter/IdweoKaJzN9jXtLY1dcoqx3Z2hnfzRuhyh67XgiJ.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:36:33.000000', '2019-11-16 05:36:33.000000'),
+(17, 'Newsletter Marketing', 'newsletter/1Z20tsqk93wQjw7CFDHpQQu2mQj8njpDAuvdjdf0.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:36:59.000000', '2019-11-16 05:36:59.000000'),
+(18, 'Newsletter Marketing', 'newsletter/GPWGYJXgZdQQqZheWOKUGn3uW8NwBkwYaBFMfAxe.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:39:05.000000', '2019-11-16 05:39:05.000000'),
+(19, 'Newsletter Marketing', 'newsletter/E7o3nhvtXsKXqjfIcJxlXpWTIzSY9Anpw3X7eGsN.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:41:35.000000', '2019-11-16 05:41:35.000000'),
+(20, 'Newsletter Marketing', 'newsletter/JqMTWOXzgaI7QoWUkRPfAxHkKn222WaPEeKwuqNu.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:44:11.000000', '2019-11-16 05:44:11.000000'),
+(21, 'Newsletter Marketing', 'newsletter/mB7jczrIay6JP6dDrEBXgQmDQfsZSxyRNoXKzTHJ.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:46:34.000000', '2019-11-16 05:46:34.000000'),
+(22, 'Newsletter Marketing', 'newsletter/MrY8PbJlKjtprSIOdiKLIEIIxAfzVo13Db1gRMbP.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:56:48.000000', '2019-11-16 05:56:48.000000'),
+(23, 'Newsletter Marketing', 'newsletter/Qxcb7mSiTHXHTmoRUzLVxdxV7yv7p2VoNb6v2cEh.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 05:57:31.000000', '2019-11-16 05:57:31.000000'),
+(24, 'Newsletter Marketing', 'newsletter/Y9kt5NrfYU44GbizbTZnA72g4TNapVl11RGxD5UB.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 06:00:53.000000', '2019-11-16 06:00:53.000000'),
+(25, 'Newsletter Marketing', 'newsletter/49Y29fPcVTuo75iJ9H1D7LX4uTIr4ZjHPwUnBljC.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 06:01:17.000000', '2019-11-16 06:01:17.000000'),
+(26, 'Newsletter Marketing', '', 'http://www.gmf-aeroasia.co.id', '2019-11-17 23:42:48.000000', '2019-11-17 23:42:48.000000'),
+(27, 'Newsletter Marketing', '', 'http://www.gmf-aeroasia.co.id', '2019-11-17 23:46:36.000000', '2019-11-17 23:46:36.000000');
 
 -- --------------------------------------------------------
 
@@ -299,19 +372,22 @@ CREATE TABLE `project` (
   `A/C_Reg` varchar(100) NOT NULL,
   `location` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL,
-  `company_id` int(11) NOT NULL
+  `company_id` int(11) NOT NULL,
+  `jobcard_status` varchar(1000) DEFAULT NULL,
+  `mdr_status` varchar(1000) DEFAULT NULL,
+  `mrm_status` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `A/C_Reg`, `location`, `type`, `company_id`) VALUES
-(2, 'KA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 1', 'GAH3', '6', 5),
-(3, 'KA Project 2', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 2', 'GAH3', '5', 5),
-(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '3', 1),
-(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1),
-(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1);
+INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `A/C_Reg`, `location`, `type`, `company_id`, `jobcard_status`, `mdr_status`, `mrm_status`) VALUES
+(2, 'KA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 1', 'GAH3', '6', 5, NULL, NULL, NULL),
+(3, 'KA Project 2', '2019-12-12', '2020-01-01', 'On Going', 1, 'Base Maintenance', 'Not Rated', 'Project 2', 'GAH3', '5', 5, NULL, NULL, NULL),
+(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
+(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, NULL, NULL, NULL),
+(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -436,7 +512,12 @@ INSERT INTO `user` (`user_id`, `image`, `username`, `password`, `pass_raw`, `rol
 (26, NULL, 'ferry', '$2y$10$IMsm/EMKCrqe9P/POy6hS.E3Cl/49PxwdhO5qTSokJFpr1RUGiQce', '1212', 'Customer', 'Active'),
 (27, NULL, 'ferry', '$2y$10$VkKbqYzkNNPkJYYWbqGlE.px/FfPsToFO14X.puCpXY.yrnQ35MvG', '1212', 'Customer', 'Active'),
 (28, NULL, 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active'),
-(29, NULL, 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active');
+(29, NULL, 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active'),
+(30, 'user/aLdWNM4QfOEOa7Mx2XJo1G3blsnVoshy1s5OmCpz.jpeg', 'jfp', '$2y$10$MVebCUgupSGKb57sbY8Ce..dnGltx0cvQjOOPbUBtK8rG4e/ULZCW', '1212', 'Admin', 'Active'),
+(31, 'user/Tu6F0XXfkIUhafEGI9mEXRJaKVo2ORe0nc4Pjm8S.jpeg', 'jfptrg', '$2y$10$stMu7jVY3WRRjBMadmzq4.K.vJPhSZaqoJD8V.hixXo4LPbKfmvZO', '1212', 'Admin', 'Active'),
+(32, 'user/gXEDv8mkmJLE5cQLiP4ZqWHeCONHYDGWbPMxg5Kn.jpeg', 'jfptrg', '$2y$10$Wt6ho5SrwUna74xKwQZgnOXmE.DlwTXPuEJ2K2C1G5St9HhQREPEO', '1212', 'Admin', 'Active'),
+(33, '', 'jfptrgt', '$2y$10$MoOK/wMEWOveXIf9TVtGp.zJo78zAEvP2buBBtbdPD7vG.OKyIizi', '1212', 'Customer', 'Active'),
+(34, 'user/kGs9hRDj3gF5yBVj9MCGN6UFpI3vCSLlgwVyZtYp.jpeg', 'feryyyy', '$2y$10$LClVHOlg.PNw6s4rjS.M8Ovs4SJhtGEyPY7MET1Q9fBNHvAxSPSmy', '12121', 'Customer', 'Active');
 
 -- --------------------------------------------------------
 
@@ -457,7 +538,20 @@ CREATE TABLE `user_admin` (
 --
 
 INSERT INTO `user_admin` (`user_admin_id`, `name`, `position`, `division`, `user_id`) VALUES
-(1, 'Juan', 'GM', 'Marketing', 14);
+(1, 'Juan', 'GM', 'Marketing', 14),
+(3, 'Juan', 'GM', 'Marketing', 21);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_birthday_card`
+--
+
+CREATE TABLE `user_birthday_card` (
+  `user_birthday_id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `birthday_card_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -489,7 +583,8 @@ INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`,
 (18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 8, 22),
 (19, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 23),
 (21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 28),
-(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 8, 29);
+(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 8, 29),
+(23, 'Ferry', 'Engineer', 'Kristen', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 34);
 
 -- --------------------------------------------------------
 
@@ -579,6 +674,18 @@ ALTER TABLE `gmf_cp`
   ADD PRIMARY KEY (`gmf_cp_id`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`message_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `newsletter`
 --
 ALTER TABLE `newsletter`
@@ -630,6 +737,14 @@ ALTER TABLE `user_admin`
   ADD KEY `user_id_idx` (`user_id`);
 
 --
+-- Indexes for table `user_birthday_card`
+--
+ALTER TABLE `user_birthday_card`
+  ADD PRIMARY KEY (`user_birthday_id`),
+  ADD KEY `birth_id_bu` (`birthday_card_id`),
+  ADD KEY `user_id_bu` (`user_id`);
+
+--
 -- Indexes for table `user_customer`
 --
 ALTER TABLE `user_customer`
@@ -652,7 +767,7 @@ ALTER TABLE `user_guest`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `birthday_card`
@@ -676,7 +791,7 @@ ALTER TABLE `company_ads`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `cp_company`
@@ -703,10 +818,22 @@ ALTER TABLE `gmf_cp`
   MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -742,19 +869,25 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user_admin`
 --
 ALTER TABLE `user_admin`
-  MODIFY `user_admin_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_admin_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user_birthday_card`
+--
+ALTER TABLE `user_birthday_card`
+  MODIFY `user_birthday_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_customer`
 --
 ALTER TABLE `user_customer`
-  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user_guest`
@@ -806,6 +939,13 @@ ALTER TABLE `reply_complaint`
 --
 ALTER TABLE `user_admin`
   ADD CONSTRAINT `user_id_idx` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `user_birthday_card`
+--
+ALTER TABLE `user_birthday_card`
+  ADD CONSTRAINT `birth_id_bu` FOREIGN KEY (`birthday_card_id`) REFERENCES `birthday_card` (`birthday_card_id`),
+  ADD CONSTRAINT `user_id_bu` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `user_customer`

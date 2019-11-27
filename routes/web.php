@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('login','LoginController@login');
+Route::get('logout','LoginController@logout');
+
+
 //user route
 
 //login route
