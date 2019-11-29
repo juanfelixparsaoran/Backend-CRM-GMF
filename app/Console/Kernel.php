@@ -25,7 +25,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('sendemail:birthdaycard')
-                 ->everyMinute();
+                 ->daily();
+        $schedule->command('sendemail:holidaycard')
+        ->daily();
     }
 
     /**

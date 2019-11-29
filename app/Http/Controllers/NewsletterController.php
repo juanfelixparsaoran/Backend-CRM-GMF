@@ -54,7 +54,7 @@ class NewsletterController extends Controller
         ]);
         $customer = DB::table('user_customer')->get();
         foreach($customer as $cust){
-            $data = array('subject' => $request->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email);
+            $data = array('subject' => $request->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email, 'type'=>"Newsletter");
             Mail::send('mail', $data, function($message) use ($data) {
                 $message->to($data['to'], "Customer")->subject
                 ($data['subject']);

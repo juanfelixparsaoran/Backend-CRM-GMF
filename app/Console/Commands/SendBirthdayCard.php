@@ -38,11 +38,5 @@ class SendBirthdayCard extends Command
      */
     public function handle()
     {
-        $data = array('name'=>"juan" );
-        Mail::send('mail', $data, function($message) use ($data) {
-            $message->to("asdad@gmail.com", "Customer")->subject
-            ("asdasd");
-            $message->from("juanfelixparsaoran@gmail.com","Juan");
-        });
     }
 }
