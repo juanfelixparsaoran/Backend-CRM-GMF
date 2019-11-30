@@ -40,7 +40,6 @@ class LoginController extends Controller
         {
             if ($user->username == $request->username && (Hash::check($request->password, $user->password)))
             {
-                print_r($user);
                 $request->session()->put('username',$request->username);
                 $request->session()->put('id',$user->user_id);
                 $user_logged = $user;
