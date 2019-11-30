@@ -129,9 +129,9 @@ class UserController extends Controller
 
     function delete($id){
         $user = DB::table('user')->where('user_id',$id)->get();
-        if ($user->role == 'admin'){
+        if ($user[0]->role == 'admin'){
             DB::table('user_admin')->where('user_id',$id)->delete();    
-        }else if ($user->role == 'customer'){
+        }else if ($user[0]->role == 'customer'){
             DB::table('user_customer')->where('user_id',$id)->delete();    
         }else{
             DB::table('user_guest')->where('user_id',$id)->delete(); 

@@ -22,7 +22,7 @@ Route::get('/user/createform','UserController@createForm');
 Route::post('/user/update','UserController@update');
 Route::get('/user/edit/{id}','UserController@edit');
 Route::get('/user/read','UserController@read');
-Route::get('/user/delete','UserController@delete');
+Route::get('/user/delete/{id}','UserController@delete');
 
 
 Route::get('/loginldap', 'Auth\LoginController@login');
