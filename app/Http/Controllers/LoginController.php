@@ -55,7 +55,6 @@ class LoginController extends Controller
                 $login = true;
             }
         }
-        print_r($user->user_id);
         if ($login){
             return response()->json([
                 'message' => 'Successfully Login',
