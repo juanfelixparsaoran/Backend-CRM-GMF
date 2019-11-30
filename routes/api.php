@@ -14,7 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('cors')->group(function () {
-    Route::post('/user/create','UserController@create');
+    return $request->user();
+});
+
+Route::post('/user/create','UserController@create');
 Route::get('/user/createform','UserController@createForm');
 Route::post('/user/update','UserController@update');
 Route::get('/user/edit/{id}','UserController@edit');
@@ -139,9 +142,6 @@ Route::get('/messages/get/{id}', 'ChatController@fetchMessages');
 Route::post('/messages/send', 'ChatController@sendMessage');
 
 Route::get('/popup/read/{id}', 'PopUpController@read');
-
-});
-
 
 
 
