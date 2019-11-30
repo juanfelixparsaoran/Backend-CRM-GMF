@@ -47,6 +47,9 @@ class FeedbackProjectController extends Controller
         if (!$feedback_project->isEmpty()){
             $company = DB::table('company')->where('company_id',$feedback_project[0]->company_id)->get();
             $feedback_project[0]->company_name = $company[0]->name;
+            $project = DB::table('project')->where('project_id',$feedback_project[0]->project_id)->get();
+            $feedback_project[0]->location = $project[0]->location;
+            $feedback_project[0]->project_type = $project[0]->project_type;
             return response()->json([
                 'message' => 'feedback_project found',
                 'data' => $feedback_project
