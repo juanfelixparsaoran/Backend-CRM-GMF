@@ -141,5 +141,9 @@ Route::get('/messages', 'ChatController@index');
 Route::get('/messages/get/{id}', 'ChatController@fetchMessages');
 Route::post('/messages/send', 'ChatController@sendMessage');
 
+Route::get('/popup/read/{id}', 'PopUpController@read');
+
+
+
 
 
