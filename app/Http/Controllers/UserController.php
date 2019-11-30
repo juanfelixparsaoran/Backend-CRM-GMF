@@ -123,7 +123,8 @@ class UserController extends Controller
         }
 
         return response()->json([
-            'message' => 'User Updated'
+            'message' => 'User Updated',
+            'data' => $user[0],
         ]);
     }
 

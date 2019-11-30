@@ -49,8 +49,10 @@ class SendHolidayCard extends Command
                 $customer = DB::table('user_customer')->get();
                 foreach ($customer as $cust){
                     if ($cust->religion == $rc->religion){
+                        $image = "http://172.16.40.180:8080/storage/".$path;
+                        
                         $name = $cust->name;
-                        $data = array('subject' => $rc->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email,'type'=>"Holiday Card");
+                        $data = array('subject' => $rc->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email,'type'=>"Holiday Card", 'image' => $image);
                         Mail::send('mail', $data, function($message) use ($data) {
                             $message->to($data['to'], "Customer")->subject
                             ($data['subject']);
