@@ -21,5 +21,6 @@
         <h2>Happy Birthday</h2>
         <h4>Customer Name</h4>
         <p>Wishing you a wonderful birthday and a year filled with success</p>
+        <img src="{{$image}}" ></img>
     </div>
 </div>
