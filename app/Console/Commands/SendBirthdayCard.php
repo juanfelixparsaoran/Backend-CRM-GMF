@@ -39,7 +39,6 @@ class SendBirthdayCard extends Command
      */
     public function handle()
     {
-        if (now()->toTimeString() == "15:50:00"){
             $birthday_card = DB::table('birthday_card')->get();
             $from = \config('mail.from.address');
             $url = \config('filesystems.disks.local.root');
@@ -63,6 +62,6 @@ class SendBirthdayCard extends Command
                 }
                 
             }
-        }
+        
     }
 }
