@@ -40,27 +40,29 @@ class SendHolidayCard extends Command
     public function handle()
     {
         //
-        $religion_card = DB::table('religion_card')->get();
-        $from = \config('mail.from.address');
-        $url = \config('filesystems.disks.local.root');
-        foreach ($religion_card as $rc){
-            if (now()->toDateString() == $rc->date){
-                $path = $rc->image;
-                $customer = DB::table('user_customer')->get();
-                foreach ($customer as $cust){
-                    if ($cust->religion == $rc->religion){
-                        $image = "http://172.16.40.180:8080/storage/".$path;
-                        
-                        $name = $cust->name;
-                        $data = array('subject' => $rc->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email,'type'=>"Holiday Card", 'image' => $image);
-                        Mail::send('mail', $data, function($message) use ($data) {
-                            $message->to($data['to'], "Customer")->subject
-                            ($data['subject']);
-                            if ($data['path'] != ""){
-                                $message->attach($data['attachment']);
-                            }
-                            $message->from($data['from'],"Juan");
-                        });
+        if (now()->toTimeString() == "15:50:00"){
+            $religion_card = DB::table('religion_card')->get();
+            $from = \config('mail.from.address');
+            $url = \config('filesystems.disks.local.root');
+            foreach ($religion_card as $rc){
+                if (now()->toDateString() == $rc->date){
+                    $path = $rc->image;
+                    $customer = DB::table('user_customer')->get();
+                    foreach ($customer as $cust){
+                        if ($cust->religion == $rc->religion){
+                            $image = "http://172.16.40.180:8080/storage/".$path;
+                            
+                            $name = $cust->name;
+                            $data = array('subject' => $rc->subject, 'name'=>$name, 'path' => $path, 'attachment'=>$url."/".$path , 'from' => $from, 'to'=>$cust->email,'type'=>"Holiday Card", 'image' => $image);
+                            Mail::send('mailholiday', $data, function($message) use ($data) {
+                                $message->to($data['to'], "Customer")->subject
+                                ($data['subject']);
+                                if ($data['path'] != ""){
+                                    $message->attach($data['attachment']);
+                                }
+                                $message->from($data['from'],"Juan");
+                            });
+                        }
                     }
                 }
             }
