@@ -39,11 +39,12 @@ class SendBirthdayCard extends Command
      */
     public function handle()
     {
+        if (now()->toTimeString() == "12:00:00"){
             $birthday_card = DB::table('birthday_card')->get();
             $from = \config('mail.from.address');
             $url = \config('filesystems.disks.local.root');
-            foreach ($birthday_card as $rc){
-                $path = $rc->image;
+            
+                $path = $birthday_card[0]->image;
                 $customer = DB::table('user_customer')->get();
                 foreach ($customer as $cust){
                     if (date('d-m',strtotime(now()->toDateString())) == date('d-m',strtotime($cust->birthday))){
@@ -61,7 +62,7 @@ class SendBirthdayCard extends Command
                     }
                 }
                 
-            }
-        
+            
+        }
     }
 }

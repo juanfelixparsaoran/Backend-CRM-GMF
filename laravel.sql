@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 04:44 PM
+-- Generation Time: Dec 04, 2019 at 06:55 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -69,8 +69,7 @@ CREATE TABLE `birthday_card` (
 --
 
 INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
-(4, 'Birthday in November', 'birthdaycard/N2Nj2PFJLiXVNI6Jm9WHLvuUAuMZNGihbXroJUAD.jpeg', 'http://gmf-aeroasia.co.id/birthday/november', '2019-11-13 04:12:12.000000', '2019-11-13 04:12:12.000000'),
-(5, 'Birthday in Desember', 'birthdaycard/LlK7MK2i8UO2nvHUZ4I5NHD3PlUKtN1FELHeJtfh.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember', '2019-11-13 04:12:36.000000', '2019-11-13 04:12:36.000000');
+(5, 'Birthday in Desember', 'birthdaycard/LlK7MK2i8UO2nvHUZ4I5NHD3PlUKtN1FELHeJtfh.jpeg', 'http://gmf-aeroasia.co.id/birthday/desember', '2019-11-13 04:12:36.000000', '2019-12-01 02:09:05.000000');
 
 -- --------------------------------------------------------
 
@@ -122,6 +121,13 @@ CREATE TABLE `company_ads` (
   `company_id` int(11) NOT NULL,
   `ads_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `company_ads`
+--
+
+INSERT INTO `company_ads` (`company_ads_id`, `company_id`, `ads_id`) VALUES
+(9, 1, 16);
 
 -- --------------------------------------------------------
 
@@ -276,6 +282,7 @@ CREATE TABLE `message` (
   `user_id` int(255) NOT NULL,
   `receiver` varchar(1000) DEFAULT NULL,
   `rcv_user_id` int(255) DEFAULT NULL,
+  `already_read` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -284,12 +291,13 @@ CREATE TABLE `message` (
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`message_id`, `message`, `sender`, `user_id`, `receiver`, `rcv_user_id`, `created_at`, `updated_at`) VALUES
-(1, 'asdasdasdada', 'admin', 14, 'manasye', 10, '2019-11-21 17:00:00', NULL),
-(2, 'asas', 'manasye', 10, 'admin', NULL, '2019-11-20 17:00:00', NULL),
-(3, 'asas', 'manasye', 10, 'admin', NULL, '2019-11-22 17:00:00', NULL),
-(4, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'manasye', 10, 'admin', NULL, '2019-11-26 04:08:53', NULL),
-(5, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'admin', 14, 'manasye', 10, '2019-11-26 04:11:22', NULL);
+INSERT INTO `message` (`message_id`, `message`, `sender`, `user_id`, `receiver`, `rcv_user_id`, `already_read`, `created_at`, `updated_at`) VALUES
+(1, 'asdasdasdada', 'admin', 14, 'manasye', 10, 1, '2019-11-21 17:00:00', NULL),
+(2, 'asas', 'manasye', 10, 'admin', NULL, 1, '2019-11-20 17:00:00', NULL),
+(3, 'asas', 'manasye', 10, 'admin', NULL, 1, '2019-11-22 17:00:00', NULL),
+(4, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'manasye', 10, 'admin', NULL, 1, '2019-11-26 04:08:53', NULL),
+(5, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'admin', 14, 'manasye', 10, 1, '2019-11-26 04:11:22', NULL),
+(6, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'Juan Felix', 13, 'admin', NULL, 1, '2019-12-03 22:40:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -424,9 +432,9 @@ CREATE TABLE `religion_card` (
 --
 
 INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`, `created_at`, `updated_at`) VALUES
-(5, 'Christmas', 'religioncard/4e40DGMrAcCHptg7DCvHHEeSHSJaMsNlUX3Sz2Tw.jpeg', 'Kristen', '2019-12-12', 'www.gmf-aeroasia.co.id/religioncard/christmas', '2019-11-13 06:32:37', '2019-11-13 06:35:36'),
-(6, 'Nyepi', 'religioncard/rRD1e1y8S3Pdhh2AHOdKutXgjQoXahGmGwaCLH96.webp', 'Hindu', '2019-03-25', 'www.gmf-aeroasia.co.id/religioncard/nyepi', '2019-11-13 06:33:44', '2019-11-13 06:35:40'),
-(7, 'Islam', 'religioncard/19OrE946ST73UqcKodV2LZaZpw0XbBalvHVyeVzN.jpeg', 'Islam', '2019-05-23', 'www.gmf-aeroasia.co.id/religioncard/eid', '2019-11-13 06:34:19', '2019-11-13 06:35:45');
+(5, 'Christmas', 'religioncard/4e40DGMrAcCHptg7DCvHHEeSHSJaMsNlUX3Sz2Tw.jpeg', 'Kristen', '2019-12-01', 'www.gmf-aeroasia.co.id/religioncard/christmas', '2019-11-13 06:32:37', '2019-11-13 06:35:36'),
+(6, 'Nyepi', 'religioncard/rRD1e1y8S3Pdhh2AHOdKutXgjQoXahGmGwaCLH96.webp', 'Hindu', '2019-11-30', 'www.gmf-aeroasia.co.id/religioncard/nyepi', '2019-11-13 06:33:44', '2019-11-13 06:35:40'),
+(7, 'Eid Mubarak Holiday Card', 'religioncard/19OrE946ST73UqcKodV2LZaZpw0XbBalvHVyeVzN.jpeg', 'Islam', '2019-11-29', 'www.gmf-aeroasia.co.id/religioncard/eid', '2019-11-13 06:34:19', '2019-11-13 06:35:45');
 
 -- --------------------------------------------------------
 
@@ -498,7 +506,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `image`, `username`, `password`, `pass_raw`, `role`, `status`) VALUES
-(10, NULL, 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '1234', 'Customer', 'Active'),
+(10, 'user/Br1XNv8nzJt6hlk0Iq6fBpVWXLMIRg6uSSwuibxV.jpeg', 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', 'Customer', 'Active'),
 (13, NULL, 'felix', '$2y$10$VG18oVVKuE5wv9zGHU.uGeZ5KUyRalce4rivYQlg18OtoYsYLB6a2', '12121', 'Customer', 'Inactive'),
 (14, NULL, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
 (15, NULL, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
@@ -513,7 +521,6 @@ INSERT INTO `user` (`user_id`, `image`, `username`, `password`, `pass_raw`, `rol
 (27, NULL, 'ferry', '$2y$10$VkKbqYzkNNPkJYYWbqGlE.px/FfPsToFO14X.puCpXY.yrnQ35MvG', '1212', 'Customer', 'Active'),
 (28, NULL, 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active'),
 (29, NULL, 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active'),
-(30, 'user/aLdWNM4QfOEOa7Mx2XJo1G3blsnVoshy1s5OmCpz.jpeg', 'jfp', '$2y$10$MVebCUgupSGKb57sbY8Ce..dnGltx0cvQjOOPbUBtK8rG4e/ULZCW', '1212', 'Admin', 'Active'),
 (31, 'user/Tu6F0XXfkIUhafEGI9mEXRJaKVo2ORe0nc4Pjm8S.jpeg', 'jfptrg', '$2y$10$stMu7jVY3WRRjBMadmzq4.K.vJPhSZaqoJD8V.hixXo4LPbKfmvZO', '1212', 'Admin', 'Active'),
 (32, 'user/gXEDv8mkmJLE5cQLiP4ZqWHeCONHYDGWbPMxg5Kn.jpeg', 'jfptrg', '$2y$10$Wt6ho5SrwUna74xKwQZgnOXmE.DlwTXPuEJ2K2C1G5St9HhQREPEO', '1212', 'Admin', 'Active'),
 (33, '', 'jfptrgt', '$2y$10$MoOK/wMEWOveXIf9TVtGp.zJo78zAEvP2buBBtbdPD7vG.OKyIizi', '1212', 'Customer', 'Active'),
@@ -576,7 +583,7 @@ CREATE TABLE `user_customer` (
 --
 
 INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `company_id`, `user_id`) VALUES
-(13, 'manasye', 'GM', 'Islam', '1998-12-12', 'mans@gmail.com', 'Key Person', 1, 10),
+(13, 'manasye', 'GM', 'Islam', '1998-12-01', 'mans@gmail.com', 'Key Person', 1, 10),
 (14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 13),
 (15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 15),
 (17, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 8, 21),
@@ -785,7 +792,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `company_ads`
 --
 ALTER TABLE `company_ads`
-  MODIFY `company_ads_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `company_ads_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `complaint`
@@ -821,7 +828,7 @@ ALTER TABLE `gmf_cp`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -25,19 +25,43 @@ class ChatController extends Controller
         $sender = array();
         $user = DB::table('user')->where('user_id',$id)->get();
         if ($user[0]->role == "Customer"){
-            $message = DB::table('message')->where('user_id',$id)->orWhere('rcv_user_id',$id)->orderBy('created_at')->get();
+            $message = DB::table('message')->where('user_id',$id)->orWhere('rcv_user_id',$id)->orderBy('created_at','ASC')->get();
+            $response = $message;
         }else{
+            $response = array();
             $message = DB::table('message')->orderBy('created_at')->get();
             foreach ($message as $msg){
-                if (!in_array($msg->sender,$sender) && $msg->sender != "admin"){
-                    $sender[] = $msg->sender;
+                if (!in_array($msg->user_id,$sender) && $msg->sender != "admin"){
+                    $sender[] = $msg->user_id;
                 }
+            }
+            foreach ($sender as $send){
+                $message_user = DB::table('message')->where('user_id',$send)->orWhere('rcv_user_id',$send)->orderBy('created_at','ASC')->get();
+                $unread = 0;
+                foreach ($message_user as $msgu){
+                    if (!$msgu->already_read){
+                        $unread = $unread + 1;
+                    }
+                }
+                $user_customer = DB::table('user_customer')->where('user_id',$send)->get();
+                $user = DB::table('user')->where('user_id',$send)->get();
+                $rsp_body = (object)[
+                    $send => ([
+                        "name" => $user_customer[0]->name,
+                        "image" => $user[0]->image,
+                        "last_message" => $message_user[sizeof($message_user)-1],
+                        "messages" => $message_user,
+                        "unread_count" => $unread
+                    ])
+                ];
+
+                $response[] = $rsp_body;
+
             }
         }
         
         return response()->json([
-            'message' => $message,
-            'sender' => $sender
+            $response
         ]);
     }
 
@@ -84,6 +108,22 @@ class ChatController extends Controller
         broadcast(new MessageSent($message));
         return response()->json([
             'message' => "Message Sent"
+        ]);
+    }
+
+    public function readMessage($sender_id, $receiver_id){
+        $user = DB::table('user')->where('user_id',$receiver_id)->get();
+        if ($user[0]->role == "Customer"){
+            DB::table('message')->where('rcv_user_id',$receiver_id)->update([
+                "already_read" => true
+            ]);
+        }else{
+            DB::table('message')->where('user_id',$sender_id)->update([
+                "already_read" => true
+            ]);
+        }
+        return response()->json([
+            'message' => "Already Read Updated"
         ]);
     }
 }
