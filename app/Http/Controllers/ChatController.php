@@ -39,19 +39,21 @@ class ChatController extends Controller
                 $message_user = DB::table('message')->where('user_id',$send)->orWhere('rcv_user_id',$send)->orderBy('created_at','ASC')->get();
                 $unread = 0;
                 foreach ($message_user as $msgu){
-                    if (!$msgu->already_read){
+                    if ($msgu->already_read == 0 && $msgu->user_id != $id){
                         $unread = $unread + 1;
                     }
                 }
                 $user_customer = DB::table('user_customer')->where('user_id',$send)->get();
                 $user = DB::table('user')->where('user_id',$send)->get();
+                $company = DB::table('company')->where('company_id',$user_customer[0]->company_id)->get();
                 $rsp_body = (object)[
                     $send => ([
                         "name" => $user_customer[0]->name,
                         "image" => $user[0]->image,
                         "last_message" => $message_user[sizeof($message_user)-1],
                         "messages" => $message_user,
-                        "unread_count" => $unread
+                        "unread_count" => $unread,
+                        "company" => $company[0]->name
                     ])
                 ];
 
@@ -124,6 +126,45 @@ class ChatController extends Controller
         }
         return response()->json([
             'message' => "Already Read Updated"
+        ]);
+    }
+
+    public function searchMessage($query){
+        $sender = array();
+        $response = array();
+        $message = DB::table('message')->orderBy('created_at')->get();
+        foreach ($message as $msg){
+            if (!in_array($msg->user_id,$sender) && $msg->sender != "admin"){
+                $sender[] = $msg->user_id;
+            }
+        }
+        foreach ($sender as $send){
+            $message_user = DB::table('message')->where('user_id',$send)->orWhere('rcv_user_id',$send)->orderBy('created_at','ASC')->get();
+            $unread = 0;
+            foreach ($message_user as $msgu){
+                if ($msgu->already_read == 0 && $msgu->receiver == "admin"){
+                    $unread = $unread + 1;
+                }
+            }
+            $user_customer = DB::table('user_customer')->where('user_id',$send)->get();
+            $user = DB::table('user')->where('user_id',$send)->get();
+            $company = DB::table('company')->where('company_id',$user_customer[0]->company_id)->get();
+            if ((strpos($user_customer[0]->name,$query) !== false) || (strpos($message_user[sizeof($message_user)-1]->message,$query)!==false)){
+                $rsp_body = (object)[
+                    $send => ([
+                        "name" => $user_customer[0]->name,
+                        "image" => $user[0]->image,
+                        "last_message" => $message_user[sizeof($message_user)-1],
+                        "messages" => $message_user,
+                        "unread_count" => $unread,
+                        "company" => $company[0]->name
+                    ])
+                ];
+                $response[] = $rsp_body;
+            }
+        }
+        return response()->json([
+            $response
         ]);
     }
 }
