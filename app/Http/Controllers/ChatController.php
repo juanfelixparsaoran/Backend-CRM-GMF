@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Events\MessageSent;
+use Illuminate\Support\Facades\Storage;
 
 class ChatController extends Controller
 {
@@ -26,7 +27,17 @@ class ChatController extends Controller
         $user = DB::table('user')->where('user_id',$id)->get();
         if ($user[0]->role == "Customer"){
             $message = DB::table('message')->where('user_id',$id)->orWhere('rcv_user_id',$id)->orderBy('created_at','ASC')->get();
+            $unread = 0;
+            foreach ($message as $msgu){
+                if ($msgu->already_read == 0 && $msgu->user_id != $id){
+                    $unread = $unread + 1;
+                }
+            }
             $response = $message;
+            return response()->json([
+                "message" => $response,
+                "unread_count" => $unread
+            ]);
         }else{
             $response = array();
             $message = DB::table('message')->orderBy('created_at')->get();
@@ -60,11 +71,10 @@ class ChatController extends Controller
                 $response[] = $rsp_body;
 
             }
+            return response()->json([
+                $response
+            ]);
         }
-        
-        return response()->json([
-            $response
-        ]);
     }
 
     /**
@@ -90,24 +100,36 @@ class ChatController extends Controller
             $rcvr_detail = DB::table('user_customer')->where('user_id',$request->rcvr_id)->get();
             $receiver = $rcvr_detail[0]->name;
         }
-        
-        DB::table('message')->insert([
-            'message' => $request->message,
-            'user_id' => $request->user_id,
-            'sender' => $sender,
-            'created_at' => now(),
-            'receiver' => $receiver,
-            'rcv_user_id' => $request->rcvr_id,
-        ]);
-        $message = (object)([
-            'message' => $request->message,
-            'sender' => $user_detail[0]->name,
-            'user_id' => $request->user_id,
-            'receiver' => $receiver,
-            'rcvr_id' => $request->rcvr_id,
-        ]);
+        if ($request->type == "text"){
+            DB::table('message')->insert([
+                'message' => $request->message,
+                'user_id' => $request->user_id,
+                'sender' => $sender,
+                'created_at' => now(),
+                'receiver' => $receiver,
+                'rcv_user_id' => $request->rcvr_id,
+            ]);
+        }else{
+            $path = $request->file != NULL ? Storage::putFile('chat', $request->file) : "";
+            DB::table('message')->insert([
+                'message' => $path,
+                'user_id' => $request->user_id,
+                'sender' => $sender,
+                'created_at' => now(),
+                'receiver' => $receiver,
+                'rcv_user_id' => $request->rcvr_id,
+                'type' => $request->type
+            ]);
+        }
+        // $message = (object)([
+        //     'message' => $request->message,
+        //     'sender' => $user_detail[0]->name,
+        //     'user_id' => $request->user_id,
+        //     'receiver' => $receiver,
+        //     'rcvr_id' => $request->rcvr_id,
+        // ]);
 
-        broadcast(new MessageSent($message));
+        // broadcast(new MessageSent($message));
         return response()->json([
             'message' => "Message Sent"
         ]);

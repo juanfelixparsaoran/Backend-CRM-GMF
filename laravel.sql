@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 06:55 AM
+-- Generation Time: Dec 07, 2019 at 05:47 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -278,6 +278,7 @@ INSERT INTO `gmf_cp` (`gmf_cp_id`, `name`, `position`, `phone`, `email`) VALUES
 CREATE TABLE `message` (
   `message_id` int(255) NOT NULL,
   `message` mediumtext DEFAULT NULL,
+  `type` varchar(100) NOT NULL DEFAULT 'text',
   `sender` varchar(1000) DEFAULT NULL,
   `user_id` int(255) NOT NULL,
   `receiver` varchar(1000) DEFAULT NULL,
@@ -291,13 +292,16 @@ CREATE TABLE `message` (
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`message_id`, `message`, `sender`, `user_id`, `receiver`, `rcv_user_id`, `already_read`, `created_at`, `updated_at`) VALUES
-(1, 'asdasdasdada', 'admin', 14, 'manasye', 10, 1, '2019-11-21 17:00:00', NULL),
-(2, 'asas', 'manasye', 10, 'admin', NULL, 1, '2019-11-20 17:00:00', NULL),
-(3, 'asas', 'manasye', 10, 'admin', NULL, 1, '2019-11-22 17:00:00', NULL),
-(4, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'manasye', 10, 'admin', NULL, 1, '2019-11-26 04:08:53', NULL),
-(5, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'admin', 14, 'manasye', 10, 1, '2019-11-26 04:11:22', NULL),
-(6, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'Juan Felix', 13, 'admin', NULL, 1, '2019-12-03 22:40:39', NULL);
+INSERT INTO `message` (`message_id`, `message`, `type`, `sender`, `user_id`, `receiver`, `rcv_user_id`, `already_read`, `created_at`, `updated_at`) VALUES
+(1, 'asdasdasdada', 'text', 'admin', 14, 'manasye', 10, 1, '2019-11-21 17:00:00', NULL),
+(2, 'asas', 'text', 'manasye', 10, 'admin', NULL, 1, '2019-11-20 17:00:00', NULL),
+(3, 'asas', 'text', 'manasye', 10, 'admin', NULL, 1, '2019-11-22 17:00:00', NULL),
+(4, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'manasye', 10, 'admin', NULL, 1, '2019-11-26 04:08:53', NULL),
+(5, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'admin', 14, 'manasye', 10, 1, '2019-11-26 04:11:22', NULL),
+(6, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Juan Felix', 13, 'admin', NULL, 1, '2019-12-03 22:40:39', NULL),
+(7, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Juan', 15, 'admin', NULL, 1, '2019-12-04 21:10:15', NULL),
+(8, 'yaya', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-04 21:10:47', NULL),
+(9, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Ferry', 29, 'admin', NULL, 0, '2019-12-04 21:22:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -828,7 +832,7 @@ ALTER TABLE `gmf_cp`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`
