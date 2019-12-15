@@ -108,6 +108,7 @@ class ChatController extends Controller
                 'created_at' => now(),
                 'receiver' => $receiver,
                 'rcv_user_id' => $request->rcvr_id,
+                'type' => "text"
             ]);
         }else{
             $path = $request->file != NULL ? Storage::putFile('chat', $request->file) : "";

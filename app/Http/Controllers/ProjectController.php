@@ -21,7 +21,7 @@ class ProjectController extends Controller
     }
 
     function readProjectInCompany($id){
-        $project = DB::table('project')->join('company','project.company_id','=','company.company_id')->where('project.company_id',$id)->get();
+        $project = DB::table('project')->where('company_id',$id)->get();
         return response()->json([
             'data' => $project
         ]);
