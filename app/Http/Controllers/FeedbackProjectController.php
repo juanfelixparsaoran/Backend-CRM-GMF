@@ -94,7 +94,7 @@ class FeedbackProjectController extends Controller
                 'aspect_to_improve' => $service['aspect_to_improve'],
                 'remark' => $service['remark'],
                 'company_id' => $customer[0]->company_id,
-                'user_customer_id' => $customer[0]->user_customer_id,
+                'user_id' => $request->user_id,
                 'project_id' => $request->project_id,
                 'service_id' => $service1[0]->service_id
             ]);
