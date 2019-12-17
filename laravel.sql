@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 01:50 AM
+-- Generation Time: Dec 17, 2019 at 05:24 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -182,7 +182,8 @@ INSERT INTO `cp_company` (`cp_company_id`, `gmf_cp_id`, `company_id`) VALUES
 (3, 8, 1),
 (4, 9, 1),
 (5, 10, 1),
-(6, 12, 1);
+(6, 12, 1),
+(7, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -235,7 +236,14 @@ CREATE TABLE `feedback_project` (
 
 INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating`, `aspect_to_improve`, `remark`, `user_id`, `company_id`, `project_id`, `service_id`) VALUES
 (20, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 4, 8),
-(21, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18);
+(21, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18),
+(22, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 4, 8),
+(23, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18),
+(24, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 6, 8),
+(25, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 6, 18),
+(26, '2019-12-17', 'manasye', 2, 'Product Quality', NULL, 10, 1, 6, 8),
+(27, '2019-12-17', 'manasye', 4, 'Quality Assurance Team', NULL, 10, 1, 6, 18),
+(28, '2019-12-17', 'manasye', 0.5, 'Product Quality', NULL, 10, 1, 6, 8);
 
 -- --------------------------------------------------------
 
@@ -245,6 +253,7 @@ INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating
 
 CREATE TABLE `gmf_cp` (
   `gmf_cp_id` int(100) NOT NULL,
+  `image` varchar(1000) NOT NULL DEFAULT 'user/default.png',
   `name` varchar(100) NOT NULL,
   `position` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
@@ -255,12 +264,13 @@ CREATE TABLE `gmf_cp` (
 -- Dumping data for table `gmf_cp`
 --
 
-INSERT INTO `gmf_cp` (`gmf_cp_id`, `name`, `position`, `phone`, `email`) VALUES
-(7, 'Dseni', 'Staff Engineering', '08127382919', 'ysf@gmail.com'),
-(8, 'Dewi', 'Staff Marketing', '081273829182', 'deni@gmail.com'),
-(9, 'Pol', 'Staff Marketing', '081273829182', 'pol@gmail.com'),
-(10, 'Pola', 'Staff Marketing', '081273829182', 'pola@gmail.com'),
-(12, 'Adit', 'Staff Marketing', '081273829182', 'adit@gmail.com');
+INSERT INTO `gmf_cp` (`gmf_cp_id`, `image`, `name`, `position`, `phone`, `email`) VALUES
+(7, 'user/default.png', 'Dseni', 'Staff Engineering', '08127382919', 'ysf@gmail.com'),
+(8, 'user/default.png', 'Dewi', 'Staff Marketing', '081273829182', 'deni@gmail.com'),
+(9, 'user/default.png', 'Pol', 'Staff Marketing', '081273829182', 'pol@gmail.com'),
+(10, 'user/default.png', 'Pola', 'Staff Marketing', '081273829182', 'pola@gmail.com'),
+(12, 'user/default.png', 'Adit', 'Staff Marketing', '081273829182', 'adit@gmail.com'),
+(13, 'user/1gFg8YRuuDSYhDdayVnQjZyq6mHhOgxAUX0swPMf.jpeg', 'Edak', 'Staff Marketing', '081273829182', 'adit@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -392,9 +402,9 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `A/C_Reg`, `location`, `type`, `company_id`, `jobcard_status`, `mdr_status`, `mrm_status`) VALUES
-(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
+(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
 (5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, NULL, NULL, NULL),
-(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
+(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -502,7 +512,7 @@ INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_ima
 
 CREATE TABLE `user` (
   `user_id` int(20) NOT NULL,
-  `image` varchar(1000) DEFAULT NULL,
+  `image` varchar(1000) DEFAULT 'user/default.png',
   `username` varchar(50) NOT NULL,
   `password` text NOT NULL,
   `pass_raw` varchar(100) NOT NULL,
@@ -803,7 +813,7 @@ ALTER TABLE `complaint`
 -- AUTO_INCREMENT for table `cp_company`
 --
 ALTER TABLE `cp_company`
-  MODIFY `cp_company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cp_company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `feedback_nonproject`
@@ -815,13 +825,13 @@ ALTER TABLE `feedback_nonproject`
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `gmf_cp`
 --
 ALTER TABLE `gmf_cp`
-  MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `message`
