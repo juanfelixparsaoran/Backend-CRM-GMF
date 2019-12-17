@@ -99,6 +99,18 @@ class FeedbackProjectController extends Controller
                 'service_id' => $service1[0]->service_id
             ]);
         }
+        $feedback_project = DB::table('feedback_project')->where('project_id',$request->project_id)->get();
+        $rating = 0;
+        foreach ($feedback_project as $fp){
+            $rating = $fp->rating + $rating;
+        }
+        $avg = $rating/sizeof($feedback_project);
+        $avg = round($avg*2)/2;
+
+        DB::table('project')->where('project_id',$request->project_id)->update([
+            'rating' => $avg
+        ]);
+
         return response()->json([
             'message' => 'feedback_project Created'
         ]);
