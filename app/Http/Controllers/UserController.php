@@ -92,7 +92,7 @@ class UserController extends Controller
         DB::table('user')->where('user_id',$request->id)->update([
             'username' => $request->username != NULL ? $request->username : $user[0]->username,
             'password' => $request->password != NULL ? bcrypt($request->password) : $user[0]->password,
-            'pass_raw' => $request->password != NULL ? $request->password : $user[0]->password,
+            'pass_raw' => $request->password != NULL ? $request->password : $user[0]->pass_raw,
             'image' => $path
         ]);
         
