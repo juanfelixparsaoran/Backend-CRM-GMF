@@ -46,9 +46,11 @@ class ServiceController extends Controller
         DB::table('service')->where('service_id',$request->id)->update([
             'name' => ($request->name != NULL ? $request->name : $service[0]->name),
             'detail' => ($request->detail != NULL ? $request->detail : $service[0]->detail),
+            'permalink' => $request->permalink != NULL ? $request->permalink : $service[0]->permalink,
             'large_image' => $path_large,
             'small_image1' => $path_small1,
             'small_image2' => $path_small2,
+            'permalink' => $request->permalink,
             'updated_at' => now(),
         ]);
     
@@ -58,7 +60,9 @@ class ServiceController extends Controller
     }
     function delete($id){
         DB::table('service')->where('service_id',$id)->delete();
-        return 'deleted';
+        return response()->json([
+            'message' => 'Service Deleted'
+        ]);
     }
 
     function create(Request $request){
@@ -71,6 +75,7 @@ class ServiceController extends Controller
             'large_image' => $path_large,
             'small_image1' => $path_small1,
             'small_image2' => $path_small2,
+            'permalink' => $request->permalink,
             'updated_at' => now(),
             'created_at' => now(),
         ]);

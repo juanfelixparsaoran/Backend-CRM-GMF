@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
-        $path = $request->image != NULL ? Storage::putFile('user', $request->image) : "";
+        $path = $request->image != NULL ? Storage::putFile('user', $request->image) : "user/default.png";
         DB::table('user')->insert([
             'username' => $request->username,
             'password' => bcrypt($request->password),

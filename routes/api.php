@@ -145,6 +145,12 @@ Route::get('/messages/search/{query}', 'ChatController@searchMessage');
 
 Route::get('/popup/read/{id}', 'PopUpController@read');
 
+Route::get('/fleet/read','FleetMaintController@read');
+Route::get('/fleet/read/{product}','FleetMaintController@readByProduct');
+Route::post('/fleet/update','FleetMaintController@update');
+Route::get('/fleet/delete/{id}','FleetMaintController@delete');
+Route::post('/fleet/create','FleetMaintController@create');
+
 
 
 
