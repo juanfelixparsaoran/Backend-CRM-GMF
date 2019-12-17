@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 05:24 AM
+-- Generation Time: Dec 17, 2019 at 05:31 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -512,7 +512,7 @@ INSERT INTO `service` (`service_id`, `name`, `detail`, `large_image`, `small_ima
 
 CREATE TABLE `user` (
   `user_id` int(20) NOT NULL,
-  `image` varchar(1000) DEFAULT 'user/default.png',
+  `image` varchar(1000) NOT NULL DEFAULT 'user/default.png',
   `username` varchar(50) NOT NULL,
   `password` text NOT NULL,
   `pass_raw` varchar(100) NOT NULL,
@@ -526,13 +526,13 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `image`, `username`, `password`, `pass_raw`, `role`, `status`) VALUES
 (10, 'user/Br1XNv8nzJt6hlk0Iq6fBpVWXLMIRg6uSSwuibxV.jpeg', 'mans', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', '$2y$10$O6hmFVKdYOYtEmjE2MZTIer7FTLrVHfJBwJM.6fu4P5byBUIB3EDe', 'Customer', 'Active'),
-(13, NULL, 'felix', '$2y$10$VG18oVVKuE5wv9zGHU.uGeZ5KUyRalce4rivYQlg18OtoYsYLB6a2', '12121', 'Customer', 'Inactive'),
-(14, NULL, 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
-(15, NULL, 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
-(19, NULL, 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active'),
-(22, NULL, 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active'),
-(28, NULL, 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active'),
-(29, NULL, 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active'),
+(13, 'user/default.png', 'felix', '$2y$10$VG18oVVKuE5wv9zGHU.uGeZ5KUyRalce4rivYQlg18OtoYsYLB6a2', '12121', 'Customer', 'Inactive'),
+(14, 'user/default.png', 'jfp', '$2y$10$WKweNWLRo6E1ytRKoRJY3.zVemR98U08L6UHpzV50BNtDtFED3XDW', '1212', 'Admin', 'Active'),
+(15, 'user/default.png', 'juanf', '$2y$10$NdLvh8VWl9e8dkHcle7F/ucoIzGfoIhIE35jqUBrk7L6kSfDMSODK', '1212', 'Customer', 'Active'),
+(19, 'user/default.png', 'vius', '$2y$10$R5.lRzeXDqiAa/Nj17ys.ONDcF.UWJVpDe6Q6SWk4VDEBgJTo9m1m', '1212', 'Guest', 'Active'),
+(22, 'user/default.png', 'fetrg', '$2y$10$.cRQCYSdkXflqcugej0S/OAw/5ET8F9sVPN1n.Bvk8iOGU.8EKGNm', '1212', 'Customer', 'Active'),
+(28, 'user/default.png', 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active'),
+(29, 'user/default.png', 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active'),
 (34, 'user/kGs9hRDj3gF5yBVj9MCGN6UFpI3vCSLlgwVyZtYp.jpeg', 'feryyyy', '$2y$10$LClVHOlg.PNw6s4rjS.M8Ovs4SJhtGEyPY7MET1Q9fBNHvAxSPSmy', '12121', 'Customer', 'Active');
 
 -- --------------------------------------------------------
