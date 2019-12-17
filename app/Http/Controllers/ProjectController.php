@@ -67,20 +67,26 @@ class ProjectController extends Controller
         ]);
     }
     function create(Request $request){
-        $company = DB::table('company')->where('name',$request->company_name)->get();
-        DB::table('project')->insert([
-            'name' => $request->name,
-            'start' => $request->start,
-            'finish' => $request->finish,
-            'project_type' => $request->project_type,
-            'quantity' => $request->quantity,
-            'company_id' => $company[0]->company_id,
-            'location' => $request->location,
-            'A/C_Reg' => $request->ac_reg,
-            'type' => $request->type
-        ]);
-        return response()->json([
-            'message' => 'Project Created'
-        ]);
+        if ($request->start < $request->finish){
+            $company = DB::table('company')->where('name',$request->company_name)->get();
+            DB::table('project')->insert([
+                'name' => $request->name,
+                'start' => $request->start,
+                'finish' => $request->finish,
+                'project_type' => $request->project_type,
+                'quantity' => $request->quantity,
+                'company_id' => $company[0]->company_id,
+                'location' => $request->location,
+                'A/C_Reg' => $request->ac_reg,
+                'type' => $request->type
+            ]);
+            return response()->json([
+                'message' => 'Project Created'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Start date must be earlier than finish date'
+            ]);
+        }
     }
 }

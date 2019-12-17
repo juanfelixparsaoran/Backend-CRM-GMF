@@ -87,7 +87,7 @@ class ComplaintController extends Controller
             'complaint' => $request->complaint,
             'sender' => $customer[0]->name,
             'company_id' => $customer[0]->company_id,
-            'user_customer_id' => $customer[0]->user_customer_id,
+            'user_id' => $request->user_id,
             'file' => $path
         ]);
         return response()->json([

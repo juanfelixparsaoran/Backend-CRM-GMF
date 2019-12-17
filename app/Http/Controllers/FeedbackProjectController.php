@@ -83,7 +83,7 @@ class FeedbackProjectController extends Controller
     }
 
     function create(Request $request){
-        // print_r($request->service[0]["service"]);
+        
         $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
         foreach ($request->service as $service){
             $service1 = DB::table('service')->where('name',$service['service'])->get();
