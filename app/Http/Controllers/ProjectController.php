@@ -50,11 +50,11 @@ class ProjectController extends Controller
             'finish' => $request->finish != NULL ? $request->finish : $project[0]->finish,
             'project_type' => $request->project_type != NULL ? $request->project_type : $project[0]->project_type,
             'quantity' => $request->quantity != NULL ? $request->quantity : $project[0]->quantity,
-            'rating' => $request->$request->rating != NULL ? $request->rating : $project[0]->rating,
-            'status' => $request->$request->status != NULL ? $request->status : $project[0]->status,
-            'location' => $request->$request->location != NULL ? $request->location : $project[0]->location,
-            'A/C_Reg' => $request->$request->ac_reg != NULL ? $request->ac_reg : $project[0]->ac_reg,
-            'type' => $request->$request->type != NULL ? $request->type : $project[0]->type,
+            'rating' => $request->rating != NULL ? $request->rating : $project[0]->rating,
+            'status' => $request->status != NULL ? $request->status : $project[0]->status,
+            'location' => $request->location != NULL ? $request->location : $project[0]->location,
+            'A/C_Reg' => $request->ac_reg != NULL ? $request->ac_reg : $project[0]->ac_reg,
+            'type' => $request->type != NULL ? $request->type : $project[0]->type,
         ]);
         return response()->json([
             'message' => 'Project Updated'
