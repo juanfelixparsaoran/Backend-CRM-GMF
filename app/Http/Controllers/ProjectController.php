@@ -53,7 +53,7 @@ class ProjectController extends Controller
             'rating' => $request->rating != NULL ? $request->rating : $project[0]->rating,
             'status' => $request->status != NULL ? $request->status : $project[0]->status,
             'location' => $request->location != NULL ? $request->location : $project[0]->location,
-            'A/C_Reg' => $request->ac_reg != NULL ? $request->ac_reg : $project[0]->ac_reg,
+            'ac_reg' => $request->ac_reg != NULL ? $request->ac_reg : $project[0]->ac_reg,
             'type' => $request->type != NULL ? $request->type : $project[0]->type,
         ]);
         return response()->json([
@@ -77,7 +77,7 @@ class ProjectController extends Controller
                 'quantity' => $request->quantity,
                 'company_id' => $company[0]->company_id,
                 'location' => $request->location,
-                'A/C_Reg' => $request->ac_reg,
+                'ac_reg' => $request->ac_reg,
                 'type' => $request->type
             ]);
             return response()->json([
