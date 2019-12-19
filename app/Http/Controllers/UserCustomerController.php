@@ -15,7 +15,7 @@ class UserCustomerController extends Controller
     }
 
     function edit($id){
-        $user_customer = DB::table('user_customer')->where('user_customer_id',$id)->get();
+        $user_customer = DB::table('user_customer')->where('user_customer_id',$id)->get(['new_info']);
         if (!$user_customer->isEmpty()){
             return response()->json([
                 'message' => 'Customer found',
