@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
-
+use App\Exports\CompanyExport;
+use App\Imports\CompanyImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Company;
 class CompanyController extends Controller
 {
     function read(){
@@ -99,5 +102,16 @@ class CompanyController extends Controller
         return response()->json([
             'message' => 'Company Created'
         ]);
+    }
+
+    public function export_excel(){
+        return Excel::download(new CompanyExport, 'company.xlsx');
+    }
+
+    public function import_excel(Request $request){
+        $path = Storage::putFile('form_company', $request->file);
+        $url = \config('filesystems.disks.local.root');
+        Excel::import(new CompanyImport, $url."/".$path);
+        return "Successfully add Customer";
     }
 }
