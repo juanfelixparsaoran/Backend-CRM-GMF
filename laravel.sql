@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2019 at 11:26 AM
+-- Generation Time: Dec 19, 2019 at 09:08 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -126,7 +126,8 @@ CREATE TABLE `company_ads` (
 --
 
 INSERT INTO `company_ads` (`company_ads_id`, `company_id`, `ads_id`) VALUES
-(9, 1, 16);
+(9, 1, 16),
+(10, 8, 21);
 
 -- --------------------------------------------------------
 
@@ -399,7 +400,9 @@ INSERT INTO `newsletter` (`newsletter_id`, `subject`, `image`, `permalink`, `cre
 (24, 'Newsletter Marketing', 'newsletter/Y9kt5NrfYU44GbizbTZnA72g4TNapVl11RGxD5UB.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 06:00:53.000000', '2019-11-16 06:00:53.000000'),
 (25, 'Newsletter Marketing', 'newsletter/49Y29fPcVTuo75iJ9H1D7LX4uTIr4ZjHPwUnBljC.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-11-16 06:01:17.000000', '2019-11-16 06:01:17.000000'),
 (26, 'Newsletter Marketing', '', 'http://www.gmf-aeroasia.co.id', '2019-11-17 23:42:48.000000', '2019-11-17 23:42:48.000000'),
-(27, 'Newsletter Marketing', '', 'http://www.gmf-aeroasia.co.id', '2019-11-17 23:46:36.000000', '2019-11-17 23:46:36.000000');
+(27, 'Newsletter Marketing', '', 'http://www.gmf-aeroasia.co.id', '2019-11-17 23:46:36.000000', '2019-11-17 23:46:36.000000'),
+(28, 'Newsletter Marketing', 'newsletter/q2xvUt1sV0sBdWGOKyg1P3s7x4nFQU5ySml3u2Zx.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-12-19 00:35:49.000000', '2019-12-19 00:35:49.000000'),
+(29, 'Newsletter Marketing', 'newsletter/CAA8eNxZMJJPt25jygFHHdVX91NyJdPFtci0OAvz.jpeg', 'http://www.gmf-aeroasia.co.id', '2019-12-19 00:40:40.000000', '2019-12-19 00:40:40.000000');
 
 -- --------------------------------------------------------
 
@@ -471,7 +474,7 @@ CREATE TABLE `religion_card` (
 INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`, `created_at`, `updated_at`) VALUES
 (5, 'Christmas', 'religioncard/4e40DGMrAcCHptg7DCvHHEeSHSJaMsNlUX3Sz2Tw.jpeg', 'Kristen', '2019-12-01', 'www.gmf-aeroasia.co.id/religioncard/christmas', '2019-11-13 06:32:37', '2019-11-13 06:35:36'),
 (6, 'Nyepi', 'religioncard/rRD1e1y8S3Pdhh2AHOdKutXgjQoXahGmGwaCLH96.webp', 'Hindu', '2019-11-30', 'www.gmf-aeroasia.co.id/religioncard/nyepi', '2019-11-13 06:33:44', '2019-11-13 06:35:40'),
-(7, 'Eid Mubarak Holiday Card', 'religioncard/19OrE946ST73UqcKodV2LZaZpw0XbBalvHVyeVzN.jpeg', 'Islam', '2019-11-29', 'www.gmf-aeroasia.co.id/religioncard/eid', '2019-11-13 06:34:19', '2019-11-13 06:35:45');
+(7, 'Eid Mubarak Holiday Card', 'religioncard/19OrE946ST73UqcKodV2LZaZpw0XbBalvHVyeVzN.jpeg', 'Islam', '2019-12-19', 'www.gmf-aeroasia.co.id/religioncard/eid', '2019-11-13 06:34:19', '2019-11-13 06:35:45');
 
 -- --------------------------------------------------------
 
@@ -563,7 +566,8 @@ INSERT INTO `user` (`user_id`, `image`, `username`, `password`, `pass_raw`, `rol
 (28, 'user/default.png', 'ferr', '$2y$10$Hye4xEFlYvhKpWu4CzEI9.uTndpybMCn7nN9iwnybZ12Re93uvtO2', '1212', 'Customer', 'Active'),
 (29, 'user/default.png', 'feryy', '$2y$10$nAGWM0EPUWGscF9rptHtC.QdnrwLxowtT0O6IVhCGFy4Iy0GuDE7i', '1212', 'Customer', 'Active'),
 (34, 'user/kGs9hRDj3gF5yBVj9MCGN6UFpI3vCSLlgwVyZtYp.jpeg', 'feryyyy', '$2y$10$LClVHOlg.PNw6s4rjS.M8Ovs4SJhtGEyPY7MET1Q9fBNHvAxSPSmy', '12121', 'Customer', 'Active'),
-(37, 'user/default.png', 'ronald12', '$2y$10$CvEtKckufnT3yjW3f2NOt.WXHgqjTksBcudbh4LAgoXWwjkuvWt72', '1212', 'Customer', 'Active');
+(37, 'user/default.png', 'ronald12', '$2y$10$CvEtKckufnT3yjW3f2NOt.WXHgqjTksBcudbh4LAgoXWwjkuvWt72', '1212', 'Customer', 'Active'),
+(38, 'user/default.png', 'peng', '$2y$10$3aokdNbdAX/cFGuJffV.dupbS6xfu6jI7qlW5fsYod8S248JrKS2a', '1212', 'Customer', 'Active');
 
 -- --------------------------------------------------------
 
@@ -612,6 +616,7 @@ CREATE TABLE `user_customer` (
   `birthday` date NOT NULL,
   `email` varchar(50) NOT NULL,
   `customer_role` varchar(100) NOT NULL,
+  `new_info` int(11) NOT NULL DEFAULT 0,
   `company_id` int(50) NOT NULL,
   `user_id` int(100) NOT NULL DEFAULT -999
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -620,15 +625,16 @@ CREATE TABLE `user_customer` (
 -- Dumping data for table `user_customer`
 --
 
-INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `company_id`, `user_id`) VALUES
-(13, 'manasye', 'GM', 'Islam', '1998-12-01', 'mans@gmail.com', 'Key Person', 1, 10),
-(14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 13),
-(15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 15),
-(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 8, 22),
-(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 28),
-(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 8, 29),
-(23, 'Ferry', 'Engineer', 'Kristen', '1998-12-12', 'ferry@gmail.com', 'Tech', 8, 34),
-(26, 'Ronald12', 'Engineer', 'Islam', '1998-05-12', 'ron12@gmail.com', 'Tech', 8, 37);
+INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `new_info`, `company_id`, `user_id`) VALUES
+(13, 'manasye', 'GM', 'Islam', '1998-12-19', 'mans@gmail.com', 'Key Person', 0, 1, 10),
+(14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 1, 13),
+(15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 1, 15),
+(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 0, 8, 22),
+(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 2, 8, 28),
+(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 2, 8, 29),
+(23, 'Ferry', 'Engineer', 'Kristen', '1998-12-12', 'ferry@gmail.com', 'Tech', 2, 8, 34),
+(26, 'Ronald12', 'Engineer', 'Islam', '1998-05-12', 'ron12@gmail.com', 'Tech', 2, 8, 37),
+(27, 'Peng', 'Engineer', 'Islam', '1998-05-12', 'peng@gmail.com', 'Tech', 2, 8, 38);
 
 -- --------------------------------------------------------
 
@@ -838,7 +844,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `company_ads`
 --
 ALTER TABLE `company_ads`
-  MODIFY `company_ads_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `company_ads_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `complaint`
@@ -892,7 +898,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -928,7 +934,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `user_admin`
@@ -946,7 +952,7 @@ ALTER TABLE `user_birthday_card`
 -- AUTO_INCREMENT for table `user_customer`
 --
 ALTER TABLE `user_customer`
-  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `user_customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user_guest`

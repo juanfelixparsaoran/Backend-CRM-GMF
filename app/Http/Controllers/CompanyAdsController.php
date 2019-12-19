@@ -14,6 +14,12 @@ class CompanyAdsController extends Controller
                 'ads_id' => $ads_id,
                 'company_id' => $company_id
             ]);
+            $customer = DB::table('user_customer')->where('company_id',$company_id)->get();
+            foreach ($customer as $cust){
+                DB::table('user_customer')->where('user_customer_id',$cust->user_customer_id)->update([
+                    "new_info" => $cust->new_info + 1
+                ]);
+            }
             return response()->json([
                 'message' => 'Ads added to active ads'
             ]);

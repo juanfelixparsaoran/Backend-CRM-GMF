@@ -19,17 +19,25 @@ class InformationController extends Controller
             $data[] = $ads[0];
         }
 
-        // $birthday_card = DB::table('birthday_card')->get(['subject','updated_at','image']);
-        // foreach ($birthday_card as $bc){
-        //     $bc->category = 'Birthday Card';
-        //     $data[] = $bc;
-        // }
+        $birthday_card = DB::table('birthday_card')->get(['subject','updated_at','image']);
+        foreach ($birthday_card as $bc){
+            $date = strtotime($customer[0]->birthday);
+            $temp = date('m-d',$date);
+            if (now()->format('m-d') == $temp){
+                $bc->category = 'Birthday Card';
+                $data[] = $bc;
+            }
+        }
 
-        $religion_card = DB::table('religion_card')->get(['subject','updated_at','image','religion']);
+        $religion_card = DB::table('religion_card')->get();
         foreach ($religion_card as $rc){
             if ($rc->religion == $customer[0]->religion){
-                $rc->category = 'Holiday Card';
-                $data[] = $rc;
+                $date = strtotime($rc->date);
+                $temp = date('Y-m-d',$date);
+                if (now()->format('Y-m-d') == $temp){
+                    $rc->category = 'Holiday Card';
+                    $data[] = $rc;
+                }
             }
         }
 
@@ -40,4 +48,14 @@ class InformationController extends Controller
         }
         return $data;
     }
+
+    function readInformation($id){
+        DB::table('user_customer')->where('user_id',$id)->update([
+            'new_info' => 0
+        ]);
+        return response()->json([
+            'message' => 'Read Information'
+        ]);
+    }
+
 }
