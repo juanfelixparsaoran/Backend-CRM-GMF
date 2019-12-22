@@ -49,7 +49,7 @@ class SendHolidayCard extends Command
                     $path = $rc->image;
                     $customer = DB::table('user_customer')->get();
                     foreach ($customer as $cust){
-                        if ($cust->religion == $rc->religion){
+                        if ($cust->religion == $rc->religion || $rc->religion == "Universal"){
                             $image = "http://172.16.40.180:8080/storage/".$path;
                             
                             $name = $cust->name;

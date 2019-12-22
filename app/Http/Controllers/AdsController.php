@@ -53,6 +53,7 @@ class AdsController extends Controller
             'subject' => $request->subject != NULL ? $request->subject : $ads[0]->subject,
             'image' => $path,
             'permalink' => $request->permalink != NULL ? $request->permalink : $ads[0]->permalink,
+            'ads_interval' => $request->ads_interval != NULL ? $request->ads_interval : $ads[0]->ads_interval,
             'updated_at' => now(),
         ]);
         return response()->json([
@@ -73,6 +74,7 @@ class AdsController extends Controller
             'subject' => $request->subject,
             'permalink' => $request->permalink,
             'image' => $path,
+            'ads_interval' => $request->ads_interval,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

@@ -32,7 +32,7 @@ class InformationController extends Controller
 
         $religion_card = DB::table('religion_card')->get();
         foreach ($religion_card as $rc){
-            if ($rc->religion == $customer[0]->religion){
+            if ($rc->religion == $customer[0]->religion || $rc->religion == "Universal"){
                 $date = strtotime($rc->date);
                 $temp = date('Y-m-d',$date);
                 if (now()->format('Y-m-d') == $temp){
@@ -54,7 +54,7 @@ class InformationController extends Controller
     }
 
     function readInformation($id){
-        DB::table('user_customer')->where('user_id',$id)->update([
+        DB::table('user_customer')->where('user_customer_id',$id)->update([
             'new_info' => 0
         ]);
         return response()->json([

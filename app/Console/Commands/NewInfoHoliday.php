@@ -44,7 +44,7 @@ class NewInfoHoliday extends Command
             foreach($religion_card as $rc){
                 if (now()->toDateString == $rc->date){
                     foreach($customer as $cust){
-                        if ($cust->religion == $rc->religion){
+                        if ($cust->religion == $rc->religion || $rc->religion == "Universal"){
                             DB::table('user_customer')->where('user_customer_id',$cust->user_customer_id)->update([
                                 "new_info" => $cust->new_info + 1
                             ]);
