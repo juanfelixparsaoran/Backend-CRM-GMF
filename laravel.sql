@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2019 at 09:08 AM
+-- Generation Time: Dec 22, 2019 at 05:23 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -33,6 +33,7 @@ CREATE TABLE `ads` (
   `subject` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
   `permalink` varchar(100) NOT NULL,
+  `ads_interval` int(255) NOT NULL DEFAULT 5,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,13 +42,15 @@ CREATE TABLE `ads` (
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`, `created_at`, `updated_at`) VALUES
-(16, 'Marketing Ads', 'ads/Xo8xgcyizKzv3RHx4W94FyqXxQfliaxZDvI8iAFc.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:13', '2019-11-13 04:11:13'),
-(17, 'Engineer Ads', 'ads/YSnSlaJHZaHPDvCYdyyu5AtJXTiZ82FBGorLzOox.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-13 04:11:32', '2019-11-13 04:11:32'),
-(18, 'Engineer Ads', 'ads/KElK0OpSUGq1hyNuKZa1hVmPZQ3Ey0tlAYQrvYcl.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-16 05:12:16', '2019-11-16 05:12:16'),
-(19, 'Engineer Ads', 'ads/0zXPIlvMXFf9jLjXp8Tf9birQ7cbcLKc0Jn9wBQ3.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-16 05:12:46', '2019-11-16 05:12:46'),
-(20, 'Engineer Ads', 'ads/7kHDrAedatmqRECYp3xBFEdnqtjYARnWYVT8W6GL.jpeg', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-16 05:13:00', '2019-11-16 05:13:00'),
-(21, 'Marketing Ads', 'ads/hdob44CESZW1SGSPfiL8hbNho6C1KvFdS84V0Lvr.rtf', 'http://www.gmf-aeroasia.co.id/services/', '2019-11-17 23:21:30', '2019-11-17 23:33:33');
+INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`, `ads_interval`, `created_at`, `updated_at`) VALUES
+(16, 'Marketing Ads', 'ads/Xo8xgcyizKzv3RHx4W94FyqXxQfliaxZDvI8iAFc.jpeg', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-11-13 04:11:13', '2019-11-13 04:11:13'),
+(17, 'Engineer Ads', 'ads/YSnSlaJHZaHPDvCYdyyu5AtJXTiZ82FBGorLzOox.jpeg', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-11-13 04:11:32', '2019-11-13 04:11:32'),
+(18, 'Engineer Ads', 'ads/KElK0OpSUGq1hyNuKZa1hVmPZQ3Ey0tlAYQrvYcl.jpeg', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-11-16 05:12:16', '2019-11-16 05:12:16'),
+(19, 'Engineer Ads', 'ads/0zXPIlvMXFf9jLjXp8Tf9birQ7cbcLKc0Jn9wBQ3.jpeg', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-11-16 05:12:46', '2019-11-16 05:12:46'),
+(20, 'Engineer Ads', 'ads/7kHDrAedatmqRECYp3xBFEdnqtjYARnWYVT8W6GL.jpeg', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-11-16 05:13:00', '2019-11-16 05:13:00'),
+(21, 'Marketing Ads', 'ads/hdob44CESZW1SGSPfiL8hbNho6C1KvFdS84V0Lvr.rtf', 'http://www.gmf-aeroasia.co.id/services/', 7, '2019-11-17 23:21:30', '2019-12-22 09:17:02'),
+(22, 'Engineer Ads', '', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-12-22 09:15:10', '2019-12-22 09:15:10'),
+(23, 'Engineer Ads', '', 'http://www.gmf-aeroasia.co.id/services/', 10, '2019-12-22 09:16:15', '2019-12-22 09:16:15');
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,8 @@ INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `bu
 ('company/o8D6GM15uzUY1gVUhlu3GM0RSnXgerAIrQMXWzwh.jpeg', 'Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, 0, 0, 0, 1, NULL, NULL),
 ('company/oaEbOTlb6XesD5Qddyu2WuBhMcrybTuNTJJOik1i.png', 'Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6, NULL, NULL),
 ('company/E9tM6l49EYO3vww9lEvTzHwIqOjRFXiP5uj14tCo.jpeg', 'Nam Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7, NULL, NULL),
-('company/hgV0hrPti2S1kjhyweXlNFzmrbBk7um1P5eZk5eb.jpeg', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8, NULL, NULL);
+('company/hgV0hrPti2S1kjhyweXlNFzmrbBk7um1P5eZk5eb.jpeg', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8, NULL, NULL),
+(NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 23, '2019-12-19 07:06:45', '2019-12-19 07:06:45');
 
 -- --------------------------------------------------------
 
@@ -826,7 +830,7 @@ ALTER TABLE `user_guest`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `birthday_card`
@@ -838,7 +842,7 @@ ALTER TABLE `birthday_card`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
