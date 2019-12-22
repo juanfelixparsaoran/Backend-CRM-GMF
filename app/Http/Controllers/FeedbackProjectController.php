@@ -15,7 +15,8 @@ class FeedbackProjectController extends Controller
             $pro->company_name = $company[0]->name;
             $project = DB::table('project')->where('project_id',$pro->project_id)->get();
             $pro->location = $project[0]->location;
-            $pro->project_type = $project[0]->project_type;
+            $service = DB::table('service')->where('service_id',$pro->service_id)->get();
+            $pro->project_type = $service[0]->name;
         }
         return response()->json([
             'data' => $feedback_project
@@ -83,37 +84,48 @@ class FeedbackProjectController extends Controller
     }
 
     function create(Request $request){
-        
-        $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
+        $check = true;
         foreach ($request->service as $service){
-            $service1 = DB::table('service')->where('name',$service['service'])->get();
-            DB::table('feedback_project')->insert([
-                'date'=> now()->toDateString(),
-                'rating' => $service['rating'],
-                'sender' => $customer[0]->name,
-                'aspect_to_improve' => $service['aspect_to_improve'],
-                'remark' => $service['remark'],
-                'company_id' => $customer[0]->company_id,
-                'user_id' => $request->user_id,
-                'project_id' => $request->project_id,
-                'service_id' => $service1[0]->service_id
+            if ($service['rating'] == 0){
+                $check = false;
+            }
+        }
+        if ($check){
+            $customer = DB::table('user_customer')->where('user_id',$request->user_id)->get();
+            foreach ($request->service as $service){
+                $service1 = DB::table('service')->where('name',$service['service'])->get();
+                DB::table('feedback_project')->insert([
+                    'date'=> now()->toDateString(),
+                    'rating' => $service['rating'],
+                    'sender' => $customer[0]->name,
+                    'aspect_to_improve' => $service['aspect_to_improve'],
+                    'remark' => $service['remark'],
+                    'company_id' => $customer[0]->company_id,
+                    'user_id' => $request->user_id,
+                    'project_id' => $request->project_id,
+                    'service_id' => $service1[0]->service_id
+                ]);
+            }
+            $feedback_project = DB::table('feedback_project')->where('project_id',$request->project_id)->get();
+            $rating = 0;
+            foreach ($feedback_project as $fp){
+                $rating = $fp->rating + $rating;
+            }
+            $avg = $rating/sizeof($feedback_project);
+            $avg = round($avg*2)/2;
+
+            DB::table('project')->where('project_id',$request->project_id)->update([
+                'rating' => $avg
+            ]);
+
+            return response()->json([
+                'message' => 'feedback_project Created'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Rating cannot be 0'
             ]);
         }
-        $feedback_project = DB::table('feedback_project')->where('project_id',$request->project_id)->get();
-        $rating = 0;
-        foreach ($feedback_project as $fp){
-            $rating = $fp->rating + $rating;
-        }
-        $avg = $rating/sizeof($feedback_project);
-        $avg = round($avg*2)/2;
-
-        DB::table('project')->where('project_id',$request->project_id)->update([
-            'rating' => $avg
-        ]);
-
-        return response()->json([
-            'message' => 'feedback_project Created'
-        ]);
     }
 
     function filterOption(){

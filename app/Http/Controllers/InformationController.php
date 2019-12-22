@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class InformationController extends Controller
 {
     //
+    
     function read($id){
         $customer = DB::table('user_customer')->where('user_id',$id)->get();
         $data = array();
@@ -46,6 +47,9 @@ class InformationController extends Controller
             $nw->category = 'Newsletter';
             $data[] = $nw;
         }
+        usort($data, function($a, $b){
+            return ($a < $b);
+        });
         return $data;
     }
 
