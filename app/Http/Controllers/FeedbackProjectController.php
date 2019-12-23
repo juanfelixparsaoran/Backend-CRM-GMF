@@ -103,7 +103,8 @@ class FeedbackProjectController extends Controller
                     'company_id' => $customer[0]->company_id,
                     'user_id' => $request->user_id,
                     'project_id' => $request->project_id,
-                    'service_id' => $service1[0]->service_id
+                    'service_id' => $service1[0]->service_id,
+                    'list_feedback_project_id' => $request->list_feedback_project_id
                 ]);
             }
             $feedback_project = DB::table('feedback_project')->where('project_id',$request->project_id)->get();
@@ -116,6 +117,19 @@ class FeedbackProjectController extends Controller
 
             DB::table('project')->where('project_id',$request->project_id)->update([
                 'rating' => $avg
+            ]);
+
+            $feedback_project = DB::table('feedback_project')->where('list_feedback_project_id',$request->list_feedback_project_id)->get();
+            $rating = 0;
+            foreach ($feedback_project as $fp){
+                $rating = $fp->rating + $rating;
+            }
+            $avg = $rating/sizeof($feedback_project);
+            $avg = round($avg*2)/2;
+
+            DB::table('list_feedback_project')->where('list_feedback_project_id',$request->list_feedback_project_id)->update([
+                'rating' => $avg,
+                'date' => now()->toDateString(),
             ]);
 
             return response()->json([
@@ -225,6 +239,13 @@ class FeedbackProjectController extends Controller
         
         return response()->json([
             'trend' => $final,
+        ]);
+    }
+
+    function listFeedback($id){
+        $list = DB::table('list_feedback_project')->where('project_id',$id)->get();
+        return response()->json([
+            'data' => $list,
         ]);
     }
 }

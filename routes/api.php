@@ -114,6 +114,7 @@ Route::get('/feedbackproject/delete/{id}','FeedbackProjectController@delete');
 Route::post('/feedbackproject/create','FeedbackProjectController@create');
 Route::get('/feedbackproject/filteroption','FeedbackProjectController@filterOption');
 Route::post('/feedbackproject/filter','FeedbackProjectController@filter');
+Route::get('/feedbackproject/list/{id}','FeedbackProjectController@listFeedback');
 
 Route::get('/feedbacknonproject/read','FeedbackNonProjectController@read');
 Route::get('/feedbacknonproject/read/{id}','FeedbackNonProjectController@readByCompany');

@@ -80,6 +80,16 @@ class ProjectController extends Controller
                 'ac_reg' => $request->ac_reg,
                 'type' => $request->type
             ]);
+            if ($request->quantity > 1){
+                $project = DB::table('project')->get();
+                for ($i = 0; $i < $request->quantity; $i++){
+                    DB::table('list_feedback_project')->insert([
+                        'date'=> NULL,
+                        'rating' => NULL,
+                        'project_id' => $project[sizeof($project)-1]->project_id,
+                    ]);
+                }
+            }
             return response()->json([
                 'message' => 'Project Created'
             ]);
