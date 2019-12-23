@@ -42,13 +42,13 @@ class InformationController extends Controller
             }
         }
 
-        $newsletter = DB::table('newsletter')->orderBy('updated_at','DESC')->get(['subject','updated_at','image']);
+        $newsletter = DB::table('newsletter')->orderBy('updated_at','DESC')->get(['subject','updated_at','image','permalink']);
         foreach ($newsletter as $nw){
             $nw->category = 'Newsletter';
             $data[] = $nw;
         }
         usort($data, function($a, $b){
-            return ($a < $b);
+            return ($a->updated_at < $b->updated_at);
         });
         return $data;
     }
