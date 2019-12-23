@@ -156,6 +156,7 @@ Route::post('/fleet/update','FleetMaintController@update');
 Route::get('/fleet/delete/{id}','FleetMaintController@delete');
 Route::post('/fleet/create','FleetMaintController@create');
 Route::get('/fleet/readcompany/{id}','FleetMaintController@readByCompanyId');
+Route::get('/fleet/readcompanyproduct/{id}/{product}','FleetMaintController@readByCompanyProduct');
 
 
 

@@ -30,6 +30,13 @@ class FleetMaintController extends Controller
         ]);
     }
 
+    function readByCompanyProduct($id, $product){
+        $fleet_maint = DB::table('fleet_maint')->where('company_id',$id)->where('product',$product)->get();
+        return response()->json([
+            'data' => $fleet_maint
+        ]);
+    }
+
     function edit($id){
         $fleet_maint = DB::table('fleet_maint')->where('fleet_maint_id',$id)->get();
         if (!$fleet_maint->isEmpty()){
