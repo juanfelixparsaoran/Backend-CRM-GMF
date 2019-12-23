@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2019 at 05:23 PM
+-- Generation Time: Dec 23, 2019 at 01:56 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -224,31 +224,34 @@ INSERT INTO `feedback_nonproject` (`feedback_nonproject_id`, `date`, `rating`, `
 
 CREATE TABLE `feedback_project` (
   `feedback_project_id` int(100) NOT NULL,
-  `date` date NOT NULL,
-  `sender` varchar(1000) NOT NULL,
+  `date` date DEFAULT NULL,
+  `sender` varchar(1000) DEFAULT NULL,
   `rating` float DEFAULT NULL,
   `aspect_to_improve` varchar(1000) DEFAULT NULL,
   `remark` varchar(1000) DEFAULT NULL,
-  `user_id` int(100) NOT NULL,
-  `company_id` int(100) NOT NULL,
-  `project_id` int(11) NOT NULL,
-  `service_id` int(100) NOT NULL
+  `user_id` int(100) DEFAULT NULL,
+  `company_id` int(100) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL,
+  `service_id` int(100) DEFAULT NULL,
+  `list_feedback_project_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feedback_project`
 --
 
-INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating`, `aspect_to_improve`, `remark`, `user_id`, `company_id`, `project_id`, `service_id`) VALUES
-(20, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 4, 8),
-(21, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18),
-(22, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 4, 8),
-(23, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18),
-(24, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 6, 8),
-(25, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 6, 18),
-(26, '2019-12-17', 'manasye', 2, 'Product Quality', NULL, 10, 1, 6, 8),
-(27, '2019-12-17', 'manasye', 4, 'Quality Assurance Team', NULL, 10, 1, 6, 18),
-(28, '2019-12-17', 'manasye', 0.5, 'Product Quality', NULL, 10, 1, 6, 8);
+INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating`, `aspect_to_improve`, `remark`, `user_id`, `company_id`, `project_id`, `service_id`, `list_feedback_project_id`) VALUES
+(20, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 4, 8, NULL),
+(21, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18, NULL),
+(22, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 4, 8, NULL),
+(23, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 4, 18, NULL),
+(24, '2019-12-17', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 6, 8, NULL),
+(25, '2019-12-17', 'manasye', 1.5, 'Quality Assurance Team', NULL, 10, 1, 6, 18, NULL),
+(26, '2019-12-17', 'manasye', 2, 'Product Quality', NULL, 10, 1, 6, 8, NULL),
+(27, '2019-12-17', 'manasye', 4, 'Quality Assurance Team', NULL, 10, 1, 6, 18, NULL),
+(28, '2019-12-17', 'manasye', 0.5, 'Product Quality', NULL, 10, 1, 6, 8, NULL),
+(37, '2019-12-23', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 9, 8, 1),
+(38, '2019-12-23', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -271,7 +274,7 @@ CREATE TABLE `fleet_maint` (
 --
 
 INSERT INTO `fleet_maint` (`fleet_maint_id`, `product`, `type`, `quantity`, `maint_provider`, `suitable`, `company_id`) VALUES
-(1, 'Airframe', 'B747-9', 17, NULL, NULL, 1),
+(1, 'Airframe', 'B747-10', 17, NULL, NULL, 1),
 (2, 'Airframe', 'B747-823', 20, NULL, 'future', 1),
 (3, 'Airframe', 'B72-20', 2, NULL, 'current', 1),
 (4, 'Engine', 'B72-20', 2, NULL, 'current', 1),
@@ -304,6 +307,30 @@ INSERT INTO `gmf_cp` (`gmf_cp_id`, `image`, `name`, `position`, `phone`, `email`
 (10, 'user/default.png', 'Pola', 'Staff Marketing', '081273829182', 'pola@gmail.com'),
 (12, 'user/default.png', 'Adit', 'Staff Marketing', '081273829182', 'adit@gmail.com'),
 (13, 'user/1gFg8YRuuDSYhDdayVnQjZyq6mHhOgxAUX0swPMf.jpeg', 'Edak', 'Staff Marketing', '081273829182', 'adit@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_feedback_project`
+--
+
+CREATE TABLE `list_feedback_project` (
+  `list_feedback_project_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_feedback_project`
+--
+
+INSERT INTO `list_feedback_project` (`list_feedback_project_id`, `date`, `rating`, `project_id`) VALUES
+(1, '2019-12-23', 4, 9),
+(2, NULL, NULL, 9),
+(3, NULL, NULL, 10),
+(4, NULL, NULL, 10),
+(5, NULL, NULL, 10);
 
 -- --------------------------------------------------------
 
@@ -439,7 +466,11 @@ CREATE TABLE `project` (
 INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `ac_reg`, `location`, `type`, `company_id`, `jobcard_status`, `mdr_status`, `mrm_status`) VALUES
 (4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
 (5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, NULL, NULL, NULL),
-(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
+(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(7, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(8, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -477,8 +508,7 @@ CREATE TABLE `religion_card` (
 
 INSERT INTO `religion_card` (`religion_card_id`, `subject`, `image`, `religion`, `date`, `permalink`, `created_at`, `updated_at`) VALUES
 (5, 'Christmas', 'religioncard/4e40DGMrAcCHptg7DCvHHEeSHSJaMsNlUX3Sz2Tw.jpeg', 'Kristen', '2019-12-01', 'www.gmf-aeroasia.co.id/religioncard/christmas', '2019-11-13 06:32:37', '2019-11-13 06:35:36'),
-(6, 'Nyepi', 'religioncard/rRD1e1y8S3Pdhh2AHOdKutXgjQoXahGmGwaCLH96.webp', 'Hindu', '2019-11-30', 'www.gmf-aeroasia.co.id/religioncard/nyepi', '2019-11-13 06:33:44', '2019-11-13 06:35:40'),
-(7, 'Eid Mubarak Holiday Card', 'religioncard/19OrE946ST73UqcKodV2LZaZpw0XbBalvHVyeVzN.jpeg', 'Islam', '2019-12-19', 'www.gmf-aeroasia.co.id/religioncard/eid', '2019-11-13 06:34:19', '2019-11-13 06:35:45');
+(6, 'Nyepi', 'religioncard/rRD1e1y8S3Pdhh2AHOdKutXgjQoXahGmGwaCLH96.webp', 'Hindu', '2019-11-30', 'www.gmf-aeroasia.co.id/religioncard/nyepi', '2019-11-13 06:33:44', '2019-11-13 06:35:40');
 
 -- --------------------------------------------------------
 
@@ -719,7 +749,8 @@ ALTER TABLE `feedback_project`
   ADD PRIMARY KEY (`feedback_project_id`),
   ADD KEY `idx_company` (`company_id`),
   ADD KEY `idx_service` (`service_id`),
-  ADD KEY `idx_user_feedback` (`user_id`);
+  ADD KEY `idx_user_feedback` (`user_id`),
+  ADD KEY `list_feedback_idx` (`list_feedback_project_id`);
 
 --
 -- Indexes for table `fleet_maint`
@@ -732,6 +763,13 @@ ALTER TABLE `fleet_maint`
 --
 ALTER TABLE `gmf_cp`
   ADD PRIMARY KEY (`gmf_cp_id`);
+
+--
+-- Indexes for table `list_feedback_project`
+--
+ALTER TABLE `list_feedback_project`
+  ADD PRIMARY KEY (`list_feedback_project_id`),
+  ADD KEY `project_idx` (`project_id`);
 
 --
 -- Indexes for table `message`
@@ -872,7 +910,7 @@ ALTER TABLE `feedback_nonproject`
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `fleet_maint`
@@ -885,6 +923,12 @@ ALTER TABLE `fleet_maint`
 --
 ALTER TABLE `gmf_cp`
   MODIFY `gmf_cp_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `list_feedback_project`
+--
+ALTER TABLE `list_feedback_project`
+  MODIFY `list_feedback_project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -908,7 +952,7 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `project_service`
@@ -994,7 +1038,14 @@ ALTER TABLE `feedback_nonproject`
 ALTER TABLE `feedback_project`
   ADD CONSTRAINT `idx_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `idx_service` FOREIGN KEY (`service_id`) REFERENCES `service` (`service_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `idx_user_feedback` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `idx_user_feedback` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `list_feedback_idx` FOREIGN KEY (`list_feedback_project_id`) REFERENCES `list_feedback_project` (`list_feedback_project_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `list_feedback_project`
+--
+ALTER TABLE `list_feedback_project`
+  ADD CONSTRAINT `project_idx` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `message`
