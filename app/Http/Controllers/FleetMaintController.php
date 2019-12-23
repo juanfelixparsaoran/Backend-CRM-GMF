@@ -22,22 +22,28 @@ class FleetMaintController extends Controller
             'data' => $fleet_maint
         ]);
     }
-    // function edit($id){
-    //     $fleet_maint = DB::table('fleet_maint')->where('fleet_maint_id',$id)->get();
-    //     $company = DB::table('company')->where('company_id',$fleet_maint[0]->company_id)->get();
-    //     $fleet_maint[0]->company_name = $company[0]->name;
-    //     if (!$fleet_maint->isEmpty()){
-    //         return response()->json([
-    //             'message' => 'fleet_maint found',
-    //             'data' => $fleet_maint
-    //         ]);
-    //     }else{
-    //         return response()->json([
-    //             'message' => 'fleet_maint not found',
-    //             'data' => []
-    //         ]);
-    //     }
-    // }
+
+    function readByCompanyId($id){
+        $fleet_maint = DB::table('fleet_maint')->where('company_id',$id)->get();
+        return response()->json([
+            'data' => $fleet_maint
+        ]);
+    }
+
+    function edit($id){
+        $fleet_maint = DB::table('fleet_maint')->where('fleet_maint_id',$id)->get();
+        if (!$fleet_maint->isEmpty()){
+            return response()->json([
+                'message' => 'fleet_maint found',
+                'data' => $fleet_maint
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'fleet_maint not found',
+                'data' => []
+            ]);
+        }
+    }
     function update(Request $request){
         $fleet_maint = DB::table('fleet_maint')->where('fleet_maint_id',$request->fleet_maint_id)->get();
         DB::table('fleet_maint')->where('fleet_maint_id',$request->fleet_maint_id)->update([
