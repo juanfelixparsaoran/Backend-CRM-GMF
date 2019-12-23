@@ -16,14 +16,14 @@ class AdsController extends Controller
         ]);
     }
     function getAdsInCompany($id){
-        $ads = DB::table('ads')->join('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',$id)->get(['ads.ads_id','subject','image','permalink']);
+        $ads = DB::table('ads')->join('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',$id)->get(['ads.ads_id','subject','image','permalink','ads_interval']);
         return response()->json([
             'data' => $ads
         ]);
     }
 
     function getInactiveAdsInCompany($id){
-        $ads = DB::table('ads')->leftJoin('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',NULL)->orWhere('company_ads.company_id','!=',$id)->get(['ads.ads_id','subject','image','permalink']);
+        $ads = DB::table('ads')->leftJoin('company_ads','ads.ads_id','=','company_ads.ads_id')->where('company_ads.company_id',NULL)->orWhere('company_ads.company_id','!=',$id)->get(['ads.ads_id','subject','image','permalink','ads_interval']);
         return response()->json([
             'data' => $ads
         ]);
