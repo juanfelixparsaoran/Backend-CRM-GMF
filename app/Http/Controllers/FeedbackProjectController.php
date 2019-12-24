@@ -107,6 +107,38 @@ class FeedbackProjectController extends Controller
                     'list_feedback_project_id' => $request->list_feedback_project_id
                 ]);
             }
+            $project = DB::table('project')->where('project_id',$request->project_id)->get();
+            if ($project[0]->quantity > 1){
+                $feedback_project = DB::table('feedback_project')->where('list_feedback_project_id',$request->list_feedback_project_id)->get();
+                $rating = 0;
+                foreach ($feedback_project as $fp){
+                    $rating = $fp->rating + $rating;
+                }
+                $avg = $rating/sizeof($feedback_project);
+                $avg = round($avg*2)/2;
+
+                DB::table('list_feedback_project')->where('list_feedback_project_id',$request->list_feedback_project_id)->update([
+                    'rating' => $avg,
+                    'date' => now()->toDateString(),
+                ]);
+
+                $list_feedback_project = DB::table('list_feedback_project')->where('project_id',$request->project_id)->get();
+                $done = 0;
+                foreach ($list_feedback_project as $fp){
+                    if ($fp->rating != NULL){
+                        $done = $done + 1;
+                    }
+                }
+
+                DB::table('project')->where('project_id',$request->project_id)->update([
+                    'done' => $done,
+                ]);
+            }else{
+                DB::table('project')->where('project_id',$request->project_id)->update([
+                    'done' => 1,
+                ]);
+            }
+
             $feedback_project = DB::table('feedback_project')->where('project_id',$request->project_id)->get();
             $rating = 0;
             foreach ($feedback_project as $fp){
@@ -119,26 +151,13 @@ class FeedbackProjectController extends Controller
                 'rating' => $avg
             ]);
 
-            $feedback_project = DB::table('feedback_project')->where('list_feedback_project_id',$request->list_feedback_project_id)->get();
-            $rating = 0;
-            foreach ($feedback_project as $fp){
-                $rating = $fp->rating + $rating;
-            }
-            $avg = $rating/sizeof($feedback_project);
-            $avg = round($avg*2)/2;
-
-            DB::table('list_feedback_project')->where('list_feedback_project_id',$request->list_feedback_project_id)->update([
-                'rating' => $avg,
-                'date' => now()->toDateString(),
-            ]);
-
             return response()->json([
                 'message' => 'feedback_project Created'
             ]);
         }else{
             return response()->json([
                 'message' => 'Rating cannot be 0'
-            ]);
+            ],400);
         }
     }
 

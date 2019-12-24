@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2019 at 01:56 PM
+-- Generation Time: Dec 24, 2019 at 03:34 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -251,7 +251,9 @@ INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating
 (27, '2019-12-17', 'manasye', 4, 'Quality Assurance Team', NULL, 10, 1, 6, 18, NULL),
 (28, '2019-12-17', 'manasye', 0.5, 'Product Quality', NULL, 10, 1, 6, 8, NULL),
 (37, '2019-12-23', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 9, 8, 1),
-(38, '2019-12-23', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 1);
+(38, '2019-12-23', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 1),
+(39, '2019-12-24', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 9, 8, 2),
+(40, '2019-12-24', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 2);
 
 -- --------------------------------------------------------
 
@@ -327,7 +329,7 @@ CREATE TABLE `list_feedback_project` (
 
 INSERT INTO `list_feedback_project` (`list_feedback_project_id`, `date`, `rating`, `project_id`) VALUES
 (1, '2019-12-23', 4, 9),
-(2, NULL, NULL, 9),
+(2, '2019-12-24', 4, 9),
 (3, NULL, NULL, 10),
 (4, NULL, NULL, 10),
 (5, NULL, NULL, 10);
@@ -448,6 +450,7 @@ CREATE TABLE `project` (
   `finish` date NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'On Going',
   `quantity` int(50) NOT NULL,
+  `done` int(11) NOT NULL DEFAULT 0,
   `project_type` varchar(100) NOT NULL,
   `rating` varchar(50) NOT NULL DEFAULT 'Not Rated',
   `ac_reg` varchar(100) NOT NULL,
@@ -463,14 +466,14 @@ CREATE TABLE `project` (
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `project_type`, `rating`, `ac_reg`, `location`, `type`, `company_id`, `jobcard_status`, `mdr_status`, `mrm_status`) VALUES
-(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
-(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, NULL, NULL, NULL),
-(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(7, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(8, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
+INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `done`, `project_type`, `rating`, `ac_reg`, `location`, `type`, `company_id`, `jobcard_status`, `mdr_status`, `mrm_status`) VALUES
+(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', '2', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
+(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 0, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, NULL, NULL, NULL),
+(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(7, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(8, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
+(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -910,7 +913,7 @@ ALTER TABLE `feedback_nonproject`
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `fleet_maint`
