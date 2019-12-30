@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Company;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CompanyImport implements ToModel
+class CompanyImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -16,21 +17,21 @@ class CompanyImport implements ToModel
     {
         return new Company([
             //
-            'name' => $row[1],
-            'region' => $row[2],
-            'country' => $row[3],
-            'company_role' => $row[4],
-            'business_model' => $row[5],
-            'status' => $row[6],
-            'est_date' => $row[7],
-            'type' => $row[8],
-            'customer_type' => $row[9],
-            'shareholder' => $row[10],
-            'alliance' => $row[11],
-            'MRO' => $row[12],
-            'fleet_size' => $row[13],
-            'destination' => $row[14],
-            'customer_since' => $row[15],
+            'name' => $row['name'],
+            'region' => $row['region'],
+            'country' => $row['country'],
+            'company_role' => $row['company_role'],
+            'business_model' => $row['business_model'],
+            'status' => $row['status'],
+            'est_date' => $row['est_date'],
+            'type' => $row['type'],
+            'customer_type' => $row['customer_type'],
+            'shareholder' => $row['shareholder'],
+            'alliance' => $row['alliance'],
+            'MRO' => $row['mro'],
+            'fleet_size' => $row['fleet_size'],
+            'destination' => $row['destination'],
+            'customer_since' => $row['customer_since'],
         ]);
     }
 }

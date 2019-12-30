@@ -160,6 +160,16 @@ Route::get('/fleet/readcompany/{id}','FleetMaintController@readByCompanyId');
 Route::get('/fleet/readcompanyproduct/{id}/{product}','FleetMaintController@readByCompanyProduct');
 
 
+Route::get('/revenue/read','RevenueController@read');
+Route::get('/revenue/read/{id}','RevenueController@readRevenueInCompany');
+Route::post('/revenue/update','RevenueController@update');
+Route::get('/revenue/delete/{id}','RevenueController@delete');
+Route::post('/revenue/create','RevenueController@create');
 
+Route::get('/pastmarketing/read','PastMarketingController@read');
+Route::get('/pastmarketing/read/{id}','PastMarketingController@readPastMarketingInCompany');
+Route::post('/pastmarketing/update','PastMarketingController@update');
+Route::get('/pastmarketing/delete/{id}','PastMarketingController@delete');
+Route::post('/pastmarketing/create','PastMarketingController@create');
 
 

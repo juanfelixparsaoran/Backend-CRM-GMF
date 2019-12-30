@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2019 at 03:34 AM
+-- Generation Time: Dec 30, 2019 at 08:21 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -111,7 +111,8 @@ INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `bu
 ('company/oaEbOTlb6XesD5Qddyu2WuBhMcrybTuNTJJOik1i.png', 'Korean Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 6, NULL, NULL),
 ('company/E9tM6l49EYO3vww9lEvTzHwIqOjRFXiP5uj14tCo.jpeg', 'Nam Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7, NULL, NULL),
 ('company/hgV0hrPti2S1kjhyweXlNFzmrbBk7um1P5eZk5eb.jpeg', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8, NULL, NULL),
-(NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 23, '2019-12-19 07:06:45', '2019-12-19 07:06:45');
+(NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 23, '2019-12-19 07:06:45', '2019-12-19 07:06:45'),
+(NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 24, '2019-12-29 02:39:31', '2019-12-29 02:39:31');
 
 -- --------------------------------------------------------
 
@@ -440,6 +441,28 @@ INSERT INTO `newsletter` (`newsletter_id`, `subject`, `image`, `permalink`, `cre
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `past_marketing`
+--
+
+CREATE TABLE `past_marketing` (
+  `past_marketing_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `activity` varchar(1000) NOT NULL,
+  `remarks` varchar(1000) NOT NULL,
+  `company_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `past_marketing`
+--
+
+INSERT INTO `past_marketing` (`past_marketing_id`, `date`, `activity`, `remarks`, `company_id`) VALUES
+(1, '2019-12-29', 'Test Activity', 'Test Remarks', 1),
+(3, '2019-12-29', 'Testing', 'Test Remarks', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `project`
 --
 
@@ -536,6 +559,28 @@ CREATE TABLE `reply_complaint` (
 INSERT INTO `reply_complaint` (`reply_complaint_id`, `description`, `sender_role`, `user_id`, `complaint_id`, `created_at`, `updated_at`) VALUES
 (3, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium', 'Customer', 13, 10, '2019-11-12 17:00:00', '2019-11-12 17:00:00'),
 (4, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium', 'Admin', 14, 10, '2019-11-13 17:00:00', '2019-11-13 17:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `revenue`
+--
+
+CREATE TABLE `revenue` (
+  `revenue_id` int(11) NOT NULL,
+  `product` varchar(1000) NOT NULL,
+  `sales` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `revenue`
+--
+
+INSERT INTO `revenue` (`revenue_id`, `product`, `sales`, `company_id`) VALUES
+(2, 'Airframe', 200000, 1),
+(3, 'Engine', 30000, 1),
+(4, 'Component', 30000, 1);
 
 -- --------------------------------------------------------
 
@@ -795,6 +840,12 @@ ALTER TABLE `newsletter`
   ADD PRIMARY KEY (`newsletter_id`);
 
 --
+-- Indexes for table `past_marketing`
+--
+ALTER TABLE `past_marketing`
+  ADD PRIMARY KEY (`past_marketing_id`);
+
+--
 -- Indexes for table `project`
 --
 ALTER TABLE `project`
@@ -820,6 +871,12 @@ ALTER TABLE `reply_complaint`
   ADD PRIMARY KEY (`reply_complaint_id`),
   ADD KEY `complaint_id_idx` (`complaint_id`),
   ADD KEY `sender_id_idx` (`user_id`);
+
+--
+-- Indexes for table `revenue`
+--
+ALTER TABLE `revenue`
+  ADD PRIMARY KEY (`revenue_id`);
 
 --
 -- Indexes for table `service`
@@ -883,7 +940,7 @@ ALTER TABLE `birthday_card`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
@@ -952,6 +1009,12 @@ ALTER TABLE `newsletter`
   MODIFY `newsletter_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT for table `past_marketing`
+--
+ALTER TABLE `past_marketing`
+  MODIFY `past_marketing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
@@ -974,6 +1037,12 @@ ALTER TABLE `religion_card`
 --
 ALTER TABLE `reply_complaint`
   MODIFY `reply_complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `revenue`
+--
+ALTER TABLE `revenue`
+  MODIFY `revenue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `service`
