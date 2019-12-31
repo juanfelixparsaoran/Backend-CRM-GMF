@@ -148,6 +148,7 @@ Route::get('/messages/get/{id}', 'ChatController@fetchMessages');
 Route::post('/messages/send', 'ChatController@sendMessage');
 Route::get('/messages/read/{sender_id}/{receiver_id}', 'ChatController@readMessage');
 Route::get('/messages/search/{query}', 'ChatController@searchMessage');
+Route::get('/messages/close/{id}', 'ChatController@closeThread');
 
 Route::get('/popup/read/{id}', 'PopUpController@read');
 
@@ -171,5 +172,7 @@ Route::get('/pastmarketing/read/{id}','PastMarketingController@readPastMarketing
 Route::post('/pastmarketing/update','PastMarketingController@update');
 Route::get('/pastmarketing/delete/{id}','PastMarketingController@delete');
 Route::post('/pastmarketing/create','PastMarketingController@create');
+
+Route::get('/search/{query}/{company_id}','SearchController@search');
 
 

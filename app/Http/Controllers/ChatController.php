@@ -190,4 +190,11 @@ class ChatController extends Controller
             $response
         ]);
     }
+
+    public function closeThread($id){
+        DB::table('message')->where('user_id',$id)->orWhere('rcv_user_id',$id)->delete();
+        return response()->json([
+            'message' => "Thread Closed"
+        ]);
+    }
 }
