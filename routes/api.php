@@ -173,5 +173,6 @@ Route::get('/pastmarketing/delete/{id}','PastMarketingController@delete');
 Route::post('/pastmarketing/create','PastMarketingController@create');
 
 Route::get('/search/{query}/{company_id}','SearchController@search');
+Route::get('/searchadmin/{query}','SearchController@search_admin');
 
 
