@@ -69,4 +69,59 @@ class LoginController extends Controller
             ],400);
         }
     }
+    public function signin(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+        $username = $request->username;
+        $password = $request->password;
+        $isValidSignin = $this->checkLdap($username, $password);
+        return response()->json(['result' => $isValidSignin ]);
+    }
+    function checkLdap($username, $password)
+    {
+        $dn = "DC=gmf-aeroasia,DC=co,DC=id";
+        // $ldapconn = ldap_connect("192.168.240.57") or die ("Could not connect to LDAP server.");
+        $ip_ldap = [
+            '0' => "192.168.240.66",
+            '1' => "192.168.240.57",
+            '2' => "172.16.100.46",
+        ];
+        $ipcon="";
+        for($a=0;$a<count($ip_ldap);$a++){
+            $ldapconn = ldap_connect($ip_ldap[$a]);
+            if($ldapconn){
+                $ipcon=$ip_ldap[$a];
+                break;
+            }else{
+                // log_message("error", "IP : ".$ip_ldap[$a]."- Not Connected");
+                continue;
+            }
+        }
+        if ($ldapconn) {
+            ldap_set_option(@$ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+            ldap_set_option(@$ldapconn, LDAP_OPT_REFERRALS, 0);
+            $ldapbind = ldap_bind($ldapconn, "ldap", "aeroasia");
+            @$sr = ldap_search($ldapconn, $dn, "samaccountname=$username");
+            @$srmail = ldap_search($ldapconn, $dn, "mail=$username@gmf-aeroasia.co.id");
+            @$info = ldap_get_entries($ldapconn, @$sr);
+            @$infomail = ldap_get_entries($ldapconn, @$srmail);
+            @$usermail = substr(@$infomail[0]["mail"][0], 0, strpos(@$infomail[0]["mail"][0], '@'));
+            @$bind = @ldap_bind($ldapconn, $info[0]['dn'], $password);
+            if(!$bind){
+            return false;
+            // log_message("error", "IP : ".$ipcon."- Eror Bind");
+            }
+            if ((@$info[0]["samaccountname"][0] == $username AND ($bind || isset($bind))) OR (@$usermail == $username AND ($bind || isset($bind)))) {
+                //return mb_convert_encoding($info, 'UTF-8', 'UTF-8');
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            echo "LDAP Connection trouble, please try again 2/3 time";
+        }
+    }
 }

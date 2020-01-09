@@ -63,7 +63,6 @@ Route::get('/company/export','CompanyController@export_excel');
 Route::post('/company/import','CompanyController@import_excel');
 
 
-
 //complaint route
 Route::get('/complaint/read','ComplaintController@read');
 Route::get('/complaint/read/{id}','ComplaintController@readByCompany');

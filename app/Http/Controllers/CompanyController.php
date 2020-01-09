@@ -105,7 +105,7 @@ class CompanyController extends Controller
     }
 
     public function export_excel(){
-        return Excel::download(new CompanyExport, 'company.xlsx');
+        echo "asdasd";
     }
 
     public function import_excel(Request $request){
