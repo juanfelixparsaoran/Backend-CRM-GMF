@@ -34,6 +34,7 @@ Route::get('/customer/read','UserCustomerController@read');
 Route::get('/customer/edit/{id}','UserCustomerController@edit');
 Route::get('/customer/delete/{id}','UserCustomerController@delete');
 Route::post('/customer/update','UserCustomerController@update');
+Route::get('/customer/done/{id}','UserCustomerController@done_tutorial');
 
 
 //ads route
@@ -159,7 +160,6 @@ Route::post('/fleet/create','FleetMaintController@create');
 Route::get('/fleet/readcompany/{id}','FleetMaintController@readByCompanyId');
 Route::get('/fleet/readcompanyproduct/{id}/{product}','FleetMaintController@readByCompanyProduct');
 
-
 Route::get('/revenue/read','RevenueController@read');
 Route::get('/revenue/read/{id}','RevenueController@readRevenueInCompany');
 Route::post('/revenue/update','RevenueController@update');
@@ -174,5 +174,15 @@ Route::post('/pastmarketing/create','PastMarketingController@create');
 
 Route::get('/search/{query}/{company_id}','SearchController@search');
 Route::get('/searchadmin/{query}','SearchController@search_admin');
+
+Route::get('/alliance/read','AllianceController@read');
+Route::post('/alliance/update','AllianceController@update');
+Route::get('/alliance/delete/{id}','AllianceController@delete');
+Route::post('/alliance/create','AllianceController@create');
+
+Route::get('/ctype/read','CustomerTypeController@read');
+Route::post('/ctype/update','CustomerTypeController@update');
+Route::get('/ctype/delete/{id}','CustomerTypeController@delete');
+Route::post('/ctype/create','CustomerTypeController@create');
 
 

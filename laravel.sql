@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2019 at 08:21 AM
+-- Generation Time: Jan 10, 2020 at 04:33 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -51,6 +51,24 @@ INSERT INTO `ads` (`ads_id`, `subject`, `image`, `permalink`, `ads_interval`, `c
 (21, 'Marketing Ads', 'ads/hdob44CESZW1SGSPfiL8hbNho6C1KvFdS84V0Lvr.rtf', 'http://www.gmf-aeroasia.co.id/services/', 7, '2019-11-17 23:21:30', '2019-12-22 09:17:02'),
 (22, 'Engineer Ads', '', 'http://www.gmf-aeroasia.co.id/services/', 5, '2019-12-22 09:15:10', '2019-12-22 09:15:10'),
 (23, 'Engineer Ads', '', 'http://www.gmf-aeroasia.co.id/services/', 10, '2019-12-22 09:16:15', '2019-12-22 09:16:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alliance`
+--
+
+CREATE TABLE `alliance` (
+  `alliance_id` int(11) NOT NULL,
+  `name` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `alliance`
+--
+
+INSERT INTO `alliance` (`alliance_id`, `name`) VALUES
+(1, 'Skyteam');
 
 -- --------------------------------------------------------
 
@@ -112,7 +130,8 @@ INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `bu
 ('company/E9tM6l49EYO3vww9lEvTzHwIqOjRFXiP5uj14tCo.jpeg', 'Nam Airlines', NULL, 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 7, NULL, NULL),
 ('company/hgV0hrPti2S1kjhyweXlNFzmrbBk7um1P5eZk5eb.jpeg', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8, NULL, NULL),
 (NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 23, '2019-12-19 07:06:45', '2019-12-19 07:06:45'),
-(NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 24, '2019-12-29 02:39:31', '2019-12-29 02:39:31');
+(NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 24, '2019-12-29 02:39:31', '2019-12-29 02:39:31'),
+(NULL, 'Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, NULL, NULL, NULL, 35, '2020-01-06 21:00:44', '2020-01-06 21:00:44');
 
 -- --------------------------------------------------------
 
@@ -190,6 +209,24 @@ INSERT INTO `cp_company` (`cp_company_id`, `gmf_cp_id`, `company_id`) VALUES
 (5, 10, 1),
 (6, 12, 1),
 (7, 13, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_type`
+--
+
+CREATE TABLE `customer_type` (
+  `customer_type_id` int(11) NOT NULL,
+  `name` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer_type`
+--
+
+INSERT INTO `customer_type` (`customer_type_id`, `name`) VALUES
+(1, 'Existing Customer(Retail)');
 
 -- --------------------------------------------------------
 
@@ -277,7 +314,6 @@ CREATE TABLE `fleet_maint` (
 --
 
 INSERT INTO `fleet_maint` (`fleet_maint_id`, `product`, `type`, `quantity`, `maint_provider`, `suitable`, `company_id`) VALUES
-(1, 'Airframe', 'B747-10', 17, NULL, NULL, 1),
 (2, 'Airframe', 'B747-823', 20, NULL, 'future', 1),
 (3, 'Airframe', 'B72-20', 2, NULL, 'current', 1),
 (4, 'Engine', 'B72-20', 2, NULL, 'current', 1),
@@ -359,11 +395,6 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message_id`, `message`, `type`, `sender`, `user_id`, `receiver`, `rcv_user_id`, `already_read`, `created_at`, `updated_at`) VALUES
-(1, 'asdasdasdada', 'text', 'admin', 14, 'manasye', 10, 1, '2019-11-21 17:00:00', NULL),
-(2, 'asas', 'text', 'manasye', 10, 'admin', NULL, 1, '2019-11-20 17:00:00', NULL),
-(3, 'asas', 'text', 'manasye', 10, 'admin', NULL, 1, '2019-11-22 17:00:00', NULL),
-(4, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'manasye', 10, 'admin', NULL, 1, '2019-11-26 04:08:53', NULL),
-(5, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'admin', 14, 'manasye', 10, 1, '2019-11-26 04:11:22', NULL),
 (6, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Juan Felix', 13, 'admin', NULL, 1, '2019-12-03 22:40:39', NULL),
 (7, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Juan', 15, 'admin', NULL, 1, '2019-12-04 21:10:15', NULL),
 (8, 'yaya', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-04 21:10:47', NULL),
@@ -699,6 +730,7 @@ CREATE TABLE `user_customer` (
   `email` varchar(50) NOT NULL,
   `customer_role` varchar(100) NOT NULL,
   `new_info` int(11) NOT NULL DEFAULT 0,
+  `new` tinyint(1) NOT NULL DEFAULT 1,
   `company_id` int(50) NOT NULL,
   `user_id` int(100) NOT NULL DEFAULT -999
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -707,16 +739,16 @@ CREATE TABLE `user_customer` (
 -- Dumping data for table `user_customer`
 --
 
-INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `new_info`, `company_id`, `user_id`) VALUES
-(13, 'manasye', 'GM', 'Islam', '1998-12-19', 'mans@gmail.com', 'Key Person', 0, 1, 10),
-(14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 1, 13),
-(15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 1, 15),
-(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 0, 8, 22),
-(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 2, 8, 28),
-(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 2, 8, 29),
-(23, 'Ferry', 'Engineer', 'Kristen', '1998-12-12', 'ferry@gmail.com', 'Tech', 2, 8, 34),
-(26, 'Ronald12', 'Engineer', 'Islam', '1998-05-12', 'ron12@gmail.com', 'Tech', 2, 8, 37),
-(27, 'Peng', 'Engineer', 'Islam', '1998-05-12', 'peng@gmail.com', 'Tech', 2, 8, 38);
+INSERT INTO `user_customer` (`user_customer_id`, `name`, `position`, `religion`, `birthday`, `email`, `customer_role`, `new_info`, `new`, `company_id`, `user_id`) VALUES
+(13, 'manasye', 'GM', 'Islam', '1998-12-19', 'mans@gmail.com', 'Key Person', 0, 0, 1, 10),
+(14, 'Juan Felix', 'GM', 'Kristen', '1998-12-12', 'jfpt@gmail.com', 'Key Person', 1, 1, 1, 13),
+(15, 'Juan', 'GM', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Key Person', 1, 1, 1, 15),
+(18, 'Felix', 'Engineer', 'Islam', '1998-12-12', 'juanf@gmail.com', 'Tech', 0, 1, 8, 22),
+(21, 'Ferry', 'Engineer', 'Islam', '1998-12-12', 'ferry@gmail.com', 'Tech', 2, 1, 8, 28),
+(22, 'Ferry', 'Engineer', 'Islam', '1998-05-12', 'ferry@gmail.com', 'Tech', 2, 1, 8, 29),
+(23, 'Ferry', 'Engineer', 'Kristen', '1998-12-12', 'ferry@gmail.com', 'Tech', 2, 1, 8, 34),
+(26, 'Ronald12', 'Engineer', 'Islam', '1998-05-12', 'ron12@gmail.com', 'Tech', 2, 1, 8, 37),
+(27, 'Peng', 'Engineer', 'Islam', '1998-05-12', 'peng@gmail.com', 'Tech', 2, 0, 8, 38);
 
 -- --------------------------------------------------------
 
@@ -748,6 +780,12 @@ INSERT INTO `user_guest` (`user_guest_id`, `name`, `position`, `division`, `user
 --
 ALTER TABLE `ads`
   ADD PRIMARY KEY (`ads_id`);
+
+--
+-- Indexes for table `alliance`
+--
+ALTER TABLE `alliance`
+  ADD PRIMARY KEY (`alliance_id`);
 
 --
 -- Indexes for table `birthday_card`
@@ -782,6 +820,12 @@ ALTER TABLE `complaint`
 --
 ALTER TABLE `cp_company`
   ADD PRIMARY KEY (`cp_company_id`);
+
+--
+-- Indexes for table `customer_type`
+--
+ALTER TABLE `customer_type`
+  ADD PRIMARY KEY (`customer_type_id`);
 
 --
 -- Indexes for table `feedback_nonproject`
@@ -931,6 +975,12 @@ ALTER TABLE `ads`
   MODIFY `ads_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `alliance`
+--
+ALTER TABLE `alliance`
+  MODIFY `alliance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `birthday_card`
 --
 ALTER TABLE `birthday_card`
@@ -940,7 +990,7 @@ ALTER TABLE `birthday_card`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
@@ -959,6 +1009,12 @@ ALTER TABLE `complaint`
 --
 ALTER TABLE `cp_company`
   MODIFY `cp_company_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `customer_type`
+--
+ALTER TABLE `customer_type`
+  MODIFY `customer_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `feedback_nonproject`

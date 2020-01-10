@@ -47,4 +47,11 @@ class UserCustomerController extends Controller
             'message' => 'Customer Deleted'
         ]);
     }
+
+    function done_tutorial($id){
+        DB::table('user_customer')->where('user_id',$id)->update(['new' => false]);
+        return response()->json([
+            'message' => 'Customer Updated'
+        ]);
+    }
 }

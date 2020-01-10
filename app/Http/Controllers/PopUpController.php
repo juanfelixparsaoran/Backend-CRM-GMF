@@ -29,7 +29,8 @@ class PopUpController extends Controller
             $ads = DB::table('ads')->where('ads_id',$ca->ads_id)->get();
             $popup_ads[] = (object) ([
                 'image' => $ads[0]->image,
-                'permalink' => $ads[0]->permalink
+                'permalink' => $ads[0]->permalink,
+                'interval' => $ads[0]->ads_interval,
             ]);
         }
         return response()->json([
