@@ -90,6 +90,7 @@ class ChatController extends Controller
             $user_detail = DB::table('user_customer')->where('user_id',$request->user_id)->get();
             $receiver = "admin";
             $sender = $user_detail[0]->name;
+            
         }else if ($user[0]->role == "Admin"){
             $user_detail = DB::table('user_admin')->where('user_id',$request->user_id)->get();
             $rcvr_detail = DB::table('user_customer')->where('user_id',$request->rcvr_id)->get();
@@ -121,6 +122,20 @@ class ChatController extends Controller
                 'rcv_user_id' => $request->rcvr_id,
                 'type' => $request->type
             ]);
+        }
+        if ($user[0]->role == "Customer"){
+            $chat = DB::table('message')->where('user_id',$request->user_id)->get();
+            if (sizeof($chat) == 1){
+                DB::table('message')->insert([
+                    'message' => "Your message has been received. Please wait for our admin to reply",
+                    'user_id' => 14,
+                    'sender' => "admin",
+                    'created_at' => now(),
+                    'receiver' => $sender,
+                    'rcv_user_id' => $request->user_id,
+                    'type' => "text"
+                ]);
+            }
         }
         // $message = (object)([
         //     'message' => $request->message,
