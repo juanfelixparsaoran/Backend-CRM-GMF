@@ -23,7 +23,6 @@ class ChatController extends Controller
      */
     public function fetchMessages($id)
     {
-        $sender = array();
         $user = DB::table('user')->where('user_id',$id)->get();
         if ($user[0]->role == "Customer"){
             $message = DB::table('message')->where('user_id',$id)->orWhere('rcv_user_id',$id)->orderBy('created_at','ASC')->get();
@@ -39,11 +38,16 @@ class ChatController extends Controller
                 "unread_count" => $unread
             ]);
         }else{
+            $sender = array();
+            $receiver = array();
             $response = array();
             $message = DB::table('message')->orderBy('created_at')->get();
             foreach ($message as $msg){
                 if (!in_array($msg->user_id,$sender) && $msg->sender != "admin"){
                     $sender[] = $msg->user_id;
+                }
+                if (!in_array($msg->rcv_user_id,$sender) && $msg->receiver != "admin"){
+                    $sender[] = $msg->rcv_user_id;
                 }
             }
             foreach ($sender as $send){
@@ -71,6 +75,7 @@ class ChatController extends Controller
                 $response[] = $rsp_body;
 
             }
+
             return response()->json([
                 $response
             ]);
