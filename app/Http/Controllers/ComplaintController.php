@@ -59,7 +59,7 @@ class ComplaintController extends Controller
             ]);
         }else{
             DB::table('complaint')->where('complaint_id',$request->complaint_id)->update([
-                'closed' => now()->getDateTime(),
+                'closed' => now()->toDateString(),
                 'service' => $request->service != NULL ? $request->service : $complaint[0]->service,
                 'subject' => $request->subject != NULL ? $request->subject : $complaint[0]->subject,
                 'complaint' => $request->complaint != NULL ? $request->complaint : $complaint[0]->complaint,
