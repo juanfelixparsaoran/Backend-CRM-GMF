@@ -175,4 +175,11 @@ class UserController extends Controller
         ]);
     }
 
+    function read_admin($id){
+        $admin = DB::table('user_admin')->where('user_id',$id)->get();
+        return response()->json([
+            'data' => $admin
+        ]);
+    }
+
 }
