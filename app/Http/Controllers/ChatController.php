@@ -41,7 +41,7 @@ class ChatController extends Controller
             $sender = array();
             $receiver = array();
             $response = array();
-            $message = DB::table('message')->orderBy('created_at')->get();
+            $message = DB::table('message')->orderBy('created_at','DESC')->get();
             foreach ($message as $msg){
                 if (!in_array($msg->user_id,$sender) && $msg->sender != "admin"){
                     $sender[] = $msg->user_id;

@@ -40,6 +40,10 @@ class LoginController extends Controller
         {
             if ($user->username == $request->username && (Hash::check($request->password, $user->password)))
             {
+                
+                if ($request->remember_me){
+                    config(['session.lifetime' => 35791394]);
+                }
                 $request->session()->put('username',$request->username);
                 $request->session()->put('id',$user->user_id);
                 $user_logged = $user;
