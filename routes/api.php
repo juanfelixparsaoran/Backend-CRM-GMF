@@ -24,6 +24,10 @@ Route::get('/user/edit/{id}','UserController@edit');
 Route::get('/user/read','UserController@read');
 Route::get('/user/delete/{id}','UserController@delete');
 
+Route::get('/admin/readmsg','UserController@read_message_admin');
+Route::get('/admin/readcomplaint','UserController@read_complaint_admin');
+Route::get('/admin/readfeedback','UserController@read_feedback_admin');
+
 
 Route::get('/loginldap', 'Auth\LoginController@login');
 Route::post('/auth','LoginController@auth');
