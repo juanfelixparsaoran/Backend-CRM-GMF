@@ -105,7 +105,9 @@ class CompanyController extends Controller
     }
 
     public function export_excel(){
-        echo "asdasd";
+        $url = \config('filesystems.disks.local.root');
+        $path = $url."/form.xlsx";
+        return response()->download($path);
     }
 
     public function import_excel(Request $request){
