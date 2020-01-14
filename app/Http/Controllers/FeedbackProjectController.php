@@ -106,6 +106,9 @@ class FeedbackProjectController extends Controller
                     'service_id' => $service1[0]->service_id,
                     'list_feedback_project_id' => $request->list_feedback_project_id
                 ]);
+                DB::table('user_admin')->update([
+                    'not_read_feedback' => DB::raw('not_read_feedback + 1')
+                ]);
             }
             $project = DB::table('project')->where('project_id',$request->project_id)->get();
             if ($project[0]->quantity > 1){

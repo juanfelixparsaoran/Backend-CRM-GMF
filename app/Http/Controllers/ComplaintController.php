@@ -90,6 +90,9 @@ class ComplaintController extends Controller
             'user_id' => $request->user_id,
             'file' => $path
         ]);
+        DB::table('user_admin')->update([
+            'not_read_complaint' => DB::raw('not_read_complaint + 1')
+        ]);
         return response()->json([
             'message' => 'Complaint Created'
         ]);

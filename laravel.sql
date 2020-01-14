@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2020 at 04:33 AM
+-- Generation Time: Jan 14, 2020 at 04:13 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -183,7 +183,9 @@ INSERT INTO `complaint` (`complaint_id`, `date`, `closed`, `sender`, `service`, 
 (12, '2019-11-16', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/yBHSiTVLtxsAYydhjAoGMWqZY3eSYdCHp8Dzlyt8.pdf', 'Open', 10, 1),
 (13, '2019-05-11', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', 'complaint/Pq7DGTMv22DfqF6WCtdaDUGCJffljscmOpzJmtKU.pdf', 'Open', 10, 1),
 (14, '2019-05-11', NULL, 'manasye', 'Base Maintenance', 'Complaint Base Maintenance', 'Complaint body', '', 'Open', 10, 1),
-(15, '2019-05-11', NULL, 'manasye', 'Base Maintenance', 'asd', 'asdasd', '', 'Open', 10, 1);
+(15, '2019-05-11', NULL, 'manasye', 'Base Maintenance', 'asd', 'asdasd', '', 'Open', 10, 1),
+(16, '2020-01-14', NULL, 'manasye', 'Base Maintenance', 'asd', 'asdasd', '', 'Open', 10, 1),
+(17, '2020-01-14', NULL, 'manasye', 'Base Maintenance', 'asd', 'asdasd', '', 'Open', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -291,7 +293,9 @@ INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating
 (37, '2019-12-23', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 9, 8, 1),
 (38, '2019-12-23', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 1),
 (39, '2019-12-24', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 9, 8, 2),
-(40, '2019-12-24', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 2);
+(40, '2019-12-24', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 2),
+(41, '2020-01-14', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 10, 8, 3),
+(42, '2020-01-14', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 10, 18, 3);
 
 -- --------------------------------------------------------
 
@@ -367,7 +371,7 @@ CREATE TABLE `list_feedback_project` (
 INSERT INTO `list_feedback_project` (`list_feedback_project_id`, `date`, `rating`, `project_id`) VALUES
 (1, '2019-12-23', 4, 9),
 (2, '2019-12-24', 4, 9),
-(3, NULL, NULL, 10),
+(3, '2020-01-14', 4, 10),
 (4, NULL, NULL, 10),
 (5, NULL, NULL, 10);
 
@@ -402,7 +406,15 @@ INSERT INTO `message` (`message_id`, `message`, `type`, `sender`, `user_id`, `re
 (12, 'yaya', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-11 03:55:08', NULL),
 (13, 'hai', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-11 03:56:19', NULL),
 (14, 'hai', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-11 04:07:35', NULL),
-(15, 'hai', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-11 04:15:33', NULL);
+(15, 'hai', 'text', 'admin', 14, 'Juan', 15, 1, '2019-12-11 04:15:33', NULL),
+(18, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'manasye', 10, 'admin', NULL, 0, '2020-01-12 02:33:44', NULL),
+(19, 'Your message has been received. Please wait for our admin to reply', 'text', 'admin', 14, 'manasye', 10, 0, '2020-01-12 02:33:44', NULL),
+(20, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'manasye', 10, 'admin', NULL, 0, '2020-01-12 02:34:04', NULL),
+(21, 'hai', 'text', 'admin', 14, 'Peng', 38, 0, '2020-01-12 03:12:57', NULL),
+(22, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Felix', 22, 'admin', NULL, 0, '2020-01-12 03:30:12', NULL),
+(23, 'Your message has been received. Please wait for our admin to reply', 'text', 'admin', 14, 'Felix', 22, 0, '2020-01-12 03:30:12', NULL),
+(24, 'hai', 'text', 'admin', 14, 'Ronald12', 37, 0, '2020-01-12 03:30:38', NULL),
+(25, '\"adkoqwkdqodkwqodkasldkqwlkdq\"', 'text', 'Felix', 22, 'admin', NULL, 0, '2020-01-13 20:01:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -527,7 +539,7 @@ INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quant
 (7, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
 (8, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
 (9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
+(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 1, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -693,6 +705,9 @@ CREATE TABLE `user_admin` (
   `name` varchar(1000) NOT NULL,
   `position` varchar(100) NOT NULL,
   `division` varchar(100) NOT NULL,
+  `not_read_msg` int(11) NOT NULL,
+  `not_read_complaint` int(11) NOT NULL,
+  `not_read_feedback` int(11) NOT NULL,
   `user_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -700,8 +715,8 @@ CREATE TABLE `user_admin` (
 -- Dumping data for table `user_admin`
 --
 
-INSERT INTO `user_admin` (`user_admin_id`, `name`, `position`, `division`, `user_id`) VALUES
-(1, 'Juan', 'GM', 'Marketing', 14);
+INSERT INTO `user_admin` (`user_admin_id`, `name`, `position`, `division`, `not_read_msg`, `not_read_complaint`, `not_read_feedback`, `user_id`) VALUES
+(1, 'Juan', 'GM', 'Marketing', 2, 1, 2, 14);
 
 -- --------------------------------------------------------
 
@@ -1002,7 +1017,7 @@ ALTER TABLE `company_ads`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `complaint_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `cp_company`
@@ -1026,7 +1041,7 @@ ALTER TABLE `feedback_nonproject`
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `fleet_maint`
@@ -1050,7 +1065,7 @@ ALTER TABLE `list_feedback_project`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `message_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `migrations`

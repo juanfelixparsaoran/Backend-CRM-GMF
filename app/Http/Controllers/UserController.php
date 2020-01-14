@@ -150,5 +150,29 @@ class UserController extends Controller
         }
     }
     
+    function read_message_admin(){
+        DB::table('user_admin')->update([
+            'not_read_msg' => 0
+        ]);
+        return response()->json([
+            'message' => 'Read Message Success'
+        ]);
+    }
+    function read_complaint_admin(){
+        DB::table('user_admin')->update([
+            'not_read_complaint' => 0
+        ]);
+        return response()->json([
+            'message' => 'Read Complaint Success'
+        ]);
+    }
+    function read_feedback_admin(){
+        DB::table('user_admin')->update([
+            'not_read_feedback' => 0
+        ]);
+        return response()->json([
+            'message' => 'Read Feedback Success'
+        ]);
+    }
 
 }

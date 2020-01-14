@@ -95,6 +95,9 @@ class ChatController extends Controller
             $user_detail = DB::table('user_customer')->where('user_id',$request->user_id)->get();
             $receiver = "admin";
             $sender = $user_detail[0]->name;
+            DB::table('user_admin')->update([
+                'not_read_msg' => DB::raw('not_read_msg + 1')
+            ]);
             
         }else if ($user[0]->role == "Admin"){
             $user_detail = DB::table('user_admin')->where('user_id',$request->user_id)->get();
