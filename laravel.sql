@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 04:13 AM
+-- Generation Time: Feb 06, 2020 at 07:31 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -295,7 +295,11 @@ INSERT INTO `feedback_project` (`feedback_project_id`, `date`, `sender`, `rating
 (39, '2019-12-24', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 9, 8, 2),
 (40, '2019-12-24', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 9, 18, 2),
 (41, '2020-01-14', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 10, 8, 3),
-(42, '2020-01-14', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 10, 18, 3);
+(42, '2020-01-14', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 10, 18, 3),
+(43, '2020-01-28', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 11, 8, 6),
+(44, '2020-01-28', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 11, 18, 6),
+(45, '2020-01-28', 'manasye', 2.5, 'Product Quality', NULL, 10, 1, 11, 8, 7),
+(46, '2020-01-28', 'manasye', 5, 'Quality Assurance Team', NULL, 10, 1, 11, 18, 7);
 
 -- --------------------------------------------------------
 
@@ -373,7 +377,13 @@ INSERT INTO `list_feedback_project` (`list_feedback_project_id`, `date`, `rating
 (2, '2019-12-24', 4, 9),
 (3, '2020-01-14', 4, 10),
 (4, NULL, NULL, 10),
-(5, NULL, NULL, 10);
+(5, NULL, NULL, 10),
+(6, '2020-01-28', 4, 11),
+(7, '2020-01-28', 4, 11),
+(8, NULL, NULL, 11),
+(9, NULL, NULL, 12),
+(10, NULL, NULL, 12),
+(11, NULL, NULL, 12);
 
 -- --------------------------------------------------------
 
@@ -523,23 +533,30 @@ CREATE TABLE `project` (
   `location` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL,
   `company_id` int(11) NOT NULL,
-  `jobcard_status` varchar(1000) DEFAULT NULL,
-  `mdr_status` varchar(1000) DEFAULT NULL,
-  `mrm_status` varchar(1000) DEFAULT NULL
+  `jobcard_total` varchar(1000) DEFAULT NULL,
+  `jobcard_open` int(11) DEFAULT NULL,
+  `jobcard_progress` int(11) DEFAULT NULL,
+  `mdr_total` varchar(1000) DEFAULT NULL,
+  `mdr_open` int(11) DEFAULT NULL,
+  `mdr_progress` int(11) DEFAULT NULL,
+  `jobcard_closed` int(11) DEFAULT NULL,
+  `mdr_closed` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `done`, `project_type`, `rating`, `ac_reg`, `location`, `type`, `company_id`, `jobcard_status`, `mdr_status`, `mrm_status`) VALUES
-(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', '2', 'Project 1', 'GAH3', '3', 1, NULL, NULL, NULL),
-(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 0, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, NULL, NULL, NULL),
-(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(7, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(8, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL),
-(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 1, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, NULL, NULL, NULL);
+INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quantity`, `done`, `project_type`, `rating`, `ac_reg`, `location`, `type`, `company_id`, `jobcard_total`, `jobcard_open`, `jobcard_progress`, `mdr_total`, `mdr_open`, `mdr_progress`, `jobcard_closed`, `mdr_closed`) VALUES
+(4, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', '2', 'Project 1', 'GAH3', '3', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(5, 'KA Project 1', '2019-12-12', '2020-01-01', 'Closed', 1, 0, 'Base Maintenance', '5', 'Project 1', 'GAH3', '6', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(6, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', '2', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(7, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(8, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 1, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 1, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(11, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
+(12, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, '800', 0, 0, '700', 0, 0, 800, 700);
 
 -- --------------------------------------------------------
 
@@ -716,7 +733,7 @@ CREATE TABLE `user_admin` (
 --
 
 INSERT INTO `user_admin` (`user_admin_id`, `name`, `position`, `division`, `not_read_msg`, `not_read_complaint`, `not_read_feedback`, `user_id`) VALUES
-(1, 'Juan', 'GM', 'Marketing', 2, 1, 2, 14);
+(1, 'Juan', 'GM', 'Marketing', 0, 0, 4, 14);
 
 -- --------------------------------------------------------
 
@@ -1041,7 +1058,7 @@ ALTER TABLE `feedback_nonproject`
 -- AUTO_INCREMENT for table `feedback_project`
 --
 ALTER TABLE `feedback_project`
-  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `feedback_project_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `fleet_maint`
@@ -1059,7 +1076,7 @@ ALTER TABLE `gmf_cp`
 -- AUTO_INCREMENT for table `list_feedback_project`
 --
 ALTER TABLE `list_feedback_project`
-  MODIFY `list_feedback_project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `list_feedback_project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -1071,7 +1088,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `newsletter`
@@ -1089,7 +1106,7 @@ ALTER TABLE `past_marketing`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `project_service`

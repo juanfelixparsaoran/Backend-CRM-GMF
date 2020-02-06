@@ -55,6 +55,14 @@ class ProjectController extends Controller
             'location' => $request->location != NULL ? $request->location : $project[0]->location,
             'ac_reg' => $request->ac_reg != NULL ? $request->ac_reg : $project[0]->ac_reg,
             'type' => $request->type != NULL ? $request->type : $project[0]->type,
+            'jobcard_total' => $request->jobcard_total != NULL ? $request->jobcard_total : $project[0]->jobcard_total,
+            'jobcard_closed' => $request->jobcard_closed != NULL ? $request->jobcard_closed : $project[0]->jobcard_closed,
+            'jobcard_open' => $request->jobcard_open != NULL ? $request->jobcard_open : $project[0]->jobcard_open,
+            'jobcard_progress' => $request->jobcard_progress != NULL ? $request->jobcard_progress : $project[0]->jobcard_progress,
+            'mdr_total' => $request->mdr_total != NULL ? $request->mdr_total : $project[0]->mdr_total,
+            'mdr_open' => $request->mdr_open != NULL ? $request->mdr_open : $project[0]->mdr_open,
+            'mdr_progress' => $request->mdr_progress != NULL ? $request->mdr_progress : $project[0]->mdr_progress,
+            'mdr_closed' => $request->mdr_closed != NULL ? $request->mdr_closed : $project[0]->mdr_closed,
         ]);
         return response()->json([
             'message' => 'Project Updated'
@@ -78,7 +86,15 @@ class ProjectController extends Controller
                 'company_id' => $company[0]->company_id,
                 'location' => $request->location,
                 'ac_reg' => $request->ac_reg,
-                'type' => $request->type
+                'type' => $request->type,
+                'mdr_closed' => $request->mdr_closed,
+                'mdr_total' => $request->mdr_total,
+                'mdr_open' => $request->mdr_open,
+                'mdr_progress' => $request->mdr_progress,
+                'jobcard_total' => $request->jobcard_total,
+                'jobcard_open' => $request->jobcard_open,
+                'jobcard_progress' => $request->jobcard_progress,
+                'jobcard_closed' => $request->jobcard_closed
             ]);
             if ($request->quantity > 1){
                 $project = DB::table('project')->get();
@@ -98,5 +114,24 @@ class ProjectController extends Controller
                 'message' => 'Start date must be earlier than finish date'
             ]);
         }
+    }
+
+    function getProject(){
+        
+        // Create a stream
+        $opts = [
+            "http" => [
+                "method" => "GET",
+                "header" => 
+                    "revision : 00078335".
+                    "token : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoia2lraWsuZGV2QGdtYWlsLmNvbSJ9fQ.bFBBep7EDAwjIioDWsQHt2_mHFnUPy3ea6ocRVxNcm4".
+                    "start_row : 10" . 
+                    "end_row : 10"
+            ]
+        ];
+        
+        $context = stream_context_create($opts);
+        $json = json_decode(file_get_contents('http://172.16.40.164/API/project'), false,$context);
+        return $json;
     }
 }

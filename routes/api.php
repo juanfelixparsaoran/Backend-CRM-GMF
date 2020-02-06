@@ -139,6 +139,7 @@ Route::get('/project/edit/{id}','ProjectController@edit');
 Route::post('/project/update','ProjectController@update');
 Route::get('/project/delete/{id}','ProjectController@delete');
 Route::post('/project/create','ProjectController@create');
+Route::get('/project/fetch','ProjectController@getProject');
 
 Route::get('/calendar/{month}/{year}','CalendarController@getHighlightedDays');
 Route::get('/calendar/{day}/{month}/{year}','CalendarController@getCalendarDetail');
