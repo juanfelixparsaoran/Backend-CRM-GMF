@@ -3,6 +3,7 @@
 use Maatwebsite\Excel\Excel;
 
 return [
+    'ignoreEmpty' => true,
 
     'exports' => [
 
@@ -43,6 +44,7 @@ return [
     ],
 
     'imports'            => [
+        'ignoreEmpty' => true,
 
         'read_only' => true,
 

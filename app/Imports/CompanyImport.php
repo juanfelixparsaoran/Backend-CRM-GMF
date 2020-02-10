@@ -5,6 +5,12 @@ namespace App\Imports;
 use App\Company;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Validators\Failure;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
 
 class CompanyImport implements ToModel, WithHeadingRow
 {
@@ -12,6 +18,7 @@ class CompanyImport implements ToModel, WithHeadingRow
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
+    
     */
     public function model(array $row)
     {
@@ -33,5 +40,10 @@ class CompanyImport implements ToModel, WithHeadingRow
             'destination' => $row['destination'],
             'customer_since' => $row['customer_since'],
         ]);
+        
+    }
+    public function headingRow(): int
+    {
+        return 1;
     }
 }

@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use App\Exports\CompanyExport;
 use App\Imports\CompanyImport;
+use App\Imports\CompleteCompanyImport;
+use App\Imports\FleetMaintImport;
+use App\Imports\RevenueImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Company;
+use App\FleetMaint;
+use App\Revenue;
 class CompanyController extends Controller
 {
     function read(){
@@ -106,14 +111,14 @@ class CompanyController extends Controller
 
     public function export_excel(){
         $url = \config('filesystems.disks.local.root');
-        $path = $url."/form.xlsx";
+        $path = $url."/CompanyForm.xlsx";
         return response()->download($path);
     }
 
     public function import_excel(Request $request){
         $path = Storage::putFile('form_company', $request->file);
         $url = \config('filesystems.disks.local.root');
-        Excel::import(new CompanyImport, $url."/".$path);
+        Excel::import(new CompleteCompanyImport, $url."/".$path);
         return "Successfully add Customer";
     }
 }
