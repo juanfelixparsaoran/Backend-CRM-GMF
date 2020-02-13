@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class ProjectController extends Controller
 {
@@ -117,21 +118,49 @@ class ProjectController extends Controller
     }
 
     function getProject(){
-        
-        // Create a stream
-        $opts = [
-            "http" => [
-                "method" => "GET",
-                "header" => 
-                    "revision : 00078335".
-                    "token : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoia2lraWsuZGV2QGdtYWlsLmNvbSJ9fQ.bFBBep7EDAwjIioDWsQHt2_mHFnUPy3ea6ocRVxNcm4".
-                    "start_row : 10" . 
-                    "end_row : 10"
-            ]
+
+        $client = new Client();
+        $headers = [
+                    "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoia2lraWsuZGV2QGdtYWlsLmNvbSJ9fQ.bFBBep7EDAwjIioDWsQHt2_mHFnUPy3ea6ocRVxNcm4",
+            
         ];
-        
-        $context = stream_context_create($opts);
-        $json = json_decode(file_get_contents('http://172.16.40.164/API/project'), false,$context);
-        return $json;
+
+        $response = $client->get('http://172.16.40.164/API/project', [
+            'headers' => $headers
+        ]);
+        $body = json_decode($response->getBody(), true);
+        foreach($body as $bd){
+            
+            if ($bd['start'] == "00000000"){
+                $temp_start = null;
+            }else{
+                $temp_start = date("Y-m-d", strtotime($bd['start']));
+            }
+            if ( $bd['end'] == "00000000"){
+                $temp_end = null;
+            }else{
+                $temp_end = date("Y-m-d", strtotime($bd['end']));
+                
+            }
+            DB::table('project')->insert([
+                'name' => $bd['project_id'],
+                'start' => $temp_start,
+                'finish' => $temp_end,
+                'ac_reg' => $bd['A/C_reg'],
+                "location" => $bd['location'],
+                "status" => $bd['status'],
+                "jobcard_total" => $bd['jc_total'],
+                "jobcard_open" => $bd['jc_open'],
+                "jobcard_progress" => $bd['jc_progress'],
+                "jobcard_closed" => $bd['jc_closed'],
+                "mdr_open" => $bd['mdr_open'],
+                "mdr_total" => $bd['mdr_total'],
+                "mdr_progress" => $bd['mdr_progress'],
+                "mdr_closed" => $bd['mdr_closed'],
+                "company_id" => 1,
+            ]);
+            
+        }
+        return $body;
     }
 }

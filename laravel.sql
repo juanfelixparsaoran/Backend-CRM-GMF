@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2020 at 07:31 AM
+-- Generation Time: Feb 13, 2020 at 11:00 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -100,12 +100,12 @@ INSERT INTO `birthday_card` (`birthday_card_id`, `subject`, `image`, `permalink`
 
 CREATE TABLE `company` (
   `image` varchar(1000) DEFAULT NULL,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
   `region` varchar(100) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
   `company_role` varchar(100) DEFAULT NULL,
   `business_model` varchar(100) DEFAULT NULL,
-  `status` varchar(100) NOT NULL DEFAULT 'Active',
+  `status` varchar(100) DEFAULT 'Active',
   `est_date` int(11) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL,
   `customer_type` varchar(100) DEFAULT NULL,
@@ -131,7 +131,22 @@ INSERT INTO `company` (`image`, `name`, `region`, `country`, `company_role`, `bu
 ('company/hgV0hrPti2S1kjhyweXlNFzmrbBk7um1P5eZk5eb.jpeg', 'Garuda Indonesia', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 8, NULL, NULL),
 (NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 23, '2019-12-19 07:06:45', '2019-12-19 07:06:45'),
 (NULL, 'Indian Airlines', 'Domestic', 'Indonesia', 'Passanger', 'Operator', 'Active', 1962, 'FSC', 'Existing Customer(Retail)', 'Hanjin Group', 'SkyTeam', 'Jin Air(LCC)', 174, 150, 2018, 24, '2019-12-29 02:39:31', '2019-12-29 02:39:31'),
-(NULL, 'Lion', NULL, NULL, NULL, NULL, 'Active', 1982, 'FSC', NULL, 'Hanjin Group', NULL, NULL, NULL, NULL, NULL, 35, '2020-01-06 21:00:44', '2020-01-06 21:00:44');
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'asd', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 81, '2020-02-09 20:11:38', '2020-02-09 20:11:38'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 82, '2020-02-09 20:15:21', '2020-02-09 20:15:21'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 83, '2020-02-09 20:16:48', '2020-02-09 20:16:48'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 84, '2020-02-09 20:17:28', '2020-02-09 20:17:28'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 85, '2020-02-09 20:17:40', '2020-02-09 20:17:40'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 86, '2020-02-09 20:20:27', '2020-02-09 20:20:27'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 87, '2020-02-09 20:21:00', '2020-02-09 20:21:00'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 88, '2020-02-09 20:25:56', '2020-02-09 20:25:56'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 89, '2020-02-09 20:29:35', '2020-02-09 20:29:35'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'B723-2', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 91, '2020-02-09 20:31:17', '2020-02-09 20:31:17'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'asd', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 95, '2020-02-09 20:40:06', '2020-02-09 20:40:06'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'asd', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 100, '2020-02-09 20:52:55', '2020-02-09 20:52:55'),
+(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 101, '2020-02-09 20:52:55', '2020-02-09 20:52:55'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'asd', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 102, '2020-02-09 20:54:11', '2020-02-09 20:54:11'),
+(NULL, 'Lion', 'asd', 'asd', 'ads', 'ad', 'Active', 2019, 'asd', 'asd', 'asd', 'asd', 'asd', 2, 2, 2019, 103, '2020-02-09 20:55:08', '2020-02-09 20:55:08'),
+(NULL, 'Lion', 'asd', 'asd', 'asd', 'asd', 'Active', 2020, 'asd', 'asd', 'asd', 'asd', 'asd', 2, 21, 2019, 104, '2020-02-09 20:59:46', '2020-02-09 20:59:46');
 
 -- --------------------------------------------------------
 
@@ -326,7 +341,21 @@ INSERT INTO `fleet_maint` (`fleet_maint_id`, `product`, `type`, `quantity`, `mai
 (3, 'Airframe', 'B72-20', 2, NULL, 'current', 1),
 (4, 'Engine', 'B72-20', 2, NULL, 'current', 1),
 (5, 'Apu', 'B72-20', 2, NULL, 'current', 1),
-(6, 'Component', 'B72-20', 2, NULL, 'current', 1);
+(6, 'Component', 'B72-20', 2, NULL, 'current', 1),
+(7, 'Airframe', 'B723-2', 2, NULL, 'future', 87),
+(8, 'Airframe', 'B723-2', 2, NULL, 'future', 88),
+(9, 'Airframe', 'B723-2', 2, NULL, 'future', 89),
+(10, 'Airframe', 'B723-2', 2, NULL, 'future', 91),
+(11, 'Airframe', 'B723-2', 2, NULL, 'future', 95),
+(12, 'Airframe', 'B723-2', 2, NULL, 'future', 101),
+(13, 'Apu', 'B231-1', 5, NULL, 'current', 101),
+(14, 'Airframe', 'B723-2', 2, NULL, 'future', 102),
+(15, 'Apu', 'B231-1', 5, NULL, 'current', 102),
+(16, 'Airframe', 'B723-2', 2, NULL, 'future', 103),
+(17, 'Apu', 'B231-1', 5, NULL, 'current', 103),
+(18, 'Airframe', 'B23-1', 2, NULL, 'future', 104),
+(19, 'Apu', 'B23-4', 4, NULL, 'current', 104),
+(20, 'Apu', 'B123-5', 5, NULL, 'future', 104);
 
 -- --------------------------------------------------------
 
@@ -521,17 +550,17 @@ INSERT INTO `past_marketing` (`past_marketing_id`, `date`, `activity`, `remarks`
 
 CREATE TABLE `project` (
   `project_id` int(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `start` date NOT NULL,
-  `finish` date NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `finish` date DEFAULT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'On Going',
-  `quantity` int(50) NOT NULL,
+  `quantity` int(50) NOT NULL DEFAULT 1,
   `done` int(11) NOT NULL DEFAULT 0,
-  `project_type` varchar(100) NOT NULL,
+  `project_type` varchar(100) DEFAULT NULL,
   `rating` varchar(50) NOT NULL DEFAULT 'Not Rated',
   `ac_reg` varchar(100) NOT NULL,
   `location` varchar(100) NOT NULL,
-  `type` varchar(100) NOT NULL,
+  `type` varchar(100) DEFAULT NULL,
   `company_id` int(11) NOT NULL,
   `jobcard_total` varchar(1000) DEFAULT NULL,
   `jobcard_open` int(11) DEFAULT NULL,
@@ -556,7 +585,17 @@ INSERT INTO `project` (`project_id`, `name`, `start`, `finish`, `status`, `quant
 (9, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 2, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
 (10, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 1, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
 (11, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 2, 'Line Maintenance', '4', 'Project 1', 'GAH3', '2', 1, '840', 0, 0, '700', 0, 0, 840, 700),
-(12, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, '800', 0, 0, '700', 0, 0, 800, 700);
+(12, 'LA Project 1', '2019-12-12', '2020-01-01', 'On Going', 3, 0, 'Line Maintenance', 'Not Rated', 'Project 1', 'GAH3', '2', 1, '800', 0, 0, '700', 0, 0, 800, 700),
+(13, '00000000', NULL, NULL, 'CRTD', 1, 0, NULL, 'Not Rated', '                              ', '    ', NULL, 1, '0', 0, 0, '0', 0, 0, 0, 0),
+(14, '00004839', '2015-04-04', '2015-04-05', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-CLQ                        ', 'GAH3', NULL, 1, '1', 0, 0, '0', 0, 0, 1, 0),
+(15, '00007097', '2015-05-30', '2015-05-31', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-GRA                        ', 'UPG1', NULL, 1, '0', 0, 0, '1', 0, 0, 0, 1),
+(16, '00009886', '2015-08-10', '2015-08-11', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-GFI                        ', 'CGK2', NULL, 1, '5', 0, 0, '0', 0, 0, 5, 0),
+(17, '00010199', '2015-08-21', '2015-08-22', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-GEI                        ', 'CGK2', NULL, 1, '13', 0, 0, '0', 0, 0, 13, 0),
+(18, '00010794', '2015-09-07', '2015-09-08', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-GQK                        ', 'SUB1', NULL, 1, '1', 0, 0, '0', 0, 0, 1, 0),
+(19, '00011068', '2015-08-30', '2015-08-31', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-GMJ                        ', 'CGK2', NULL, 1, '0', 0, 0, '0', 0, 0, 0, 0),
+(20, '00028445', '2016-08-22', '2016-08-23', 'CRTD', 1, 0, NULL, 'Not Rated', 'PK-GFV                        ', '    ', NULL, 1, '0', 0, 0, '1', 0, 0, 0, 1),
+(21, '00034799', '2016-12-05', '2016-12-06', 'CRTD', 1, 0, NULL, 'Not Rated', 'PK-GFI                        ', '    ', NULL, 1, '0', 0, 0, '0', 0, 0, 0, 0),
+(22, '00035200', '2016-12-12', '2016-12-13', 'CLSD', 1, 0, NULL, 'Not Rated', 'PK-GRL                        ', 'CGK3', NULL, 1, '0', 0, 0, '0', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -640,7 +679,19 @@ CREATE TABLE `revenue` (
 INSERT INTO `revenue` (`revenue_id`, `product`, `sales`, `company_id`) VALUES
 (2, 'Airframe', 200000, 1),
 (3, 'Engine', 30000, 1),
-(4, 'Component', 30000, 1);
+(4, 'Component', 30000, 1),
+(5, 'Airframe', 20000, 89),
+(6, 'Airframe', 20000, 91),
+(7, 'Airframe', 20000, 95),
+(8, 'Airframe', 20000, 101),
+(9, 'Apu', 100000, 101),
+(10, 'Airframe', 20000, 102),
+(11, 'Apu', 100000, 102),
+(12, 'Airframe', 20000, 103),
+(13, 'Apu', 100000, 103),
+(14, 'Airframe', 20000, 104),
+(15, 'Apu', 30000, 104),
+(16, 'Apu', 20000, 104);
 
 -- --------------------------------------------------------
 
@@ -1022,7 +1073,7 @@ ALTER TABLE `birthday_card`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `company_ads`
@@ -1064,7 +1115,7 @@ ALTER TABLE `feedback_project`
 -- AUTO_INCREMENT for table `fleet_maint`
 --
 ALTER TABLE `fleet_maint`
-  MODIFY `fleet_maint_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `fleet_maint_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `gmf_cp`
@@ -1106,7 +1157,7 @@ ALTER TABLE `past_marketing`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `project_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `project_service`
@@ -1130,7 +1181,7 @@ ALTER TABLE `reply_complaint`
 -- AUTO_INCREMENT for table `revenue`
 --
 ALTER TABLE `revenue`
-  MODIFY `revenue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `revenue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `service`
